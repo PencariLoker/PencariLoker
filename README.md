@@ -1,6 +1,6 @@
 # PencariLoker
 Tugas Pemrograman Web Lanjutan
-Menggunakan framework Node.js, Adonix.js, Angular 1.js
+Menggunakan framework Node.js, Adonis.js
 
 # Contributor:
 - Javentira Lienata
