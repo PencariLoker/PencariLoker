@@ -1,5 +1,6 @@
 'use strict'
 var bcrypt = require('bcryptjs');
+
 class HomeController {
   * index (request, response) {
 	var salt = bcrypt.genSaltSync(10);
@@ -16,8 +17,12 @@ class HomeController {
   }
 
   * tester (request, response){
-  	yield request.session.put('username', 'nipeharefa');
-  	response.json(yield request.session.all());
+  	console.log("sad");
+  }
+
+  * test (request, response){
+    let genObj = this.tester();
+    response.send(genObj.next());
   }
 
 }

@@ -14,4 +14,8 @@ const Route = use('Route')
 
 Route.get('/', 'HomeController.index');
 Route.get('/tester', 'HomeController.home');
-Route.get('/test', 'HomeController.tester');
+Route.get('/test', 'HomeController.test');
+
+//test API
+Route.get('/oauth/linkedin', 'AuthController.authentication');
+Route.get('/authentication', 'AuthController.accessToken');
