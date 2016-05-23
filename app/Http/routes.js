@@ -12,10 +12,13 @@
 */
 const Route = use('Route')
 
-Route.get('/', 'HomeController.index');
-Route.get('/tester', 'HomeController.home');
-Route.get('/test', 'HomeController.test');
+Route.get('/', 'HomeController.index')
+Route.get('/tester', 'HomeController.home')
+Route.get('/test', 'HomeController.test')
 
-//test API
-Route.get('/oauth/linkedin', 'AuthController.authentication');
-Route.get('/authentication', 'AuthController.accessToken');
+// test API
+Route.get('/oauth/linkedin', 'AuthController.authentication')
+Route.get('/authentication', 'AuthController.accessToken')
+
+Route.get('/ninja/user', 'AdminUserController.index')
+Route.post('/ninja/user', 'AdminUserController.addUser')

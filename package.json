@@ -15,6 +15,8 @@
     "adonis-framework": "^2.0.9",
     "adonis-lucid": "^2.0.5",
     "adonis-middleware": "^1.0.5",
+    "gulp-clean-css": "^2.0.7",
+    "gulp-rev": "^7.0.0",
     "mysql": "^2.10.2",
     "ouch": "^0.2.0-beta"
   },
