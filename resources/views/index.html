@@ -8,13 +8,18 @@
 		<meta name="author" content="">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/modal.css">
 		<link href="/css/landing-page.css " rel="stylesheet">
+		<script src="/js/jquery.js"></script>
+		<script src="/js/vue.js"></script>
 		<title>{% block title %} {% endblock %}</title>
 	</head>
-	<body class="landing">
+	<body class="landing" id="app">
+		{% include "_partials/_modal.html" %}
 		{% include "_partials/_navbar.html" %}
 		{% block content %}
 		{% endblock %}
 		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/modal.js"></script>
 	</body>
 </html>

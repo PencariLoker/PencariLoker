@@ -1,0 +1,7 @@
+/*@media only screen and (min-width:)*/
+#linkedinBtn{
+  width:100%;
+}
+#linkedinBtn:hover{
+  background:url('/img/linkedinlogo/Retina/Sign-In-Large---Hover.png');
+}
