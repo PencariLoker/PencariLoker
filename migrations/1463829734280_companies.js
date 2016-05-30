@@ -8,7 +8,6 @@ class NewSchema extends Schema {
       table.increments('id')
       table.string('name')
       table.string('industry')
-      table.string('website')
       table.string('phone')
       table.string('website')
       table.string('size')

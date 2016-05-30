@@ -22,3 +22,8 @@ Route.get('/authentication', 'AuthController.accessToken')
 
 Route.get('/ninja/user', 'AdminUserController.index')
 Route.post('/ninja/user', 'AdminUserController.addUser')
+
+Route.get('/admin/users', 'AdminUsersController.index')
+Route.post('/admin/users/add', 'AdminUsersController.create')
+Route.get('/admin/users/list', 'AdminUsersController.list')
+Route.get('/admin/company', 'AdminCompanyController.index')

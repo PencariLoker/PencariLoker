@@ -1,6 +1,6 @@
 'use strict'
 var bcrypt = require('bcryptjs')
-
+const User = use('App/Model/Users')
 class HomeController {
   * index (request, response) {
     var salt = bcrypt.genSaltSync(10)
@@ -21,8 +21,13 @@ class HomeController {
   }
 
   * test (request, response) {
-    let genObj = this.tester()
-    response.send(genObj.next())
+    /*var hash = bcrypt.hashSync("nipehareaf", 10);
+    yield User.create({'name' : 'Lorem', 'email' : 'foo@bar.com', 'password' : hash})*/
+    const user = yield User.find(1)
+
+    if (user.isTrashed()) {
+      response.send("Trashed");
+    };
   }
 
 }
