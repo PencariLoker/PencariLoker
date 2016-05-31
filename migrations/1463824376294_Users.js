@@ -7,6 +7,7 @@ class NewSchema extends Schema {
   up () {
     this.create('users', function (table) {
       table.increments('id')
+      table.string('username')
       table.string('name')
       table.string('email')
       table.string('password')
