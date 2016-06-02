@@ -12,14 +12,12 @@
 		<link href="/css/landing-page.css " rel="stylesheet">
 		<script src="/js/jquery.js"></script>
 		<script src="/js/vue.js"></script>
-		<title>{% block title %} {% endblock %}</title>
+		<title>Peofile</title>
 	</head>
 	<body class="landing" id="app">
-		{% include "_partials/_modal.html" %}
-		{% include "_partials/_navbar.html" %}
-		{% block content %}
-		{% endblock %}
+		<profile></profile>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/modal.js"></script>
+		<script src="/js/Front/profile.js"></script>
 	</body>
 </html>

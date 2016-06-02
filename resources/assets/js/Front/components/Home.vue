@@ -1,9 +1,6 @@
-{# resources/views/layout/home.html #}
-{% extends 'index' %}
-{% block title %}
-	Home Page
-{% endblock %}
-{% block content %}
+<template>
+	<navbar></navbar>
+	<modal></modal>
 	<a name="about"></a>
 	<div class="intro-header">
 		<div class="container">
@@ -148,10 +145,21 @@
 			
 			
 			<div class="clearfix"> </div>
-			<h4 class="copy">
-			<p>Copyright © 2015 PencariLoker.com</a> </p>
-			</h4>
+				<h4 class="copy">
+				<p>Copyright © 2015 PencariLoker.com</a> </p>
+				</h4>
+			</div>
 		</div>
 	</div>
-</div>
-{% endblock %}
+</template>
+
+
+<script type="text/javascript">
+	Vue.component('navbar', require('./_navbar.vue'));
+	Vue.component('modal', require('./_modal.vue'));
+	export default {
+		ready: function () {
+			console.log("Home Rready");
+		}
+	}
+</script>
