@@ -14,6 +14,7 @@ const Route = use('Route')
 
 
 Route.get('/', 'HomeController.index');
+Route.get('/jobdetails/:id', 'HomeController.jobdetails').as('jobdetails')
 Route.get('/tester', 'HomeController.home');
 Route.get('/test', 'HomeController.test');
 Route.get('/profile','HomeController.profile');

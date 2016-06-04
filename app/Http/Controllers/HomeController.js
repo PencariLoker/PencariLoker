@@ -12,6 +12,13 @@ class HomeController {
     response.send(view)
   }
 
+  * jobdetails (request, response) {
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync("B4c0/\/", salt);
+    const view = yield response.view('frontend/jobDetails.html');
+    response.send(view)
+  }
+
   * home (request, response) {
     var salt = bcrypt.genSaltSync(10)
     var hash = bcrypt.hashSync('B4c0/\/', salt)

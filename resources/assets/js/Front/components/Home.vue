@@ -142,8 +142,8 @@
 					<button type="button" class="btn red">Daftar sekarang!</button>
 				</form>
 			</div> -->
-			
-			
+
+
 			<div class="clearfix"> </div>
 				<h4 class="copy">
 				<p>Copyright © 2015 PencariLoker.com</a> </p>
@@ -159,7 +159,7 @@
 	Vue.component('modal', require('./_modal.vue'));
 	export default {
 		ready: function () {
-			console.log("Home Rready");
+			console.log("Home Ready");
 		}
 	}
 </script>
