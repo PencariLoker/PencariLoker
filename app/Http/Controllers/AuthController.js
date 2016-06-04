@@ -6,8 +6,8 @@ var statusDatabase = false;
 const User = use('App/Model/Users');
 
 
-var $ = require('jquery')(require('jsdom').jsdom().defaultView);
-var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+// var $ = require('jquery')(require('jsdom').jsdom().defaultView);
+// var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 class AuthController {
 	static isAuthenticated(){
@@ -85,7 +85,11 @@ class AuthController {
   			var resQuery = yield User.where('linkedin_id',userData.id);
   			var data = resQuery.toJSON();
   		}else{
-			var data = userData;
+  			if(!userData){
+  				var data = {}
+  			}else{
+				var data = userData;
+  			}
 			data.logged = logged_Linkedin;
   		}
   		response.json(data);
@@ -97,46 +101,46 @@ class AuthController {
   	}
 
   	*share(request,response){
-  		console.log(request.get().test);
-  		console.log("Share Done");
-		var tmpToken = yield request.session.get('access_token');
-		var url = 'https://api.linkedin.com/v1/people/~/shares?format=json&oauth2_access_token=' + tmpToken
-		console.log(url)
-		$.support.cors = true;
-		$.ajaxSettings.xhr = function() {
-		    return new XMLHttpRequest();
-		};
-  		$.ajax({
-	  		url:url,
-	  		dataType:"json",
-	  		data: {
-				  "comment": "Check out developer.linkedin.com! http://linkd.in/1FC2PyG",
-				  "visibility": {
-				    "code": "anyone"
-				  }
-				},
-	  		async:true,
-	  		cache:false,
-	  		timeout:30000,
-	  		headers:{"Content-Type": "application/json", "x-li-format": "json","Access-Control-Allow-Origin":"https"},
-	  		success:function(e){
-	  			console.log(e);
-	  			response.send(e);
-	  		},
-	  		error:function(e,f,g){
-	  			console.log(f);
-	  			response.send(f);
-	  		},
-	  		type:'POST'
-	  	});
+  // 		console.log(request.get().test);
+  // 		console.log("Share Done");
+		// var tmpToken = yield request.session.get('access_token');
+		// var url = 'https://api.linkedin.com/v1/people/~/shares?format=json&oauth2_access_token=' + tmpToken
+		// console.log(url)
+		// $.support.cors = true;
+		// $.ajaxSettings.xhr = function() {
+		//     return new XMLHttpRequest();
+		// };
+  // 		$.ajax({
+	 //  		url:url,
+	 //  		dataType:"json",
+	 //  		data: {
+		// 		  "comment": "Check out developer.linkedin.com! http://linkd.in/1FC2PyG",
+		// 		  "visibility": {
+		// 		    "code": "anyone"
+		// 		  }
+		// 		},
+	 //  		async:true,
+	 //  		cache:false,
+	 //  		timeout:30000,
+	 //  		headers:{"Content-Type": "application/json", "x-li-format": "json","Access-Control-Allow-Origin":"https"},
+	 //  		success:function(e){
+	 //  			console.log(e);
+	 //  			response.send(e);
+	 //  		},
+	 //  		error:function(e,f,g){
+	 //  			console.log(f);
+	 //  			response.send(f);
+	 //  		},
+	 //  		type:'POST'
+	 //  	});
   	}
   	*share2(request,response){
-  		console.log(request.get().from);
-  		console.log("Share2 Done");
-		var tmpToken = yield request.session.get('access_token');
-		var url = 'https://api.linkedin.com/v1/people/~/shares?format=json&oauth2_access_token=' + tmpToken
-		console.log(url)
-		response.send("done 2");
+  // 		console.log(request.get().from);
+  // 		console.log("Share2 Done");
+		// var tmpToken = yield request.session.get('access_token');
+		// var url = 'https://api.linkedin.com/v1/people/~/shares?format=json&oauth2_access_token=' + tmpToken
+		// console.log(url)
+		// response.send("done 2");
   	}
 }
 
