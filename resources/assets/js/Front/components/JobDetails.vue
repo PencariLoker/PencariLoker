@@ -5,12 +5,10 @@
         <hr style="margin-top:3px;">
         <div class="row smalldetail colputih">
           <div class="colputih col-md-6 col-xs-12">
-            @if(!empty($lowongan->company->logo))
-            <div class="col-md-4 col-xs-12 divdetaillogo">
+            <div v-if="lowongan.company.logo" class="col-md-4 col-xs-12 divdetaillogo">
               <img src="{{URL::asset($lowongan->company->logo)}}" class="jobdetaillogo img-responsive" alt="">
               <hr class="visible-sm visible-xs">
             </div>
-            @endif
             <div class="colputih col-md-8 col-xs-12">
               <h2>{{$lowongan->name}}</h2>
               {{$lowongan->company->name}}
