@@ -14,7 +14,9 @@ const Route = use('Route')
 
 
 Route.get('/', 'HomeController.index');
-Route.get('/jobdetails/:id', 'HomeController.jobdetails').as('jobdetails')
+Route.get('/jobdetails', 'HomeController.jobdetails').as('jobdetails')
+Route.get('/jobs', 'HomeController.jobs').as('jobs')
+Route.get('/jobsInit', 'JobsController.firstInitData')
 Route.get('/tester', 'HomeController.home');
 Route.get('/test', 'HomeController.test');
 Route.get('/profile','HomeController.profile');
@@ -28,7 +30,7 @@ Route.get('/share','AuthController.share');
 Route.get('/share2','AuthController.share2');
 
 Route.get('/ninja/user', 'AdminUserController.index')
-Route.post('/ninja/user', 'AdminUserController.addUser')
+Route.post('/ninja/addUser', 'AdminUsersController.addUser').as('addUser')
 
 Route.get('/admin/users', 'AdminUsersController.index')
 Route.post('/admin/users/add', 'AdminUsersController.create')

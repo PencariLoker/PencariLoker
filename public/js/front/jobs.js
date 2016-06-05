@@ -20249,45 +20249,93 @@ module.exports = Vue;
 window.Vue = require('vue');
 window.$ = window.jQuery = require('jquery');
 Vue.config.debug = true;
-var JobDetails = require('./components/JobDetails.vue');
+var Jobs = require('./components/Jobs.vue');
 new Vue({
-  ready: function ready() {
-    console.log("Job Details Ready");
-  },
-  el: "body",
-  components: {
-    jobdetails: JobDetails
-  }
+	ready: function ready() {
+		console.log("Jobs Ready");
+	},
+	el: "body",
+	components: {
+		jobs: Jobs
+	}
 });
 
-},{"./components/JobDetails.vue":6,"jquery":1,"vue":4}],6:[function(require,module,exports){
+},{"./components/Jobs.vue":6,"jquery":1,"vue":4}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 
 Vue.component('navbar', require('./_navbar.vue'));
+Vue.component('modal', require('./_modal.vue'));
 exports.default = {
-  ready: function ready() {
-    console.log("Job Details Ready");
-  }
+    ready: function ready() {
+        console.log("Jobs Ready");
+        var _this = this;
+        $.ajax({
+            method: 'GET',
+            async: false,
+            cache: false,
+            'url': window.location.origin + "/jobsInit",
+            success: function (res) {
+                _this.companies = res.companies;
+                _this.lowongancats = res.lowongancats;
+                _this.lowongans = res.lowongans;
+            }.bind(_this)
+        });
+    },
+    data: function data() {
+        return {
+            companies: [],
+            lowongancats: [],
+            lowongans: [],
+            idcomp: ''
+        };
+    },
+    methods: {
+        method: function method() {}
+    }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n <navbar></navbar>\n<div class=\"container bungkus\">\n     <div class=\"colputih\">\n       <hr style=\"margin-top:3px;\">\n       <div class=\"row smalldetail colputih\">\n         <div class=\"colputih col-md-6 col-xs-12\">\n           <div v-if=\"lowongan.company.logo\" class=\"col-md-4 col-xs-12 divdetaillogo\">\n             <img src=\"{{URL::asset($lowongan->company->logo)}}\" class=\"jobdetaillogo img-responsive\" alt=\"\">\n             <hr class=\"visible-sm visible-xs\">\n           </div>\n           <div class=\"colputih col-md-8 col-xs-12\">\n             <h2>{{$lowongan-&gt;name}}</h2>\n             {{$lowongan-&gt;company-&gt;name}}\n           </div>\n         </div>\n         <div class=\"colputih col-md-4 col-xs-12 pull-right\">\n           <ul class=\"detailsmalllist\" type=\"none\">\n             <li class=\"salary\"><span><i class=\"fa fa-money\"></i></span> {{$lowongan-&gt;gaji}}</li>\n             <li><span><i class=\"fa fa-briefcase\"></i></span> {{$lowongan-&gt;syaratpengalaman}}</li>\n             <li><span style=\"padding:3px\"><i class=\"fa fa-map-marker\"></i></span> {{$lowongan-&gt;kotaprovinsi}}</li>\n           </ul>\n         </div>\n       </div>\n     </div>\n     <hr>\n     <div class=\"clearfix\">\n     </div>\n     <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n       <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 kotakjobdesc\">\n         <div class=\"colputih jobdesc\"><h4><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Job Description</h4>\n         <hr style=\"margin-top:1px;\">\n         <div class=\"unselectable wrap-text\" id=\"job_description\">\n           {{$lowongan-&gt;descript}}\n         </div>\n       </div>\n     </div>\n     @if(!empty($lowongan-&gt;gmaps))\n     <div class=\"col-xs-12 col-lg-12 col-md-12 col-sm-12 kotakjobdesc\">\n       <div class=\"colputih jobdesc\">\n         <h4><i class=\"fa fa-map-marker icon_header\"></i> WORK LOCATION</h4>\n         <hr style=\"margin-top:1px;\">\n         <center>\n         <iframe src=\"{{$lowongan->gmaps}}\" frameborder=\"0\" id=\"iframe_ee9f_0\" allowfullscreen=\"\"></iframe>\n         </center>\n       </div>\n       <div class=\"clearfix\">\n       </div>\n     </div>\n     @endif\n   </div>\n   <div class=\"col-xs-12 col-lg-6 col-md-6 col-sm-6 kotakjobdesc\">\n     <div class=\"colputih jobdesc\"><h4><i class=\"fa fa-list-alt icon_header\"></i> Company Info</h4>\n       <hr style=\"margin-top:1px;\">\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Company Name</p>\n         <p>\n           <span id=\"company_registration_number\">{{$lowongan-&gt;company-&gt;name}}</span>\n         </p>\n       </div>\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Industry</p>\n         <p id=\"company_industry\">{{$lowongan-&gt;company-&gt;industry}}</p>\n       </div>\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Company Size</p>\n         <p id=\"company_size\">{{$lowongan-&gt;company-&gt;size}} orang</p>\n       </div>\n       @if(!empty($lowongan-&gt;company-&gt;website))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Website</p>\n         <p>\n           <a id=\"company_website\" target=\"_blank\" href=\"http://{{$lowongan->company->website}}\">{{$lowongan-&gt;company-&gt;website}}</a>\n         </p>\n       </div>\n       @endif\n       @if(!empty($lowongan-&gt;company-&gt;phone))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Phone</p>\n         <p id=\"company_contact\">021-29809200</p>\n       </div>\n       @endif\n       @if(!empty($lowongan-&gt;company-&gt;email))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Email</p>\n         <p id=\"work_environment_working_hours\">{{$lowongan-&gt;company-&gt;email}}</p>\n       </div>\n       @endif\n       @if(!empty($lowongan-&gt;company-&gt;address))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Address</p>\n         <p id=\"work_environment_working_hours\">{{$lowongan-&gt;company-&gt;address}}</p>\n       </div>\n       @endif\n       <div class=\"clearfix\">\n       </div>\n     </div>\n     <div class=\"clearfix\">\n     </div>\n   </div>\n   @if(!empty($arr))\n   <div class=\"col-xs-12 col-lg-6 col-md-6 col-sm-6 kotakjobdesc\">\n     <div class=\"colputih jobdesc\"><h4><i class=\"fa fa-list-alt icon_header\"></i> COMPANY PHOTOS</h4>\n       <hr style=\"margin-top:1px;\">\n       <ul id=\"lightSlider\">\n         @foreach($arr as $gambar)\n         <li data-thumb=\"{{URL::asset($gambar)}}\">\n           <img class=\"img-responsive\" src=\"{{URL::asset($gambar)}}\">\n         </li>\n         @endforeach\n       </ul>\n     </div>\n     <div class=\"clearfix\">\n     </div>\n   </div>\n   @endif\n   <div class=\"clearfix\">\n   </div>\n   <div class=\"row smalldetail colputih\" id=\"div_ee9f_7\">\n     <div class=\"colputih col-md-10 col-xs-12\">\n       <h4>Tanggal Pemasangan : {{date('d M Y',strtotime($lowongan-&gt;updated_at))}} </h4>\n       <h4>Tanggal Berakhir : {{date('d M Y',strtotime($lowongan-&gt;tanggalberakhir))}} </h4>\n     </div>\n     <div class=\"colputih col-md-2 col-xs-12 pull-right\">\n       <center>\n       @if(Auth::check())\n       <a class=\"btn btn-primary\" id=\"button_ee9f_0\" data-toggle=\"modal\" href=\"#modal-id\">Apply Now!</a>\n       @else\n       <a class=\"btn btn-primary\" id=\"button_ee9f_0\" data-toggle=\"modal\" href=\"{{URL::route(\" login')}}'=\"\">Login to apply</a>\n       @endif\n       </center>\n       <div class=\"modal fade\" id=\"modal-id\">\n         <div class=\"modal-dialog\">\n           <div class=\"modal-content\">\n             <div class=\"modal-header\">\n               <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>\n               <h4 class=\"modal-title\">Quistionnaire</h4>\n             </div>\n             <div class=\"modal-body\">\n               <ul>\n                 @foreach($ujians as $ujian)\n                 <li><a href=\"{{URL::route('ujian', $ujian->id)}}\">{{$ujian-&gt;nama}}</a></li>\n                 @endforeach\n               </ul>\n             </div>\n             <!--             <div class=\"modal-footer\">\n               <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n               <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n             </div> -->\n           </div>\n         </div>\n       </div>\n     </div>\n   </div>\n </div>\n <script src=\"{{URL::asset('assets/frontend/js/lightslider.js')}}\" type=\"text/javascript\"></script>\n <script type=\"text/javascript\">\n $(document).ready(function() {\n $(\"#lightSlider\").lightSlider({\n gallery: true,\n item: 1,\n loop: true,\n slideMargin: 0,\n thumbItem: 9\n });\n });\n </script>\n <!-- /.banner -->\n <div class=\"landing footer\" style=\"font-size:14px !important;\">\n   <div class=\"container\">\n     <div class=\"col-md-3 grid_3\">\n       <h4>Navigasi</h4>\n       <ul class=\"f_list f_list1\">\n         <li><a href=\"http://pencariloker.tk\">Home</a></li>\n         <li><a href=\"http://pencariloker.tk/login\">Masuk</a></li>\n         <li><a href=\"http://pencariloker.tk/register\">Daftar</a></li>\n         <!--                <li><a href=\"#\">Tentang PencariLoker.com</a></li>\n       </ul>\n       <ul class=\"f_list\">\n         <li><a href=\"#\">Kebijakan Privasi</a></li>\n         <li><a href=\"#\">Aturan Penggunaan</a></li>\n         <li><a href=\"#\">Hubungi Kami</a></li>\n         <li><a href=\"#\">Pasang Lowongan</a></li>\n       </ul> -->\n       <div class=\"clearfix\"> </div>\n     </ul></div>\n     <div class=\"col-md-3 grid_3\">\n       <h4>Tim PKM Mikroskil 2015</h4>\n       <div class=\"footer-list\">\n         <ul>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Dennis Daslim – 131112641</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Adeline Rosabella – 131110381</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Javentira Lienata – 131110950</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Michael – 131111718</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Denny  Ho – 141110191</p></li>\n         </ul>\n       </div>\n     </div>\n     <div class=\"col-md-3 grid_3\">\n       <h4>PencariLoker.com</h4>\n       <p>PencariLoker.com adalah sebuah website dirancang untuk membantu masyarakat menemukan lowongan pekerjaan yang sesuai dengan kemampuannya dan juga membantu perusahaan dalam mensortir calon karyawan.</p>\n     </div>\n     <!--         <div class=\"col-md-3 grid_3\">\n       <h4>Daftarkan Email anda</h4>\n       <p>Daftarkan email anda untuk menerima pemberitahuan update pada website</p>\n       <form>\n         <input type=\"text\" class=\"form-control\" placeholder=\"Masukkan Email anda\" style=\"padding:0 15px;\">\n         <button type=\"button\" class=\"btn red\">Daftar sekarang!</button>\n       </form>\n     </div> -->\n\n\n     <div class=\"clearfix\"> </div>\n       <h4 class=\"copy\">\n       <p>Copyright © 2015 PencariLoker.com </p>\n       </h4>\n     </div>\n   </div>\n \n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<modal></modal>\n<div class=\"container bungkus\">\n  \t<div class=\"single\">  \n  \t\t<!--Sidebar-->\n\t    <div class=\"col-md-3 colputih\" style=\"padding: 0 1em 0 1em;\">\n\t\t   \t<div class=\"widget_search\">\n\t\t\t\t<h5 class=\"widget-title\">Search</h5>\n\t\t\t\t<div class=\"widget-content\">\n\t\t\t        <form action=\"#\" method=\"get\" role=\"form\">\n\t\t\t            <select name=\"idcomp\" id=\"input\" class=\"selectpicker\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Company\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t                <option v-for=\"company in companies\" value=\"{{ company.id }}\">{{company.name}}</option>\n\t\t\t\t        </select><br>\n\t\t\t\t        <select name=\"idcat\" id=\"input\" class=\"selectpicker\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Category\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t\t             <option v-for=\"lowongancat in lowongancats\" value=\"{{lowongancat.id}}\">{{lowongancat.name}}</option>\n\t\t\t            </select>  \n\t\t\t            <hr>\n\t\t\t            <input type=\"submit\" class=\"btn btn-default\" value=\"Cari\">\n\t\t\t        </form>\n\t\t\t    </div>\n\t\t    </div>\n\t    </div>\n\t    <div class=\"col-md-9 single_left\">\n\t        <div class=\"but_list\">\n\t\t        <div id=\"myTabContent\" class=\"tab-content\">\n\t\t\t        <div role=\"tabpanel\" class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n\t\t\t            <a v-for=\"lowongan in lowongans\" class=\"tab_grid_link\" href=\"{{ '/jobdetails?id='+lowongan.id }}\" target=\"blank_\">\n\t\t\t\t\t        <div class=\"tab_grid colputih\">\n\t\t\t\t\t            <div class=\"jobs-item with-thumb\">\n\t\t\t\t\t\t\t\t    <div class=\"jobs_right\">\n\t\t\t\t                    \t<img style=\"float:right;\" v-bind:src=\"lowongan.company.logo\" alt=\"\">\n\t\t\t\t\t\t\t\t        <div class=\"date_desc\"><h6 class=\"title\">{{lowongan.name}}</h6>\n\t\t\t\t\t\t\t\t            <span class=\"meta\">{{lowongan.company.name}}</span>\n\t\t\t\t\t\t\t\t        </div>\n\t\t  \t\t\t\t\t\t      \t<div class=\"clearfix\" style=\"border-top:1px solid rgba(100,100,100,0.3);\"></div>\n\t\t\t\t\t                    <ul class=\"descriptionjob\" type=\"square\">\n\t\t\t\t\t                        {{lowongan.highlight}}\n\t\t\t\t\t                    </ul>\n\t\t\t\t\t                    <div class=\"salary\" style=\"float:right;\"> Estimated Salary : {{lowongan.gaji}}</div>\n\t\t\t\t                    </div>\n\t\t\t\t\t\t\t        <div class=\"clearfix\"> </div>\n\t\t\t\t\t\t        </div>\n\t\t\t\t\t        </div>\n\t\t\t            </a>\n\t\t\t        </div>\n\t            </div>\n\t\t    </div>\n\t    </div>\n    \t<div class=\"clearfix\"> </div>\n  \t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\resources\\assets\\js\\Front\\components\\JobDetails.vue"
+  var id = "E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\resources\\assets\\js\\Front\\components\\Jobs.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./_navbar.vue":7,"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],7:[function(require,module,exports){
+},{"./_modal.vue":7,"./_navbar.vue":8,"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],7:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	ready: function ready() {
+		console.log("Modal Ready");
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<!-- template for the modal component -->\n\t<div class=\"modal fade\" id=\"modal-id\">\n\t<div class=\"modal-dialog modal-sm\">\n\t\t<div class=\"modal-content custModal\">\n\t\t\t<div class=\"modal-header\">\n\t\t\t\t<h4 class=\"modal-title\">Sign In</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\">\n\t\t\t\t<a href=\"/oauth/linkedin\">\n\t\t\t\t\t<img id=\"linkedinBtn\" src=\"/img/linkedinlogo/Retina/Sign-In-Large---Default.png\">\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\resources\\assets\\js\\Front\\components\\_modal.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -20332,4 +20380,4 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[5]);
 
-//# sourceMappingURL=jobDetails.js.map
+//# sourceMappingURL=jobs.js.map
