@@ -15,11 +15,11 @@
             <div class="collapse navbar-collapse landing" id="bs-example-navbar-collapse-1">
                 <ul v-if="user.logged == true" class="nav navbar-nav navbar-right landing" >
                     <li>
-                        <img v-bind:src="user.pictureUrl" class="img img-responsive user_pic" style="width: 40px; height: 40px; border-radius: 100%; border: 1px solid #dadada; position: relative; top: 5px; left: 5px;">
+                        <img v-bind:src="pictureUrl" class="img img-responsive user_pic" style="width: 40px; height: 40px; border-radius: 100%; border: 1px solid #dadada; position: relative; top: 5px; left: 5px;">
                     </li>
                     <li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hello, {{user.formattedName}}<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hello, {{ formattedName }}<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/profile">Edit Profile</a></li>
                                 <li><a href="logout">Log Out</a></li>
@@ -51,12 +51,16 @@
                 'url' : window.location.origin + "/data",
                 success : function(res){
                     _this.user = res;
+                    _this.formattedName = res.formattedName || res.name;
+                    _this.pictureUrl = res.pictureUrl || res.photo_url
                 }.bind(_this)
             });
 		},
         data: function(){
             return {
-                'user' : {}
+                user : {},
+                formattedName:'',
+                pictureUrl:''
             }
         }
 	}

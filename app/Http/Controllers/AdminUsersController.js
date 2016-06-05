@@ -1,5 +1,6 @@
 'use strict'
 const User = use('App/Model/Users')
+
 class AdminUsersController {
   
     * index (request, response) {
@@ -9,6 +10,19 @@ class AdminUsersController {
     * create (request, response) {
         const semua = yield request.all();
         response.send(semua);
+    }
+    * addUser(request,response){
+        var semua = yield request.all();
+        delete semua._csrf;
+        if(User.inDatabase){
+            yield User.where('linkedin_id',semua.linkedin_id).update(semua);
+            console.log("masuk ada");
+        }else{
+            console.log("masuk gk ada");
+            yield User.create(semua);    
+        }
+        User.inDatabase = true;
+        response.json({redirect:'/profile'});
     }
     * store (request, response) {}
     * show (request, response) {}

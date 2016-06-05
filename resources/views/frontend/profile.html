@@ -1,4 +1,4 @@
-{# resources/views/index.html #}
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -13,6 +13,8 @@
 		<script src="/js/jquery.js"></script>
 		<script src="/js/vue.js"></script>
 		<title>Profile</title>
+		<meta name="csrf" content="{{ csrfToken }}">
+	 	  {{ csrfField | safe }}
 	</head>
 	<body class="landing" id="app">
 		<profile></profile>

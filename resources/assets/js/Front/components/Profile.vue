@@ -9,31 +9,31 @@
 				</div>
 				<div class="panel-body">
 					<div class="form-group">
-						<img style="margin:0 auto;height:300px;width:auto;" v-bind:src="user.pictureUrls.values[0]" class="img-responsive" alt="Image">
+						<img style="margin:0 auto;height:300px;width:auto;" v-bind:src="pictureUrls" class="img-responsive" alt="Image">
 						<input style="margin:0 auto;" type="file" accept="image/*" name="fotouser" value="" placeholder="">
 					</div>
 					<div class="form-group">
 						<label>Name</label>
-						<input placeholder="Name" name="name" v-model="user.formattedName" class="inputkecil form-control">
+						<input placeholder="Name" name="name" v-model="formattedName" class="inputkecil form-control">
 					</div>
 					<div class="form-group">
 						<label>Email</label>
-						<p class="inputkecil form-control" style="background:#DDD;">{{ user.emailAddress }}</p>
+						<p class="inputkecil form-control" style="background:#DDD;">{{ emailAddress }}</p>
 					</div>
 					<div class="form-group">
 						<label>Gender</label>
-						<select name="gender" id="input" class="form-control" required="required">
-							<option selected value="0" v-model="gender">Male</option>
-							<option value="1" v-model="gender">Female</option>
+						<select name="gender" v-model="gender" id="input" class="form-control" required="required">
+							<option selected value="0" >Male</option>
+							<option value="1">Female</option>
 						</select>
 					</div>
 					<div class="form-group">
-						<label>Address</label>
-						<textarea name="alamat" id="input" class="form-control" rows="3" required="required"></textarea>
+						<label>address</label>
+						<textarea v-model="address" name="alamat" id="input" class="form-control" rows="3" required="required">{{ address }}</textarea>
 					</div>
 					<div class="form-group">
 						<label>City</label>
-						<textarea name="kota" id="input" class="form-control" rows="1" required="required" v-model="user.location.name">{{ user.location.name }}</textarea>
+						<textarea name="kota" id="input" class="form-control" rows="1" required="required" v-model="city">{{ city }}</textarea>
 					</div>
 					<div class="form-group">
 						<label>Birthdate</label>
@@ -49,7 +49,6 @@
 						<input type="file" name="lampiran" accept=".pdf" value="" placeholder="">
 					</div>
 					<button type="submit" class="btn btn-primary" @click="add">Submit</button>
-					
 				</div>
 			</div>
 		</div>
@@ -70,12 +69,25 @@
                 'url' : window.location.origin + "/data",
                 success : function(res){
                     _this.user = res;
+                    _this.city = res.city || res.location.name;
+                    _this.pictureUrls = res.photo_url || res.pictureUrls.values[0];
+                    _this.formattedName = res.formattedName || res.name;
+                    _this.emailAddress = res.emailAddress || res.email;
+                    _this.address = res.address;
+                    _this.gender = res.gender || 0;
+                    _this.birthdate = res.birthdate;
+                    _this.phone = res.phone;
                 }.bind(_this)
             });
 		},
         data: function(){
             return {
                 user : {},
+                formattedName:'',
+                emailAddress:'',
+                city:'',
+                pictureUrls:'',
+                name:'',
                 address:'',
                 gender:0,
                 birthdate:'',
@@ -84,20 +96,31 @@
         },
         methods: {
 			add: function(){
-				var data = this.user
-				data.user = {}
-	            data.address=''
-	            data.gender=0
-	            data.birthdate=''
-	            data.phone=''
-	            console.log(data);
+				var data = {
+					_csrf : $('meta[name=csrf]').attr('content'),
+					linkedin_id: this.user.linkedin_id || this.user.id,
+					name : this.formattedName,
+					email : this.emailAddress,
+	                phone: this.phone,
+	                birthday: this.birthdate,
+	                photo_url:this.pictureUrls,
+					address: this.address,
+					city: this.city,
+	                gender: this.gender
+				}
 				$.ajax({
-					url : window.location.origin + "/admin/users/add",
+					url : window.location.origin + "/ninja/addUser",
 					method : 'POST',
 					async : false,
 					data : data,
 					success : function(res){
-						console.log(res);
+						if (res.redirect) {
+			                window.location.href = window.location.origin + res.redirect;
+			            }
+			            else {
+			            	console.log("ok");
+			                // Process the expected results...
+			            }
 					}
 				})
 			}

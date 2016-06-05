@@ -1,7 +1,7 @@
 'use strict'
 
 const Lucid = use("Lucid");
-var Database = use('Database');
+var inDatabase = false;
 
 class Users extends Lucid {
 	static get table(){

@@ -6,14 +6,15 @@ class NewSchema extends Schema {
   up () {
     this.create('companies', function (table) {
       table.increments('id')
-      table.string('name')
-      table.string('industry')
-      table.string('phone')
-      table.string('website')
-      table.string('size')
+      table.string('logo')
+      table.string('name',100)
+      table.string('industry',150)
+      table.string('website',100)
+      table.string('size',50)
+      table.string('phone', 50)
+      table.string('email', 40)
       table.text('address')
-      table.string('logo_path')
-      table.boolean('active')
+      table.boolean('active').defaultTo(false);
       table.timestamps()
       table.timestamp('deleted_at')
     })

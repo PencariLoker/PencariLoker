@@ -2,7 +2,6 @@
 var Linkedin = require('node-linkedin')('75nb5nsun5gsp3', 'OKFiE0UtZNFHfk2p', 'http://localhost:3000/authentication')
 var logged_Linkedin = false;
 var userData;
-var statusDatabase = false;
 const User = use('App/Model/Users');
 
 
@@ -48,8 +47,8 @@ class AuthController {
 		    timeout: 10000
 		});
 
-		var	users = yield User.select('linkedin_id').where('linkedin_id','1111');
-		console.log(users);
+		// var	users = yield User.select('linkedin_id').where('linkedin_id','1111');
+		// console.log(users);
 
 		linkedin.people.me(function(err, $in) {
 			userData = $in;
@@ -69,29 +68,28 @@ class AuthController {
   		var resQuery = yield User.where('linkedin_id',userData.id);
   		if(resQuery.length == 0){
   			console.log("gak ada");
-  			statusDatabase = false;
+  			User.inDatabase = false;
   			response.redirect('/profile');
   		}
   		else {
-  			statusDatabase = true;
+  			User.inDatabase = true;
   			console.log("ada")
-  			console.log(resQuery.toJSON());
   			response.redirect('/')
   		}
   	}
 
   	*data(request,response){
-  		if(statusDatabase){
+  		if(User.inDatabase){
   			var resQuery = yield User.where('linkedin_id',userData.id);
-  			var data = resQuery.toJSON();
+  			var data = resQuery[0];
   		}else{
   			if(!userData){
   				var data = {}
   			}else{
 				var data = userData;
   			}
-			data.logged = logged_Linkedin;
   		}
+		data.logged = logged_Linkedin;
   		response.json(data);
   	}
 

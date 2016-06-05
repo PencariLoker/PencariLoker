@@ -12,7 +12,7 @@
 						<hr class="intro-divider">
 						<ul class="list-inline intro-social-buttons">
 							<li>
-								<a href="http://pencariloker.tk/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a>
+								<a href="/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a>
 							</li>
 							<!-- <li>
 												<a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
@@ -31,7 +31,7 @@
 				<div class="col-lg-5 col-sm-6">
 					<hr class="section-heading-spacer">
 					<div class="clearfix"></div>
-					<h2 class="landing" class="section-heading">Sulit Mendapat Pekerjaan?<br><br><a href="http://pencariloker.tk/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a></h2 class="landing">
+					<h2 class="landing" class="section-heading">Sulit Mendapat Pekerjaan?<br><br><a href="/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a></h2 class="landing">
 					<p class="lead">Berbagai lowongan tersedia di <a target="_blank" href="#">PencariLoker.com</a>. <br>Ayo segera upload CV anda dan dapatkan pekerjaan yang anda impikan !</p>
 				</div>
 				<div class="col-lg-5 col-lg-offset-2 col-sm-6">
