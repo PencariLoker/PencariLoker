@@ -8,7 +8,13 @@ class AdminUsersController {
     }
     * create (request, response) {
         const semua = yield request.all();
-        response.send(semua);
+        User.create({
+            'username' : semua.username,
+            'name'     : semua.name,
+            'email'    : semua.email,
+            'password' : semua.password,
+        })
+        response.send(semua.username);
     }
     * store (request, response) {}
     * show (request, response) {}

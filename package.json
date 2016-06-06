@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node --harmony_proxies server.js",
-    "dev": "nodemon --harmony_proxies server.js"
+    "dev": "nodemon --watch app --harmony_proxies server.js"
   },
   "author": "adonisjs",
   "license": "MIT",

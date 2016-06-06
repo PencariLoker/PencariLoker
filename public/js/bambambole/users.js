@@ -20342,6 +20342,7 @@ exports.default = {
 	},
 	data: function data() {
 		return {
+			username: '',
 			name: '',
 			email: '',
 			password: '',
@@ -20353,6 +20354,7 @@ exports.default = {
 		add: function add() {
 			var data = {
 				_csrf: $('meta[name=csrf]').attr('content'),
+				username: this.username,
 				name: this.name,
 				password: this.password,
 				email: this.email,
@@ -20375,7 +20377,7 @@ exports.default = {
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-md-6\">\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Username</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Username\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Name</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Name\" v-model=\"name\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Email</label>\n\t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" placeholder=\"Email\" v-model=\"email\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Password</label>\n\t\t\t<input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" v-model=\"password\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<div class=\"checkbox\">\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"active\">\n\t\t\t\t\tActive\n\t\t\t\t</label>\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"admin\">\n\t\t\t\t\tAdministrator ?\n\t\t\t\t</label>\n\t\t\t</div>\n\t\t</div>\n\t\t<button type=\"button\" class=\"btn btn-primary\" @click=\"add\">Submit</button>\n\t\t<button type=\"button\" class=\"btn btn-danger\" @click=\"back\">Back</button>\n\t</div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-md-6\">\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Username</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Username\" v-model=\"username\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Name</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Name\" v-model=\"name\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Email</label>\n\t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" placeholder=\"Email\" v-model=\"email\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Password</label>\n\t\t\t<input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" v-model=\"password\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<div class=\"checkbox\">\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"active\">\n\t\t\t\t\tActive\n\t\t\t\t</label>\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"admin\">\n\t\t\t\t\tAdministrator ?\n\t\t\t\t</label>\n\t\t\t</div>\n\t\t</div>\n\t\t<button type=\"button\" class=\"btn btn-primary\" @click=\"add\">Submit</button>\n\t\t<button type=\"button\" class=\"btn btn-danger\" @click=\"back\">Back</button>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

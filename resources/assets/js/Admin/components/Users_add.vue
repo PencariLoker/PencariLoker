@@ -3,7 +3,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for="">Username</label>
-				<input type="text" class="form-control" id="username" placeholder="Username">
+				<input type="text" class="form-control" id="username" placeholder="Username" v-model="username">
 			</div>
 			<div class="form-group">
 				<label for="">Name</label>
@@ -43,6 +43,7 @@
 		}, 
 		data: function(){
 			return {
+				username : '',
 				name : '',
 				email : '',
 				password : '',
@@ -54,6 +55,7 @@
 			add: function(){
 				var data = {
 					_csrf : $('meta[name=csrf]').attr('content'),
+					username : this.username,
 					name : this.name,
 					password : this.password,
 					email : this.email,
