@@ -20316,17 +20316,17 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<div id=\"page-wrapper\">\n\t<div class=\"row\">\n\t\t<div class=\"col-lg-12\">\n\t\t\t<h1 class=\"page-header\">{{head}}</h1>\n\t\t</div>\n\t\t<div v-if=\"status == 'list'\">\n\t\t\t<list></list>\n\t\t</div>\n\t\t<div v-if=\"status == 'add'\">\n\t\t\t<addnewusers></addnewusers>\n\t\t</div>\n\t</div>\n</div>\t\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
+  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Company.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Company.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./Company_add.vue":8,"./Company_list.vue":9,"./_navbar.vue":10,"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],8:[function(require,module,exports){
+},{"./Company_add.vue":8,"./Company_list.vue":9,"./_navbar.vue":10,"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],8:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\nbody{\n\toverflow-x: hidden;\n}\n")
 'use strict';
@@ -20348,10 +20348,10 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"panel panel-default\">\n\t\t<div class=\"panel-body\">\n\t\t\t<div class=\"col-md-6\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"\">Name</label>\n\t\t\t\t\t<input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control\" value=\"\" required=\"required\" placeholder=\"Company Name\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"\">Industry</label>\n\t\t\t\t\t<input type=\"text\" name=\"industry\" id=\"inputIndustry\" class=\"form-control\" value=\"\" required=\"required\" placeholder=\"Industry\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"\">Website</label>\n\t\t\t\t\t<input type=\"text\" name=\"website\" id=\"inputWebsite\" class=\"form-control\" value=\"\" required=\"required\" placeholder=\"http://yourcompany.com\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"\">Email</label>\n\t\t\t\t\t<input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control\" value=\"\" required=\"required\" placeholder=\"you@company.com\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary\">Save</button>\n\t\t\t\t\t<button type=\"button\" class=\"btn btn-danger\" @click=\"cancel\">Back</button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"col-md-6\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"\">Address</label>\n\t\t\t\t\t<textarea name=\"address\" id=\"inputAddress\" class=\"form-control\" rows=\"3\" required=\"required\" placeholder=\"Google Street\"></textarea>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"checkbox\">\n\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t<input type=\"checkbox\" value=\"\">\n\t\t\t\t\t\t\tActive\n\t\t\t\t\t\t</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
+  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Company_add.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Company_add.vue"
   module.hot.dispose(function () {
     __vueify_insert__.cache["\nbody{\n\toverflow-x: hidden;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -20362,7 +20362,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4,"vueify/lib/insert-css":5}],9:[function(require,module,exports){
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4,"vueify/lib/insert-css":5}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -20384,17 +20384,17 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-lg-12\">\n\t\t<a href=\"#\" @click=\"addnewcompany\" class=\"btn btn primary\"><i class=\"fa fa-plus\"></i> Add New Company</a>\n\t\t<a href=\"#\" @click=\"ajax\" class=\"btn btn primary\"><i class=\"fa fa-plus\"></i> Test Ajax</a>\n\t\t<div class=\"panel panel-default\">\n\t\t\t<div class=\"panel-heading\">\n\t\t\t\tList Company\n\t\t\t</div>\n\t\t\t<div class=\"panel-body\">\n\t\t\t\t<div class=\"table-responsive\">\n\t\t\t\t\t<table class=\"table table-hover\">\n\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t\t<th>Username</th>\n\t\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t\t<th>Active</th>\n\t\t\t\t\t\t\t\t<th>Admin</th>\n\t\t\t\t\t\t\t\t<th>Action</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
+  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Company_list.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Company_list.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],10:[function(require,module,exports){
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20408,16 +20408,16 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-static-top\" role=\"navigation\" style=\"margin-bottom: 0\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\"><img src=\"/img/logo.png\" class=\"img-responsive\" style=\"height:120%;\" id=\"logo\" alt=\"Image\"></a>\n            </div>\n            <!-- /.navbar-header -->\n            <ul class=\"nav navbar-top-links navbar-right\">\n                <!-- /.dropdown -->\n                <div style=\"padding:20px 20px 10px 0;font-size:14px;font-weight:900\"><a href=\"logout\"><i class=\"fa fa-sign-out fa-fw\"></i>Logout</a></div>\n                <!-- /.dropdown -->\n            </ul>\n            <!-- /.navbar-top-links -->\n\n<div class=\"navbar-default sidebar\" role=\"navigation\">\n                <div class=\"sidebar-nav navbar-collapse\">\n                    <ul class=\"nav\" id=\"side-menu\">\n                    <!--Lamaran -->\n                        <!-- <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-file-text-o fa-fw\"></i> Lamaran<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level\">\n                                <li>\n                                    <a href=\"tables\">Tambah Lamaran</a>\n                                </li>\n                                <li>\n                                    <a href=\"tables\">List Lamaran</a>\n                                </li>\n                            </ul>\n                        </li> -->\n                        <!-- Kategori Lowongan -->\n                         <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-newspaper-o fa-fw\"></i> Job Vacancy Categories<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Job Vacancy -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-briefcase fa-fw\"></i> Job Vacancies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Penyedia Lowongan -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-building-o fa-fw\"></i> Companies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- User -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-users fa-fw\"></i> User<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/register\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/user\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                    </ul>\n                </div>\n                <!-- /.sidebar-collapse -->\n            </div>\n            <!-- /.navbar-static-side -->\n        </nav>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
+  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\resources\\assets\\js\\Admin\\components\\_navbar.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\_navbar.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"E:\\project\\web\\mobile Web Lanjutan\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[6]);
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[6]);
 
 //# sourceMappingURL=company.js.map

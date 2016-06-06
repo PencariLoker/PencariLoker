@@ -12,9 +12,8 @@
 */
 const Route = use('Route')
 
-
 Route.get('/', 'HomeController.index');
-Route.get('/jobdetails', 'HomeController.jobdetails').as('jobdetails')
+Route.get('/jobdetails/:id', 'HomeController.jobdetails').as('jobdetails')
 Route.get('/jobs', 'HomeController.jobs').as('jobs')
 Route.get('/jobsInit', 'JobsController.firstInitData')
 Route.get('/tester', 'HomeController.home');
@@ -36,3 +35,4 @@ Route.get('/admin/users', 'AdminUsersController.index')
 Route.post('/admin/users/add', 'AdminUsersController.create')
 Route.get('/admin/users/list', 'AdminUsersController.list')
 Route.get('/admin/company', 'AdminCompanyController.index')
+

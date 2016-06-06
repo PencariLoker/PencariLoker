@@ -27,7 +27,7 @@
 		        <div class="but_list">
 			        <div id="myTabContent" class="tab-content">
 				        <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-				            <a v-for="lowongan in lowongans" class="tab_grid_link" href="{{ '/jobdetails?id='+lowongan.id }}" target="blank_">
+				            <a v-for="lowongan in lowongans" class="tab_grid_link" href="{{ '/jobdetails/'+lowongan.id }}" target="blank_">
 						        <div class="tab_grid colputih">
 						            <div class="jobs-item with-thumb">
 									    <div class="jobs_right">
