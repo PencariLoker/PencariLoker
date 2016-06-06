@@ -20244,221 +20244,92 @@ setTimeout(function () {
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":2}],5:[function(require,module,exports){
-var inserted = exports.cache = {}
-
-exports.insert = function (css) {
-  if (inserted[css]) return
-  inserted[css] = true
-
-  var elem = document.createElement('style')
-  elem.setAttribute('type', 'text/css')
-
-  if ('textContent' in elem) {
-    elem.textContent = css
-  } else {
-    elem.styleSheet.cssText = css
-  }
-
-  document.getElementsByTagName('head')[0].appendChild(elem)
-  return elem
-}
-
-},{}],6:[function(require,module,exports){
 'use strict';
 
 window.Vue = require('vue');
 window.$ = window.jQuery = require('jquery');
 Vue.config.debug = true;
-var Users = require('./components/Users.vue');
+var JobDetails = require('./components/JobDetails.vue');
 new Vue({
-	ready: function ready() {
-		console.log("Admin Users Ready");
-	},
-	el: "body",
-	components: {
-		users: Users
-	}
+  ready: function ready() {
+    console.log("Job Details Ready");
+  },
+  el: "body",
+  components: {
+    jobdetails: JobDetails
+  }
 });
 
-},{"./components/Users.vue":7,"jquery":1,"vue":4}],7:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\nbody{\n\toverflow-x: hidden\n}\n")
+},{"./components/JobDetails.vue":6,"jquery":1,"vue":4}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 
 Vue.component('navbar', require('./_navbar.vue'));
-var UserList = require('./Users_list.vue');
-var UserAdd = require('./Users_add.vue');
 exports.default = {
-	ready: function ready() {
-		console.log("Users Rready");
-	},
-	data: function data() {
-		return {
-			'head': 'Users',
-			'status': 'list'
-		};
-	},
-	components: {
-		'list': UserList,
-		'addusers': UserAdd
-	},
-	events: {
-		change_mode: function change_mode(a, b) {
-			this.status = a;
-			this.head = b;
-		}
-	}
+  ready: function ready() {
+    console.log("Job Details Ready");
+  }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<div id=\"page-wrapper\">\n\t<div class=\"row\">\n\t\t<div class=\"col-lg-12\">\n\t\t\t<h1 class=\"page-header\">{{head}}</h1>\n\t\t</div>\n\t\t<div v-if=\"status == 'list'\">\n\t\t\t<list></list>\n\t\t</div>\n\n\t\t<div v-if=\"status == 'add'\">\n\t\t\t<addusers></addusers>\n\t\t</div>\n\t</div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n <navbar></navbar>\n<div class=\"container bungkus\">\n     <div class=\"colputih\">\n       <hr style=\"margin-top:3px;\">\n       <div class=\"row smalldetail colputih\">\n         <div class=\"colputih col-md-6 col-xs-12\">\n           <div v-if=\"lowongan.company.logo\" class=\"col-md-4 col-xs-12 divdetaillogo\">\n             <img src=\"{{URL::asset($lowongan->company->logo)}}\" class=\"jobdetaillogo img-responsive\" alt=\"\">\n             <hr class=\"visible-sm visible-xs\">\n           </div>\n           <div class=\"colputih col-md-8 col-xs-12\">\n             <h2>{{$lowongan-&gt;name}}</h2>\n             {{$lowongan-&gt;company-&gt;name}}\n           </div>\n         </div>\n         <div class=\"colputih col-md-4 col-xs-12 pull-right\">\n           <ul class=\"detailsmalllist\" type=\"none\">\n             <li class=\"salary\"><span><i class=\"fa fa-money\"></i></span> {{$lowongan-&gt;gaji}}</li>\n             <li><span><i class=\"fa fa-briefcase\"></i></span> {{$lowongan-&gt;syaratpengalaman}}</li>\n             <li><span style=\"padding:3px\"><i class=\"fa fa-map-marker\"></i></span> {{$lowongan-&gt;kotaprovinsi}}</li>\n           </ul>\n         </div>\n       </div>\n     </div>\n     <hr>\n     <div class=\"clearfix\">\n     </div>\n     <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n       <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 kotakjobdesc\">\n         <div class=\"colputih jobdesc\"><h4><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Job Description</h4>\n         <hr style=\"margin-top:1px;\">\n         <div class=\"unselectable wrap-text\" id=\"job_description\">\n           {{$lowongan-&gt;descript}}\n         </div>\n       </div>\n     </div>\n     @if(!empty($lowongan-&gt;gmaps))\n     <div class=\"col-xs-12 col-lg-12 col-md-12 col-sm-12 kotakjobdesc\">\n       <div class=\"colputih jobdesc\">\n         <h4><i class=\"fa fa-map-marker icon_header\"></i> WORK LOCATION</h4>\n         <hr style=\"margin-top:1px;\">\n         <center>\n         <iframe src=\"{{$lowongan->gmaps}}\" frameborder=\"0\" id=\"iframe_ee9f_0\" allowfullscreen=\"\"></iframe>\n         </center>\n       </div>\n       <div class=\"clearfix\">\n       </div>\n     </div>\n     @endif\n   </div>\n   <div class=\"col-xs-12 col-lg-6 col-md-6 col-sm-6 kotakjobdesc\">\n     <div class=\"colputih jobdesc\"><h4><i class=\"fa fa-list-alt icon_header\"></i> Company Info</h4>\n       <hr style=\"margin-top:1px;\">\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Company Name</p>\n         <p>\n           <span id=\"company_registration_number\">{{$lowongan-&gt;company-&gt;name}}</span>\n         </p>\n       </div>\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Industry</p>\n         <p id=\"company_industry\">{{$lowongan-&gt;company-&gt;industry}}</p>\n       </div>\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Company Size</p>\n         <p id=\"company_size\">{{$lowongan-&gt;company-&gt;size}} orang</p>\n       </div>\n       @if(!empty($lowongan-&gt;company-&gt;website))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Website</p>\n         <p>\n           <a id=\"company_website\" target=\"_blank\" href=\"http://{{$lowongan->company->website}}\">{{$lowongan-&gt;company-&gt;website}}</a>\n         </p>\n       </div>\n       @endif\n       @if(!empty($lowongan-&gt;company-&gt;phone))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Phone</p>\n         <p id=\"company_contact\">021-29809200</p>\n       </div>\n       @endif\n       @if(!empty($lowongan-&gt;company-&gt;email))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Email</p>\n         <p id=\"work_environment_working_hours\">{{$lowongan-&gt;company-&gt;email}}</p>\n       </div>\n       @endif\n       @if(!empty($lowongan-&gt;company-&gt;address))\n       <div class=\"col-lg-6 col-md-6 col-sm-12\">\n         <p class=\"desc_subject\">Address</p>\n         <p id=\"work_environment_working_hours\">{{$lowongan-&gt;company-&gt;address}}</p>\n       </div>\n       @endif\n       <div class=\"clearfix\">\n       </div>\n     </div>\n     <div class=\"clearfix\">\n     </div>\n   </div>\n   @if(!empty($arr))\n   <div class=\"col-xs-12 col-lg-6 col-md-6 col-sm-6 kotakjobdesc\">\n     <div class=\"colputih jobdesc\"><h4><i class=\"fa fa-list-alt icon_header\"></i> COMPANY PHOTOS</h4>\n       <hr style=\"margin-top:1px;\">\n       <ul id=\"lightSlider\">\n         @foreach($arr as $gambar)\n         <li data-thumb=\"{{URL::asset($gambar)}}\">\n           <img class=\"img-responsive\" src=\"{{URL::asset($gambar)}}\">\n         </li>\n         @endforeach\n       </ul>\n     </div>\n     <div class=\"clearfix\">\n     </div>\n   </div>\n   @endif\n   <div class=\"clearfix\">\n   </div>\n   <div class=\"row smalldetail colputih\" id=\"div_ee9f_7\">\n     <div class=\"colputih col-md-10 col-xs-12\">\n       <h4>Tanggal Pemasangan : {{date('d M Y',strtotime($lowongan-&gt;updated_at))}} </h4>\n       <h4>Tanggal Berakhir : {{date('d M Y',strtotime($lowongan-&gt;tanggalberakhir))}} </h4>\n     </div>\n     <div class=\"colputih col-md-2 col-xs-12 pull-right\">\n       <center>\n       @if(Auth::check())\n       <a class=\"btn btn-primary\" id=\"button_ee9f_0\" data-toggle=\"modal\" href=\"#modal-id\">Apply Now!</a>\n       @else\n       <a class=\"btn btn-primary\" id=\"button_ee9f_0\" data-toggle=\"modal\" href=\"{{URL::route(\" login')}}'=\"\">Login to apply</a>\n       @endif\n       </center>\n       <div class=\"modal fade\" id=\"modal-id\">\n         <div class=\"modal-dialog\">\n           <div class=\"modal-content\">\n             <div class=\"modal-header\">\n               <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>\n               <h4 class=\"modal-title\">Quistionnaire</h4>\n             </div>\n             <div class=\"modal-body\">\n               <ul>\n                 @foreach($ujians as $ujian)\n                 <li><a href=\"{{URL::route('ujian', $ujian->id)}}\">{{$ujian-&gt;nama}}</a></li>\n                 @endforeach\n               </ul>\n             </div>\n             <!--             <div class=\"modal-footer\">\n               <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n               <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n             </div> -->\n           </div>\n         </div>\n       </div>\n     </div>\n   </div>\n </div>\n <script src=\"{{URL::asset('assets/frontend/js/lightslider.js')}}\" type=\"text/javascript\"></script>\n <script type=\"text/javascript\">\n $(document).ready(function() {\n $(\"#lightSlider\").lightSlider({\n gallery: true,\n item: 1,\n loop: true,\n slideMargin: 0,\n thumbItem: 9\n });\n });\n </script>\n <!-- /.banner -->\n <div class=\"landing footer\" style=\"font-size:14px !important;\">\n   <div class=\"container\">\n     <div class=\"col-md-3 grid_3\">\n       <h4>Navigasi</h4>\n       <ul class=\"f_list f_list1\">\n         <li><a href=\"http://pencariloker.tk\">Home</a></li>\n         <li><a href=\"http://pencariloker.tk/login\">Masuk</a></li>\n         <li><a href=\"http://pencariloker.tk/register\">Daftar</a></li>\n         <!--                <li><a href=\"#\">Tentang PencariLoker.com</a></li>\n       </ul>\n       <ul class=\"f_list\">\n         <li><a href=\"#\">Kebijakan Privasi</a></li>\n         <li><a href=\"#\">Aturan Penggunaan</a></li>\n         <li><a href=\"#\">Hubungi Kami</a></li>\n         <li><a href=\"#\">Pasang Lowongan</a></li>\n       </ul> -->\n       <div class=\"clearfix\"> </div>\n     </ul></div>\n     <div class=\"col-md-3 grid_3\">\n       <h4>Tim PKM Mikroskil 2015</h4>\n       <div class=\"footer-list\">\n         <ul>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Dennis Daslim – 131112641</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Adeline Rosabella – 131110381</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Javentira Lienata – 131110950</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Michael – 131111718</p></li>\n           <li><p><span><i class=\"fa fa-user tw1\"></i></span>Denny  Ho – 141110191</p></li>\n         </ul>\n       </div>\n     </div>\n     <div class=\"col-md-3 grid_3\">\n       <h4>PencariLoker.com</h4>\n       <p>PencariLoker.com adalah sebuah website dirancang untuk membantu masyarakat menemukan lowongan pekerjaan yang sesuai dengan kemampuannya dan juga membantu perusahaan dalam mensortir calon karyawan.</p>\n     </div>\n     <!--         <div class=\"col-md-3 grid_3\">\n       <h4>Daftarkan Email anda</h4>\n       <p>Daftarkan email anda untuk menerima pemberitahuan update pada website</p>\n       <form>\n         <input type=\"text\" class=\"form-control\" placeholder=\"Masukkan Email anda\" style=\"padding:0 15px;\">\n         <button type=\"button\" class=\"btn red\">Daftar sekarang!</button>\n       </form>\n     </div> -->\n\n\n     <div class=\"clearfix\"> </div>\n       <h4 class=\"copy\">\n       <p>Copyright © 2015 PencariLoker.com </p>\n       </h4>\n     </div>\n   </div>\n \n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users.vue"
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\nbody{\n\toverflow-x: hidden\n}\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\JobDetails.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./Users_add.vue":8,"./Users_list.vue":9,"./_navbar.vue":10,"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4,"vueify/lib/insert-css":5}],8:[function(require,module,exports){
+},{"./_navbar.vue":7,"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 exports.default = {
-	ready: function ready() {
-		console.log("Add Form Users");
-	},
-	data: function data() {
-		return {
-			username: '',
-			name: '',
-			email: '',
-			password: '',
-			active: '',
-			admin: ''
-		};
-	},
-	methods: {
-		add: function add() {
-			var data = {
-				_csrf: $('meta[name=csrf]').attr('content'),
-				username: this.username,
-				name: this.name,
-				password: this.password,
-				email: this.email,
-				active: this.active,
-				admin: this.admin
-			};
-			$.ajax({
-				url: window.location.origin + "/admin/users/add",
-				method: 'POST',
-				async: false,
-				data: data,
-				success: function success(res) {
-					console.log(res);
-				}
-			});
-		},
-		back: function back() {
-			this.$dispatch('change_mode', 'list', 'Users');
-		}
-	}
+    ready: function ready() {
+        console.log("Navbar Ready");
+        var _this = this;
+        $.ajax({
+            method: 'GET',
+            async: false,
+            cache: false,
+            'url': window.location.origin + "/data",
+            success: function (res) {
+                _this.user = res;
+                _this.formattedName = res.formattedName || res.name;
+                _this.pictureUrl = res.pictureUrl || res.photo_url;
+            }.bind(_this)
+        });
+    },
+    data: function data() {
+        return {
+            user: {},
+            formattedName: '',
+            pictureUrl: ''
+        };
+    }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-md-6\">\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Username</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Username\" v-model=\"username\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Name</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Name\" v-model=\"name\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Email</label>\n\t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" placeholder=\"Email\" v-model=\"email\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Password</label>\n\t\t\t<input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" v-model=\"password\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<div class=\"checkbox\">\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"active\">\n\t\t\t\t\tActive\n\t\t\t\t</label>\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"admin\">\n\t\t\t\t\tAdministrator ?\n\t\t\t\t</label>\n\t\t\t</div>\n\t\t</div>\n\t\t<button type=\"button\" class=\"btn btn-primary\" @click=\"add\">Submit</button>\n\t\t<button type=\"button\" class=\"btn btn-danger\" @click=\"back\">Back</button>\n\t</div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-fixed-top topnav landing\" role=\"navigation\">\n    <div class=\"container topnav landing\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header landing\">\n            <button type=\"button landing\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n            <span class=\"sr-only landing\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand topnav landing\" id=\"logonav\" href=\"/\"><img src=\"img/logo.png\" class=\"img-responsive\" id=\"logo\" alt=\"Image\"></a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse landing\" id=\"bs-example-navbar-collapse-1\">\n            <ul v-if=\"user.logged == true\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <img v-bind:src=\"pictureUrl\" class=\"img img-responsive user_pic\" style=\"width: 40px; height: 40px; border-radius: 100%; border: 1px solid #dadada; position: relative; top: 5px; left: 5px;\">\n                </li>\n                <li>\n                    </li><li class=\"dropdown\">\n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Hello, {{ formattedName }}<b class=\"caret\"></b></a>\n                        <ul class=\"dropdown-menu\">\n                            <li><a href=\"/profile\">Edit Profile</a></li>\n                            <li><a href=\"logout\">Log Out</a></li>\n                        </ul>\n                    </li>\n                \n            </ul>\n            <ul v-if=\"user.logged == false\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <a id=\"show-modal\" href=\"#modal-id\" data-toggle=\"modal\" class=\"landing btn-regis\">Masuk</a>\n                </li>\n            </ul>\n        </div>\n        <!-- /.navbar-collapse -->\n    </div>\n    <!-- /.container -->\n</nav>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users_add.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\_navbar.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],9:[function(require,module,exports){
-'use strict';
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[5]);
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = {
-	ready: function ready() {
-		console.log("Ready");
-		var _this = this;
-		$.ajax({
-			method: 'GET',
-			async: false,
-			cache: false,
-			'url': window.location.origin + "/admin/users/list",
-			success: function (res) {
-				_this.arr = res;
-			}.bind(_this)
-		});
-		console.log(this.arr);
-	},
-	data: function data() {
-		return {
-			arr: []
-		};
-	},
-	methods: {
-		addnewusers: function addnewusers(e) {
-			this.$dispatch('change_mode', 'add', 'Add New Users');
-		}
-	}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-lg-12\">\n\t\t<a href=\"#\" @click=\"addnewusers\" class=\"btn btn primary\"><i class=\"fa fa-plus\"></i> Add New Users</a>\n\t\t<div class=\"panel panel-default\">\n\t\t\t<div class=\"panel-heading\">\n\t\t\t\tList Users\n\t\t\t</div>\n\t\t\t<div class=\"panel-body\">\n\t\t\t\t<div class=\"table-responsive\">\n\t\t\t\t\t<table class=\"table table-hover\">\n\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t\t<th>Username</th>\n\t\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t\t<th>Active</th>\n\t\t\t\t\t\t\t\t<th>Admin</th>\n\t\t\t\t\t\t\t\t<th>Action</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t<tr v-for=\"item in arr\">\n\t\t\t\t\t\t\t\t<td>{{item.name}}</td>\n\t\t\t\t\t\t\t\t<td>not Available</td>\n\t\t\t\t\t\t\t\t<td>{{item.email}}</td>\n\t\t\t\t\t\t\t\t<td>Yes</td>\n\t\t\t\t\t\t\t\t<td>Yes</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users_list.vue"
-  if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
-  } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],10:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = {
-	ready: function ready() {
-		console.log("Navbar Ready");
-	}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-static-top\" role=\"navigation\" style=\"margin-bottom: 0\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\"><img src=\"/img/logo.png\" class=\"img-responsive\" style=\"height:120%;\" id=\"logo\" alt=\"Image\"></a>\n            </div>\n            <!-- /.navbar-header -->\n            <ul class=\"nav navbar-top-links navbar-right\">\n                <!-- /.dropdown -->\n                <div style=\"padding:20px 20px 10px 0;font-size:14px;font-weight:900\"><a href=\"logout\"><i class=\"fa fa-sign-out fa-fw\"></i>Logout</a></div>\n                <!-- /.dropdown -->\n            </ul>\n            <!-- /.navbar-top-links -->\n\n<div class=\"navbar-default sidebar\" role=\"navigation\">\n                <div class=\"sidebar-nav navbar-collapse\">\n                    <ul class=\"nav\" id=\"side-menu\">\n                    <!--Lamaran -->\n                        <!-- <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-file-text-o fa-fw\"></i> Lamaran<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level\">\n                                <li>\n                                    <a href=\"tables\">Tambah Lamaran</a>\n                                </li>\n                                <li>\n                                    <a href=\"tables\">List Lamaran</a>\n                                </li>\n                            </ul>\n                        </li> -->\n                        <!-- Kategori Lowongan -->\n                         <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-newspaper-o fa-fw\"></i> Job Vacancy Categories<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Job Vacancy -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-briefcase fa-fw\"></i> Job Vacancies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Penyedia Lowongan -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-building-o fa-fw\"></i> Companies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- User -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-users fa-fw\"></i> User<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/register\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/user\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                    </ul>\n                </div>\n                <!-- /.sidebar-collapse -->\n            </div>\n            <!-- /.navbar-static-side -->\n        </nav>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\_navbar.vue"
-  if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
-  } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[6]);
-
-//# sourceMappingURL=users.js.map
+//# sourceMappingURL=jobDetails.js.map

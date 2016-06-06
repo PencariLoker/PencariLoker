@@ -27,3 +27,6 @@ lib-cov
 
 # Bower Components
 bower_components
+
+*.orig
+*/bambambole

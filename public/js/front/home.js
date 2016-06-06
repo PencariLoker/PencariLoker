@@ -20244,45 +20244,23 @@ setTimeout(function () {
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":2}],5:[function(require,module,exports){
-var inserted = exports.cache = {}
-
-exports.insert = function (css) {
-  if (inserted[css]) return
-  inserted[css] = true
-
-  var elem = document.createElement('style')
-  elem.setAttribute('type', 'text/css')
-
-  if ('textContent' in elem) {
-    elem.textContent = css
-  } else {
-    elem.styleSheet.cssText = css
-  }
-
-  document.getElementsByTagName('head')[0].appendChild(elem)
-  return elem
-}
-
-},{}],6:[function(require,module,exports){
 'use strict';
 
 window.Vue = require('vue');
 window.$ = window.jQuery = require('jquery');
 Vue.config.debug = true;
-var Users = require('./components/Users.vue');
+var Home = require('./components/Home.vue');
 new Vue({
 	ready: function ready() {
-		console.log("Admin Users Ready");
+		console.log("HomePage Ready");
 	},
 	el: "body",
 	components: {
-		users: Users
+		home: Home
 	}
 });
 
-},{"./components/Users.vue":7,"jquery":1,"vue":4}],7:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\nbody{\n\toverflow-x: hidden\n}\n")
+},{"./components/Home.vue":6,"jquery":1,"vue":4}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -20291,151 +20269,26 @@ Object.defineProperty(exports, "__esModule", {
 
 
 Vue.component('navbar', require('./_navbar.vue'));
-var UserList = require('./Users_list.vue');
-var UserAdd = require('./Users_add.vue');
+Vue.component('modal', require('./_modal.vue'));
 exports.default = {
 	ready: function ready() {
-		console.log("Users Rready");
-	},
-	data: function data() {
-		return {
-			'head': 'Users',
-			'status': 'list'
-		};
-	},
-	components: {
-		'list': UserList,
-		'addusers': UserAdd
-	},
-	events: {
-		change_mode: function change_mode(a, b) {
-			this.status = a;
-			this.head = b;
-		}
+		console.log("Home Ready");
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<div id=\"page-wrapper\">\n\t<div class=\"row\">\n\t\t<div class=\"col-lg-12\">\n\t\t\t<h1 class=\"page-header\">{{head}}</h1>\n\t\t</div>\n\t\t<div v-if=\"status == 'list'\">\n\t\t\t<list></list>\n\t\t</div>\n\n\t\t<div v-if=\"status == 'add'\">\n\t\t\t<addusers></addusers>\n\t\t</div>\n\t</div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<modal></modal>\n<a name=\"about\"></a>\n<div class=\"intro-header\">\n\t<div class=\"container\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-lg-12\">\n\t\t\t\t<div class=\"intro-message\">\n\t\t\t\t\t<h1 class=\"landing\">PencariLoker.com</h1>\n\t\t\t\t\t<h3 class=\"landing\">Solusi Kerja Masa Kini</h3>\n\t\t\t\t\t<hr class=\"intro-divider\">\n\t\t\t\t\t<ul class=\"list-inline intro-social-buttons\">\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<a href=\"/jobs\" class=\"btn btn-default btn-lg\"><i class=\"fa fa-search fa-fw\"></i> <span class=\"network-name\">Cari Lowongan</span></a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t\t<!-- <li>\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-default btn-lg\"><i class=\"fa fa-linkedin fa-fw\"></i> <span class=\"network-name\">Linkedin</span></a>\n\t\t\t\t\t\t</li> -->\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!-- /.container -->\n</div>\n<a name=\"services\"></a>\n<div class=\"content-section-a\">\n\t<div class=\"container\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-lg-5 col-sm-6\">\n\t\t\t\t<hr class=\"section-heading-spacer\">\n\t\t\t\t<div class=\"clearfix\"></div>\n\t\t\t\t<h2 class=\"landing\">Sulit Mendapat Pekerjaan?<br><br><a href=\"/jobs\" class=\"btn btn-default btn-lg\"><i class=\"fa fa-search fa-fw\"></i> <span class=\"network-name\">Cari Lowongan</span></a></h2>\n\t\t\t\t<p class=\"lead\">Berbagai lowongan tersedia di <a target=\"_blank\" href=\"#\">PencariLoker.com</a>. <br>Ayo segera upload CV anda dan dapatkan pekerjaan yang anda impikan !</p>\n\t\t\t</div>\n\t\t\t<div class=\"col-lg-5 col-lg-offset-2 col-sm-6\">\n\t\t\t\t<img class=\"img-responsive\" src=\"/img/ipad.png\" alt=\"\">\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!-- /.container -->\n</div>\n<div class=\"content-section-b\">\n\t<div class=\"container\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6\">\n\t\t\t\t<hr class=\"section-heading-spacer\">\n\t\t\t\t<div class=\"clearfix\"></div>\n\t\t\t\t<h2 class=\"landing\">Sulit mencari calon karyawan?<br><br></h2>\n\t\t\t\t<p class=\"lead\">Segera pasang lowongan anda di <a target=\"_blank\" href=\"#\">PencariLoker.com</a>! <br> Anda akan segera mendapatkan karyawan yang sesuai dengan kriteria perusahaan anda.</p>\n\t\t\t</div>\n\t\t\t<div class=\"col-lg-5 col-sm-pull-6  col-sm-6\">\n\t\t\t\t<img class=\"img-responsive\" src=\"img/dog.png\" alt=\"\">\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!-- /.container -->\n</div>\n<!-- /.content-section-b -->\n<div class=\"content-section-a\">\n\t<div class=\"container\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-lg-5 col-sm-6\">\n\t\t\t\t<hr class=\"section-heading-spacer\">\n\t\t\t\t<div class=\"clearfix\"></div>\n\t\t\t\t<h2 class=\"landing\">Butuh karyawan berkualitas?</h2>\n\t\t\t\t<p class=\"lead\">Kami menyediakan fitur ujian secara online untuk mensortir calon karyawan yang melamar di perusahaan anda.</p>\n\t\t\t</div>\n\t\t\t<div class=\"col-lg-5 col-lg-offset-2 col-sm-6\">\n\t\t\t\t<img class=\"img-responsive\" src=\"/img/phones.png\" alt=\"\">\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!-- /.container -->\n</div>\n<!-- /.content-section-a -->\n<a name=\"contact\"></a>\n<div class=\"bannerlanding\">\n\t<div class=\"container\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-lg-6\">\n\t\t\t\t<h2 class=\"landing\">Follow us :</h2>\n\t\t\t</div>\n\t\t\t<div class=\"col-lg-6\">\n\t\t\t\t<ul class=\"list-inline banner-social-buttons\">\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://twitter.com\" class=\"btn btn-default btn-lg\" style=\"width:170px;background:none;color:white;\"><i class=\"fa fa-twitter fa-fw\"></i> <span class=\"network-name\">Twitter</span></a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"http://instagram.com\" class=\"btn btn-default btn-lg\" style=\"width:170px;background:none;color:white;\"><i class=\"fa fa-instagram fa-fw\"></i> <span class=\"network-name\">Instagram</span></a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"http://facebook.com\" class=\"btn btn-default btn-lg\" style=\"width:170px;background:none;color:white;\"><i class=\"fa fa-facebook fa-fw\"></i> <span class=\"network-name\">Facebook</span></a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!-- /.container -->\n</div>\n<!-- /.banner -->\n<div class=\"landing footer\" style=\"font-size:14px !important;\">\n\t<div class=\"container\">\n\t\t<div class=\"col-md-3 grid_3\">\n\t\t\t<h4>Navigasi</h4>\n\t\t\t<ul class=\"f_list f_list1\">\n\t\t\t\t<li><a href=\"http://pencariloker.tk\">Home</a></li>\n\t\t\t\t<li><a href=\"http://pencariloker.tk/login\">Masuk</a></li>\n\t\t\t\t<li><a href=\"http://pencariloker.tk/register\">Daftar</a></li>\n\t\t\t\t<!--                <li><a href=\"#\">Tentang PencariLoker.com</a></li>\n\t\t\t</ul>\n\t\t\t<ul class=\"f_list\">\n\t\t\t\t<li><a href=\"#\">Kebijakan Privasi</a></li>\n\t\t\t\t<li><a href=\"#\">Aturan Penggunaan</a></li>\n\t\t\t\t<li><a href=\"#\">Hubungi Kami</a></li>\n\t\t\t\t<li><a href=\"#\">Pasang Lowongan</a></li>\n\t\t\t</ul> -->\n\t\t\t<div class=\"clearfix\"> </div>\n\t\t</ul></div>\n\t\t<div class=\"col-md-3 grid_3\">\n\t\t\t<h4>Tim PKM Mikroskil 2015</h4>\n\t\t\t<div class=\"footer-list\">\n\t\t\t\t<ul>\n\t\t\t\t\t<li><p><span><i class=\"fa fa-user tw1\"></i></span>Dennis Daslim – 131112641</p></li>\n\t\t\t\t\t<li><p><span><i class=\"fa fa-user tw1\"></i></span>Adeline Rosabella – 131110381</p></li>\n\t\t\t\t\t<li><p><span><i class=\"fa fa-user tw1\"></i></span>Javentira Lienata – 131110950</p></li>\n\t\t\t\t\t<li><p><span><i class=\"fa fa-user tw1\"></i></span>Michael – 131111718</p></li>\n\t\t\t\t\t<li><p><span><i class=\"fa fa-user tw1\"></i></span>Denny  Ho – 141110191</p></li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"col-md-3 grid_3\">\n\t\t\t<h4>PencariLoker.com</h4>\n\t\t\t<p>PencariLoker.com adalah sebuah website dirancang untuk membantu masyarakat menemukan lowongan pekerjaan yang sesuai dengan kemampuannya dan juga membantu perusahaan dalam mensortir calon karyawan.</p>\n\t\t</div>\n\t\t<!--         <div class=\"col-md-3 grid_3\">\n\t\t\t<h4>Daftarkan Email anda</h4>\n\t\t\t<p>Daftarkan email anda untuk menerima pemberitahuan update pada website</p>\n\t\t\t<form>\n\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Masukkan Email anda\" style=\"padding:0 15px;\">\n\t\t\t\t<button type=\"button\" class=\"btn red\">Daftar sekarang!</button>\n\t\t\t</form>\n\t\t</div> -->\n\n\n\t\t<div class=\"clearfix\"> </div>\n\t\t\t<h4 class=\"copy\">\n\t\t\t<p>Copyright © 2015 PencariLoker.com </p>\n\t\t\t</h4>\n\t\t</div>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users.vue"
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\nbody{\n\toverflow-x: hidden\n}\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\Home.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./Users_add.vue":8,"./Users_list.vue":9,"./_navbar.vue":10,"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4,"vueify/lib/insert-css":5}],8:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = {
-	ready: function ready() {
-		console.log("Add Form Users");
-	},
-	data: function data() {
-		return {
-			username: '',
-			name: '',
-			email: '',
-			password: '',
-			active: '',
-			admin: ''
-		};
-	},
-	methods: {
-		add: function add() {
-			var data = {
-				_csrf: $('meta[name=csrf]').attr('content'),
-				username: this.username,
-				name: this.name,
-				password: this.password,
-				email: this.email,
-				active: this.active,
-				admin: this.admin
-			};
-			$.ajax({
-				url: window.location.origin + "/admin/users/add",
-				method: 'POST',
-				async: false,
-				data: data,
-				success: function success(res) {
-					console.log(res);
-				}
-			});
-		},
-		back: function back() {
-			this.$dispatch('change_mode', 'list', 'Users');
-		}
-	}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-md-6\">\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Username</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Username\" v-model=\"username\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Name</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Name\" v-model=\"name\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Email</label>\n\t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" placeholder=\"Email\" v-model=\"email\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Password</label>\n\t\t\t<input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" v-model=\"password\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<div class=\"checkbox\">\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"active\">\n\t\t\t\t\tActive\n\t\t\t\t</label>\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"admin\">\n\t\t\t\t\tAdministrator ?\n\t\t\t\t</label>\n\t\t\t</div>\n\t\t</div>\n\t\t<button type=\"button\" class=\"btn btn-primary\" @click=\"add\">Submit</button>\n\t\t<button type=\"button\" class=\"btn btn-danger\" @click=\"back\">Back</button>\n\t</div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users_add.vue"
-  if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
-  } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],9:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = {
-	ready: function ready() {
-		console.log("Ready");
-		var _this = this;
-		$.ajax({
-			method: 'GET',
-			async: false,
-			cache: false,
-			'url': window.location.origin + "/admin/users/list",
-			success: function (res) {
-				_this.arr = res;
-			}.bind(_this)
-		});
-		console.log(this.arr);
-	},
-	data: function data() {
-		return {
-			arr: []
-		};
-	},
-	methods: {
-		addnewusers: function addnewusers(e) {
-			this.$dispatch('change_mode', 'add', 'Add New Users');
-		}
-	}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-lg-12\">\n\t\t<a href=\"#\" @click=\"addnewusers\" class=\"btn btn primary\"><i class=\"fa fa-plus\"></i> Add New Users</a>\n\t\t<div class=\"panel panel-default\">\n\t\t\t<div class=\"panel-heading\">\n\t\t\t\tList Users\n\t\t\t</div>\n\t\t\t<div class=\"panel-body\">\n\t\t\t\t<div class=\"table-responsive\">\n\t\t\t\t\t<table class=\"table table-hover\">\n\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t\t<th>Username</th>\n\t\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t\t<th>Active</th>\n\t\t\t\t\t\t\t\t<th>Admin</th>\n\t\t\t\t\t\t\t\t<th>Action</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t<tr v-for=\"item in arr\">\n\t\t\t\t\t\t\t\t<td>{{item.name}}</td>\n\t\t\t\t\t\t\t\t<td>not Available</td>\n\t\t\t\t\t\t\t\t<td>{{item.email}}</td>\n\t\t\t\t\t\t\t\t<td>Yes</td>\n\t\t\t\t\t\t\t\t<td>Yes</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users_list.vue"
-  if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
-  } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],10:[function(require,module,exports){
+},{"./_modal.vue":7,"./_navbar.vue":8,"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20443,22 +20296,65 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	ready: function ready() {
-		console.log("Navbar Ready");
+		console.log("Modal Ready");
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-static-top\" role=\"navigation\" style=\"margin-bottom: 0\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\"><img src=\"/img/logo.png\" class=\"img-responsive\" style=\"height:120%;\" id=\"logo\" alt=\"Image\"></a>\n            </div>\n            <!-- /.navbar-header -->\n            <ul class=\"nav navbar-top-links navbar-right\">\n                <!-- /.dropdown -->\n                <div style=\"padding:20px 20px 10px 0;font-size:14px;font-weight:900\"><a href=\"logout\"><i class=\"fa fa-sign-out fa-fw\"></i>Logout</a></div>\n                <!-- /.dropdown -->\n            </ul>\n            <!-- /.navbar-top-links -->\n\n<div class=\"navbar-default sidebar\" role=\"navigation\">\n                <div class=\"sidebar-nav navbar-collapse\">\n                    <ul class=\"nav\" id=\"side-menu\">\n                    <!--Lamaran -->\n                        <!-- <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-file-text-o fa-fw\"></i> Lamaran<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level\">\n                                <li>\n                                    <a href=\"tables\">Tambah Lamaran</a>\n                                </li>\n                                <li>\n                                    <a href=\"tables\">List Lamaran</a>\n                                </li>\n                            </ul>\n                        </li> -->\n                        <!-- Kategori Lowongan -->\n                         <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-newspaper-o fa-fw\"></i> Job Vacancy Categories<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Job Vacancy -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-briefcase fa-fw\"></i> Job Vacancies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Penyedia Lowongan -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-building-o fa-fw\"></i> Companies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- User -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-users fa-fw\"></i> User<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/register\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/user\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                    </ul>\n                </div>\n                <!-- /.sidebar-collapse -->\n            </div>\n            <!-- /.navbar-static-side -->\n        </nav>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<!-- template for the modal component -->\n\t<div class=\"modal fade\" id=\"modal-id\">\n\t<div class=\"modal-dialog modal-sm\">\n\t\t<div class=\"modal-content custModal\">\n\t\t\t<div class=\"modal-header\">\n\t\t\t\t<h4 class=\"modal-title\">Sign In</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\">\n\t\t\t\t<a href=\"/oauth/linkedin\">\n\t\t\t\t\t<img id=\"linkedinBtn\" src=\"/img/linkedinlogo/Retina/Sign-In-Large---Default.png\">\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\_navbar.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\_modal.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[6]);
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],8:[function(require,module,exports){
+'use strict';
 
-//# sourceMappingURL=users.js.map
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    ready: function ready() {
+        console.log("Navbar Ready");
+        var _this = this;
+        $.ajax({
+            method: 'GET',
+            async: false,
+            cache: false,
+            'url': window.location.origin + "/data",
+            success: function (res) {
+                _this.user = res;
+                _this.formattedName = res.formattedName || res.name;
+                _this.pictureUrl = res.pictureUrl || res.photo_url;
+            }.bind(_this)
+        });
+    },
+    data: function data() {
+        return {
+            user: {},
+            formattedName: '',
+            pictureUrl: ''
+        };
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-fixed-top topnav landing\" role=\"navigation\">\n    <div class=\"container topnav landing\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header landing\">\n            <button type=\"button landing\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n            <span class=\"sr-only landing\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand topnav landing\" id=\"logonav\" href=\"/\"><img src=\"img/logo.png\" class=\"img-responsive\" id=\"logo\" alt=\"Image\"></a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse landing\" id=\"bs-example-navbar-collapse-1\">\n            <ul v-if=\"user.logged == true\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <img v-bind:src=\"pictureUrl\" class=\"img img-responsive user_pic\" style=\"width: 40px; height: 40px; border-radius: 100%; border: 1px solid #dadada; position: relative; top: 5px; left: 5px;\">\n                </li>\n                <li>\n                    </li><li class=\"dropdown\">\n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Hello, {{ formattedName }}<b class=\"caret\"></b></a>\n                        <ul class=\"dropdown-menu\">\n                            <li><a href=\"/profile\">Edit Profile</a></li>\n                            <li><a href=\"logout\">Log Out</a></li>\n                        </ul>\n                    </li>\n                \n            </ul>\n            <ul v-if=\"user.logged == false\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <a id=\"show-modal\" href=\"#modal-id\" data-toggle=\"modal\" class=\"landing btn-regis\">Masuk</a>\n                </li>\n            </ul>\n        </div>\n        <!-- /.navbar-collapse -->\n    </div>\n    <!-- /.container -->\n</nav>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\_navbar.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[5]);
+
+//# sourceMappingURL=home.js.map

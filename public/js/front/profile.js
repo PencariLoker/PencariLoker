@@ -20244,198 +20244,113 @@ setTimeout(function () {
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":2}],5:[function(require,module,exports){
-var inserted = exports.cache = {}
-
-exports.insert = function (css) {
-  if (inserted[css]) return
-  inserted[css] = true
-
-  var elem = document.createElement('style')
-  elem.setAttribute('type', 'text/css')
-
-  if ('textContent' in elem) {
-    elem.textContent = css
-  } else {
-    elem.styleSheet.cssText = css
-  }
-
-  document.getElementsByTagName('head')[0].appendChild(elem)
-  return elem
-}
-
-},{}],6:[function(require,module,exports){
 'use strict';
 
 window.Vue = require('vue');
 window.$ = window.jQuery = require('jquery');
 Vue.config.debug = true;
-var Users = require('./components/Users.vue');
+var Profile = require('./components/Profile.vue');
 new Vue({
 	ready: function ready() {
-		console.log("Admin Users Ready");
+		console.log("Profile Ready");
 	},
 	el: "body",
 	components: {
-		users: Users
+		profile: Profile
 	}
 });
 
-},{"./components/Users.vue":7,"jquery":1,"vue":4}],7:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\nbody{\n\toverflow-x: hidden\n}\n")
+},{"./components/Profile.vue":6,"jquery":1,"vue":4}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+				value: true
 });
 
 
 Vue.component('navbar', require('./_navbar.vue'));
-var UserList = require('./Users_list.vue');
-var UserAdd = require('./Users_add.vue');
+Vue.component('modal', require('./_modal.vue'));
 exports.default = {
-	ready: function ready() {
-		console.log("Users Rready");
-	},
-	data: function data() {
-		return {
-			'head': 'Users',
-			'status': 'list'
-		};
-	},
-	components: {
-		'list': UserList,
-		'addusers': UserAdd
-	},
-	events: {
-		change_mode: function change_mode(a, b) {
-			this.status = a;
-			this.head = b;
-		}
-	}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<div id=\"page-wrapper\">\n\t<div class=\"row\">\n\t\t<div class=\"col-lg-12\">\n\t\t\t<h1 class=\"page-header\">{{head}}</h1>\n\t\t</div>\n\t\t<div v-if=\"status == 'list'\">\n\t\t\t<list></list>\n\t\t</div>\n\n\t\t<div v-if=\"status == 'add'\">\n\t\t\t<addusers></addusers>\n\t\t</div>\n\t</div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users.vue"
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\nbody{\n\toverflow-x: hidden\n}\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
-  } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./Users_add.vue":8,"./Users_list.vue":9,"./_navbar.vue":10,"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4,"vueify/lib/insert-css":5}],8:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = {
-	ready: function ready() {
-		console.log("Add Form Users");
-	},
-	data: function data() {
-		return {
-			username: '',
-			name: '',
-			email: '',
-			password: '',
-			active: '',
-			admin: ''
-		};
-	},
-	methods: {
-		add: function add() {
-			var data = {
-				_csrf: $('meta[name=csrf]').attr('content'),
-				username: this.username,
-				name: this.name,
-				password: this.password,
-				email: this.email,
-				active: this.active,
-				admin: this.admin
-			};
-			$.ajax({
-				url: window.location.origin + "/admin/users/add",
-				method: 'POST',
-				async: false,
-				data: data,
-				success: function success(res) {
-					console.log(res);
+				ready: function ready() {
+								console.log("Pro Rready");
+								var _this = this;
+								$.ajax({
+												method: 'GET',
+												async: false,
+												cache: false,
+												'url': window.location.origin + "/data",
+												success: function (res) {
+																_this.user = res;
+																_this.city = res.city || res.location.name;
+																_this.pictureUrls = res.photo_url || res.pictureUrls.values[0];
+																_this.formattedName = res.formattedName || res.name;
+																_this.emailAddress = res.emailAddress || res.email;
+																_this.address = res.address;
+																_this.gender = res.gender || 0;
+																_this.birthdate = res.birthdate;
+																_this.phone = res.phone;
+												}.bind(_this)
+								});
+				},
+				data: function data() {
+								return {
+												user: {},
+												formattedName: '',
+												emailAddress: '',
+												city: '',
+												pictureUrls: '',
+												name: '',
+												address: '',
+												gender: 0,
+												birthdate: '',
+												phone: ''
+								};
+				},
+				methods: {
+								add: function add() {
+												var data = {
+																_csrf: $('meta[name=csrf]').attr('content'),
+																linkedin_id: this.user.linkedin_id || this.user.id,
+																name: this.formattedName,
+																email: this.emailAddress,
+																phone: this.phone,
+																birthday: this.birthdate,
+																photo_url: this.pictureUrls,
+																address: this.address,
+																city: this.city,
+																gender: this.gender
+												};
+												$.ajax({
+																url: window.location.origin + "/ninja/addUser",
+																method: 'POST',
+																async: false,
+																data: data,
+																success: function success(res) {
+																				if (res.redirect) {
+																								window.location.href = window.location.origin + res.redirect;
+																				} else {
+																								console.log("ok");
+																								// Process the expected results...
+																				}
+																}
+												});
+								}
 				}
-			});
-		},
-		back: function back() {
-			this.$dispatch('change_mode', 'list', 'Users');
-		}
-	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-md-6\">\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Username</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Username\" v-model=\"username\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Name</label>\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Name\" v-model=\"name\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Email</label>\n\t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" placeholder=\"Email\" v-model=\"email\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<label for=\"\">Password</label>\n\t\t\t<input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" v-model=\"password\">\n\t\t</div>\n\t\t<div class=\"form-group\">\n\t\t\t<div class=\"checkbox\">\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"active\">\n\t\t\t\t\tActive\n\t\t\t\t</label>\n\t\t\t\t<label>\n\t\t\t\t\t<input type=\"checkbox\" v-model=\"admin\">\n\t\t\t\t\tAdministrator ?\n\t\t\t\t</label>\n\t\t\t</div>\n\t\t</div>\n\t\t<button type=\"button\" class=\"btn btn-primary\" @click=\"add\">Submit</button>\n\t\t<button type=\"button\" class=\"btn btn-danger\" @click=\"back\">Back</button>\n\t</div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<modal></modal>\n<div class=\"container content\">\n\t<div class=\"col-lg-12 col-xs-12 col-sm-12 col-md-6\" style=\"margin:0 auto;\">\n\t\t<div class=\"panel panel-default\">\n\t\t\t<div class=\"panel-heading\">\n\t\t\t\t<h3>Edit Profile</h3>\n\t\t\t</div>\n\t\t\t<div class=\"panel-body\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<img style=\"margin:0 auto;height:300px;width:auto;\" v-bind:src=\"pictureUrls\" class=\"img-responsive\" alt=\"Image\">\n\t\t\t\t\t<input style=\"margin:0 auto;\" type=\"file\" accept=\"image/*\" name=\"fotouser\" value=\"\" placeholder=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>Name</label>\n\t\t\t\t\t<input placeholder=\"Name\" name=\"name\" v-model=\"formattedName\" class=\"inputkecil form-control\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>Email</label>\n\t\t\t\t\t<p class=\"inputkecil form-control\" style=\"background:#DDD;\">{{ emailAddress }}</p>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>Gender</label>\n\t\t\t\t\t<select name=\"gender\" v-model=\"gender\" id=\"input\" class=\"form-control\" required=\"required\">\n\t\t\t\t\t\t<option selected=\"\" value=\"0\">Male</option>\n\t\t\t\t\t\t<option value=\"1\">Female</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>address</label>\n\t\t\t\t\t<textarea v-model=\"address\" name=\"alamat\" id=\"input\" class=\"form-control\" rows=\"3\" required=\"required\">{{ address }}</textarea>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>City</label>\n\t\t\t\t\t<textarea name=\"kota\" id=\"input\" class=\"form-control\" rows=\"1\" required=\"required\" v-model=\"city\">{{ city }}</textarea>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>Birthdate</label>\n\t\t\t\t\t<input style=\"width:160px;\" type=\"date\" name=\"dob\" id=\"tanggal\" class=\"form-control\" v-model=\"birthdate\" required=\"required\" title=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>Phone</label>\n\t\t\t\t\t<input type=\"text\" name=\"telepon\" id=\"tanggal\" class=\"form-control\" v-model=\"phone\" required=\"required\" title=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label>Upload A File ( CV / Resume / Portfolio ) in .pdf</label>\n\t\t\t\t\t<p>CV not uploaded yet</p>\n\t\t\t\t\t<input type=\"file\" name=\"lampiran\" accept=\".pdf\" value=\"\" placeholder=\"\">\n\t\t\t\t</div>\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\" @click=\"add\">Submit</button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users_add.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\Profile.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],9:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = {
-	ready: function ready() {
-		console.log("Ready");
-		var _this = this;
-		$.ajax({
-			method: 'GET',
-			async: false,
-			cache: false,
-			'url': window.location.origin + "/admin/users/list",
-			success: function (res) {
-				_this.arr = res;
-			}.bind(_this)
-		});
-		console.log(this.arr);
-	},
-	data: function data() {
-		return {
-			arr: []
-		};
-	},
-	methods: {
-		addnewusers: function addnewusers(e) {
-			this.$dispatch('change_mode', 'add', 'Add New Users');
-		}
-	}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n\t<div class=\"col-lg-12\">\n\t\t<a href=\"#\" @click=\"addnewusers\" class=\"btn btn primary\"><i class=\"fa fa-plus\"></i> Add New Users</a>\n\t\t<div class=\"panel panel-default\">\n\t\t\t<div class=\"panel-heading\">\n\t\t\t\tList Users\n\t\t\t</div>\n\t\t\t<div class=\"panel-body\">\n\t\t\t\t<div class=\"table-responsive\">\n\t\t\t\t\t<table class=\"table table-hover\">\n\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t\t<th>Username</th>\n\t\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t\t<th>Active</th>\n\t\t\t\t\t\t\t\t<th>Admin</th>\n\t\t\t\t\t\t\t\t<th>Action</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t<tr v-for=\"item in arr\">\n\t\t\t\t\t\t\t\t<td>{{item.name}}</td>\n\t\t\t\t\t\t\t\t<td>not Available</td>\n\t\t\t\t\t\t\t\t<td>{{item.email}}</td>\n\t\t\t\t\t\t\t\t<td>Yes</td>\n\t\t\t\t\t\t\t\t<td>Yes</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\Users_list.vue"
-  if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
-  } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],10:[function(require,module,exports){
+},{"./_modal.vue":7,"./_navbar.vue":8,"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20443,22 +20358,65 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	ready: function ready() {
-		console.log("Navbar Ready");
+		console.log("Modal Ready");
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-static-top\" role=\"navigation\" style=\"margin-bottom: 0\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\"><img src=\"/img/logo.png\" class=\"img-responsive\" style=\"height:120%;\" id=\"logo\" alt=\"Image\"></a>\n            </div>\n            <!-- /.navbar-header -->\n            <ul class=\"nav navbar-top-links navbar-right\">\n                <!-- /.dropdown -->\n                <div style=\"padding:20px 20px 10px 0;font-size:14px;font-weight:900\"><a href=\"logout\"><i class=\"fa fa-sign-out fa-fw\"></i>Logout</a></div>\n                <!-- /.dropdown -->\n            </ul>\n            <!-- /.navbar-top-links -->\n\n<div class=\"navbar-default sidebar\" role=\"navigation\">\n                <div class=\"sidebar-nav navbar-collapse\">\n                    <ul class=\"nav\" id=\"side-menu\">\n                    <!--Lamaran -->\n                        <!-- <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-file-text-o fa-fw\"></i> Lamaran<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level\">\n                                <li>\n                                    <a href=\"tables\">Tambah Lamaran</a>\n                                </li>\n                                <li>\n                                    <a href=\"tables\">List Lamaran</a>\n                                </li>\n                            </ul>\n                        </li> -->\n                        <!-- Kategori Lowongan -->\n                         <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-newspaper-o fa-fw\"></i> Job Vacancy Categories<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongancat\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Job Vacancy -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-briefcase fa-fw\"></i> Job Vacancies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/lowongan\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- Penyedia Lowongan -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-building-o fa-fw\"></i> Companies<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company/create\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/company\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <!-- User -->\n                        <li>\n                            <a href=\"#\"><strong><i class=\"fa fa-users fa-fw\"></i> User<span class=\"fa arrow\"></span></strong></a>\n                            <ul class=\"nav nav-second-level collapse\">\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/register\">Add</a>\n                                </li>\n                                <li>\n                                    <a href=\"http://medanjob-hashed.rhcloud.com/user\">List</a>\n                                </li>\n                            </ul>\n                        </li>\n                    </ul>\n                </div>\n                <!-- /.sidebar-collapse -->\n            </div>\n            <!-- /.navbar-static-side -->\n        </nav>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<!-- template for the modal component -->\n\t<div class=\"modal fade\" id=\"modal-id\">\n\t<div class=\"modal-dialog modal-sm\">\n\t\t<div class=\"modal-content custModal\">\n\t\t\t<div class=\"modal-header\">\n\t\t\t\t<h4 class=\"modal-title\">Sign In</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\">\n\t\t\t\t<a href=\"/oauth/linkedin\">\n\t\t\t\t\t<img id=\"linkedinBtn\" src=\"/img/linkedinlogo/Retina/Sign-In-Large---Default.png\">\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Admin\\components\\_navbar.vue"
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\_modal.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[6]);
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}],8:[function(require,module,exports){
+'use strict';
 
-//# sourceMappingURL=users.js.map
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    ready: function ready() {
+        console.log("Navbar Ready");
+        var _this = this;
+        $.ajax({
+            method: 'GET',
+            async: false,
+            cache: false,
+            'url': window.location.origin + "/data",
+            success: function (res) {
+                _this.user = res;
+                _this.formattedName = res.formattedName || res.name;
+                _this.pictureUrl = res.pictureUrl || res.photo_url;
+            }.bind(_this)
+        });
+    },
+    data: function data() {
+        return {
+            user: {},
+            formattedName: '',
+            pictureUrl: ''
+        };
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-fixed-top topnav landing\" role=\"navigation\">\n    <div class=\"container topnav landing\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header landing\">\n            <button type=\"button landing\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n            <span class=\"sr-only landing\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand topnav landing\" id=\"logonav\" href=\"/\"><img src=\"img/logo.png\" class=\"img-responsive\" id=\"logo\" alt=\"Image\"></a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse landing\" id=\"bs-example-navbar-collapse-1\">\n            <ul v-if=\"user.logged == true\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <img v-bind:src=\"pictureUrl\" class=\"img img-responsive user_pic\" style=\"width: 40px; height: 40px; border-radius: 100%; border: 1px solid #dadada; position: relative; top: 5px; left: 5px;\">\n                </li>\n                <li>\n                    </li><li class=\"dropdown\">\n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Hello, {{ formattedName }}<b class=\"caret\"></b></a>\n                        <ul class=\"dropdown-menu\">\n                            <li><a href=\"/profile\">Edit Profile</a></li>\n                            <li><a href=\"logout\">Log Out</a></li>\n                        </ul>\n                    </li>\n                \n            </ul>\n            <ul v-if=\"user.logged == false\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <a id=\"show-modal\" href=\"#modal-id\" data-toggle=\"modal\" class=\"landing btn-regis\">Masuk</a>\n                </li>\n            </ul>\n        </div>\n        <!-- /.navbar-collapse -->\n    </div>\n    <!-- /.container -->\n</nav>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "D:\\else\\web\\pencariLoker\\resources\\assets\\js\\Front\\components\\_navbar.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"D:\\else\\web\\pencariLoker\\node_modules\\vue-hot-reload-api\\index.js":3,"vue":4}]},{},[5]);
+
+//# sourceMappingURL=profile.js.map

@@ -1,9 +1,6 @@
-{# resources/views/layout/home.html #}
-{% extends 'index' %}
-{% block title %}
-	Home Page
-{% endblock %}
-{% block content %}
+<template>
+	<navbar></navbar>
+	<modal></modal>
 	<a name="about"></a>
 	<div class="intro-header">
 		<div class="container">
@@ -15,7 +12,7 @@
 						<hr class="intro-divider">
 						<ul class="list-inline intro-social-buttons">
 							<li>
-								<a href="http://pencariloker.tk/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a>
+								<a href="/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a>
 							</li>
 							<!-- <li>
 												<a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
@@ -34,7 +31,7 @@
 				<div class="col-lg-5 col-sm-6">
 					<hr class="section-heading-spacer">
 					<div class="clearfix"></div>
-					<h2 class="landing" class="section-heading">Sulit Mendapat Pekerjaan?<br><br><a href="http://pencariloker.tk/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a></h2 class="landing">
+					<h2 class="landing" class="section-heading">Sulit Mendapat Pekerjaan?<br><br><a href="/jobs" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Cari Lowongan</span></a></h2 class="landing">
 					<p class="lead">Berbagai lowongan tersedia di <a target="_blank" href="#">PencariLoker.com</a>. <br>Ayo segera upload CV anda dan dapatkan pekerjaan yang anda impikan !</p>
 				</div>
 				<div class="col-lg-5 col-lg-offset-2 col-sm-6">
@@ -145,13 +142,24 @@
 					<button type="button" class="btn red">Daftar sekarang!</button>
 				</form>
 			</div> -->
-			
-			
+
+
 			<div class="clearfix"> </div>
-			<h4 class="copy">
-			<p>Copyright © 2015 PencariLoker.com</a> </p>
-			</h4>
+				<h4 class="copy">
+				<p>Copyright © 2015 PencariLoker.com</a> </p>
+				</h4>
+			</div>
 		</div>
 	</div>
-</div>
-{% endblock %}
+</template>
+
+
+<script type="text/javascript">
+	Vue.component('navbar', require('./_navbar.vue'));
+	Vue.component('modal', require('./_modal.vue'));
+	export default {
+		ready: function () {
+			console.log("Home Ready");
+		}
+	}
+</script>
