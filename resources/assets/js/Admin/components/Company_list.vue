@@ -1,23 +1,24 @@
 <template>
-<div class="row">
-	<div class="col-lg-12">
-		<a href="#" @click="addnewcompany" class="btn btn primary"><i class="fa fa-plus"></i> Add New Company</a>
-		<a href="#" @click="ajax" class="btn btn primary"><i class="fa fa-plus"></i> Test Ajax</a>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				List Company
+	<navbar></navbar>
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Company</h1>
+				<a href="#" v-link="{path:'company/add'}">Add New Company</a>
 			</div>
-			<div class="panel-body">
+		</div>
+		<div class="row">
+			<div class="col-md-12">
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Username</th>
+								<th>Indsutry</th>
+								<th>Website</th>
+								<th>Phone</th>
 								<th>Email</th>
-								<th>Active</th>
-								<th>Admin</th>
-								<th>Action</th>
+								<th>Address</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -29,14 +30,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	</div>	
 </template>
 
 
 <script>
 	export default {
 		ready: function(){
+			$('title').text('Company');
 			console.log("Company List Ready")
 		},
 		methods: {

@@ -21,7 +21,7 @@ class NewSchema extends Schema {
       table.dateTime('tanggalberakhir').defaultTo('0000-00-00 00:00:00');
       table.boolean('active').defaultTo(0);
       table.timestamps();
-      table.index(['id','lowongancat_id','company_id','name'], '`id`');
+      //table.index(['id','lowongancat_id','company_id','name'], '`id`');
     })
   }
 

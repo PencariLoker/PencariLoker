@@ -1,3 +1,4 @@
+
 <style>
 	body{
 		overflow-x: hidden
@@ -8,14 +9,36 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">{{head}}</h1>
+				<h1 class="page-header">List Users</h1>
+				<p>Total : <b>{{arr.length}}</b></p>
 			</div>
-			<div v-if="status == 'list'">
-				<list></list>
-			</div>
+		</div>
 
-			<div v-if="status == 'add'">
-				<addusers></addusers>
+		<!-- List -->
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Id LinkedIn</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="item in arr">
+								<td>foo</td>
+								<td>{{item.name}}</td>
+								<td>{{item.email}}</td>
+								<td>
+								<a href="">Edit</a> | <a href="">Delete</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -23,28 +46,23 @@
 
 
 <script type="text/javascript">
-	Vue.component('navbar', require('./_navbar.vue'));
-	var UserList = require('./Users_list.vue');
-	var UserAdd = require('./Users_add.vue');
 	export default {
-		ready: function () {
-			console.log("Users Rready");
+		ready: function(){
+			var _this = this;
+			$.ajax({
+				method : 'GET',
+				async : true,
+				cache : false,
+				'url' : window.location.origin + "/admin/users/list",
+				success : function(res){
+					_this.arr = res;
+				}.bind(_this)
+			});
 		},
-		data: function(){
-			return {
-				'head' : 'Users',
-				'status' : 'list',
-			}
-		},
-		components: {
-			'list' : UserList,
-			'addusers' : UserAdd,
-		},
-		events:{
-			change_mode: function(a, b){
-				this.status = a;
-				this.head = b;
-			}
+		data () {
+		  return {
+		    arr : [],
+		  };
 		}
 	}
 </script>

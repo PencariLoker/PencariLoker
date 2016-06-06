@@ -28,8 +28,8 @@ Route.get('/checkDatabase', 'AuthController.checkDatabase');
 Route.get('/share','AuthController.share');
 Route.get('/share2','AuthController.share2');
 
-Route.get('/ninja/user', 'AdminUserController.index')
-Route.post('/ninja/addUser', 'AdminUsersController.addUser').as('addUser')
+Route.get('/ninja/user', 'AdminUsersController.index')
+//Route.post('/ninja/addUser', 'AdminUsersController.addUser').as('addUser')
 
 Route.get('/admin/users', 'AdminUsersController.index')
 Route.post('/admin/users/add', 'AdminUsersController.create')

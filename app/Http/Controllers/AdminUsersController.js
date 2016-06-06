@@ -10,12 +10,10 @@ class AdminUsersController {
     * create (request, response) {
         const semua = yield request.all();
         User.create({
-            'username' : semua.username,
-            'name'     : semua.name,
-            'email'    : semua.email,
-            'password' : semua.password,
+            'name'     : "Nipe Setiwan Harefa",
+            'email'    : 'email@gmail.com'
         })
-        response.send(semua.username);
+        response.send(semua);
     }
     * addUser(request,response){
         var semua = yield request.all();
