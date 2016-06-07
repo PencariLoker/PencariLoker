@@ -2,7 +2,7 @@
 	<navbar></navbar>
 	<modal></modal>
 	<div class="container bungkus">
-	  	<div class="single">  
+	  	<div class="single">
 		    <div class="col-md-3 colputih" style="padding: 0 1em 0 1em;">
 			   	<div class="widget_search">
 					<h5 class="widget-title">Search</h5>
@@ -15,7 +15,7 @@
 					        <select name="idcat" id="input" class="selectpicker" v-model="idcat" data-style="form-control" data-live-search="true" title='Choose Category'>
 					            <option value="">Show all</option>
 					             <option v-for="lowongancat in lowongancats" value="{{lowongancat.id}}">{{lowongancat.name}}</option>
-				            </select>  
+				            </select>
 				            <hr>
 				            <input class="btn btn-default" @click="filterCategory" value="Cari">
 				        </form>

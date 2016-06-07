@@ -23056,18 +23056,19 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<div id=\"page-wrapper\">\n\t<div class=\"row\">\n\t\t<div class=\"col-lg-12\">\n\t\t\t<h1 class=\"page-header\">Company</h1>\n\t\t\t<a href=\"#\" v-link=\"{path:'company/add'}\">Add New Company</a>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div class=\"col-md-12\">\n\t\t\t<div class=\"table-responsive\">\n\t\t\t\t<table class=\"table table-hover\">\n\t\t\t\t\t<thead>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t<th>Indsutry</th>\n\t\t\t\t\t\t\t<th>Website</th>\n\t\t\t\t\t\t\t<th>Phone</th>\n\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t<th>Address</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</thead>\n\t\t\t\t\t<tbody>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<td></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\t\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/home/nipeharefa/public_html/pencariDenis/resources/assets/js/Admin/components/Company_list.vue"
+  var id = "/home/javent/projekweb/pencariJavent/resources/assets/js/Admin/components/Company_list.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3}],9:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\nbody{\n\toverflow-x: hidden\n}\n")
+},{"/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js":3,"vue":5}],9:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\nbody{\n\toverflow-x: hidden\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23095,12 +23096,12 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<div id=\"page-wrapper\">\n\t<div class=\"row\">\n\t\t<div class=\"col-lg-12\">\n\t\t\t<h1 class=\"page-header\">List Users</h1>\n\t\t\t<p>Total : <b>{{arr.length}}</b></p>\n\t\t</div>\n\t</div>\n\n\t<!-- List -->\n\t<div class=\"row\">\n\t\t<div class=\"col-md-12 col-sm-12\">\n\t\t\t<div class=\"table-responsive\">\n\t\t\t\t<table class=\"table table-hover\">\n\t\t\t\t\t<thead>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>Id LinkedIn</th>\n\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t<th>Action</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</thead>\n\t\t\t\t\t<tbody>\n\t\t\t\t\t\t<tr v-for=\"item in arr\">\n\t\t\t\t\t\t\t<td>foo</td>\n\t\t\t\t\t\t\t<td>{{item.name}}</td>\n\t\t\t\t\t\t\t<td>{{item.email}}</td>\n\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t<a href=\"\">Edit</a> | <a href=\"\">Delete</a>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/home/nipeharefa/public_html/pencariDenis/resources/assets/js/Admin/components/Users.vue"
+  var id = "/home/javent/projekweb/pencariJavent/resources/assets/js/Admin/components/Users.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\nbody{\n\toverflow-x: hidden\n}\n"] = false
+    __vueify_insert__.cache["\nbody{\n\toverflow-x: hidden\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -23109,7 +23110,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3,"vueify-insert-css":6}],10:[function(require,module,exports){
+},{"/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js":3,"vue":5,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23154,16 +23155,16 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n<navbar></navbar>\n<div id=\"page-wrapper\">\n\t<div class=\"row\">\n\t\t<div class=\"col-lg-12\">\n\t\t\t<h1 class=\"page-header\">Add New User</h1>\n\t\t\t<a v-link=\"{ path: '/' }\">Go to List Users</a>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div class=\"col-md-6\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label for=\"\">Username</label>\n\t\t\t\t<input type=\"text\" name=\"username\" id=\"input\" class=\"form-control\" value=\"\" required=\"required\" placeholder=\"Username\" v-model=\"username\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label for=\"\">Name</label>\n\t\t\t\t<input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control\" value=\"\" placeholder=\"Name\" v-model=\"name\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label for=\"\">Email</label>\n\t\t\t\t<input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control\" value=\"\" required=\"required\" placeholder=\"Email\" v-model=\"email\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label for=\"\">Password</label>\n\t\t\t\t<input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" required=\"required\" placeholder=\"Password\" v-model=\"password\">\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"col-md-6\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<div class=\"checkbox\">\n\t\t\t\t\t<label>\n\t\t\t\t\t\t<input type=\"checkbox\" v-model=\"active\">\n\t\t\t\t\t\tActive\n\t\t\t\t\t</label>\n\t\t\t\t\t<label>\n\t\t\t\t\t\t<input type=\"checkbox\" v-model=\"isAdmin\">\n\t\t\t\t\t\tAdministrator ?\n\t\t\t\t\t</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<!-- Submit Button -->\n\t<div class=\"row\">\n\t\t<div class=\"col-md-12\">\n\t\t\t<button type=\"button\" class=\"btn btn-primary\" @click=\"save\">Simpan</button>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/home/nipeharefa/public_html/pencariDenis/resources/assets/js/Admin/components/Users_add.vue"
+  var id = "/home/javent/projekweb/pencariJavent/resources/assets/js/Admin/components/Users_add.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":3}]},{},[7]);
+},{"/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js":3,"vue":5}]},{},[7]);
 
 //# sourceMappingURL=users.js.map

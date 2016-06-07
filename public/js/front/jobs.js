@@ -20316,19 +20316,19 @@ exports.default = {
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<modal></modal>\n<div class=\"container bungkus\">\n  \t<div class=\"single\">  \n\t    <div class=\"col-md-3 colputih\" style=\"padding: 0 1em 0 1em;\">\n\t\t   \t<div class=\"widget_search\">\n\t\t\t\t<h5 class=\"widget-title\">Search</h5>\n\t\t\t\t<div class=\"widget-content\">\n\t\t\t        <form action=\"#\" method=\"get\" role=\"form\">\n\t\t\t            <select name=\"idcomp\" id=\"input\" class=\"selectpicker\" v-model=\"idcomp\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Company\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t                <option v-for=\"company in companies\" value=\"{{company.id}}\">{{company.name}}</option>\n\t\t\t\t        </select><br>\n\t\t\t\t        <select name=\"idcat\" id=\"input\" class=\"selectpicker\" v-model=\"idcat\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Category\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t\t             <option v-for=\"lowongancat in lowongancats\" value=\"{{lowongancat.id}}\">{{lowongancat.name}}</option>\n\t\t\t            </select>  \n\t\t\t            <hr>\n\t\t\t            <input class=\"btn btn-default\" @click=\"filterCategory\" value=\"Cari\">\n\t\t\t        </form>\n\t\t\t    </div>\n\t\t    </div>\n\t    </div>\n\t    <div class=\"col-md-9 single_left\">\n\t        <div class=\"but_list\">\n\t\t        <div id=\"myTabContent\" class=\"tab-content\">\n\t\t\t        <div role=\"tabpanel\" class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n\t\t\t            <a v-for=\"lowongan in lowongans\" track-by=\"id\" class=\"tab_grid_link\" href=\"{{ '/jobdetails/'+lowongan.id }}\" target=\"blank_\">\n\t\t\t\t\t        <div class=\"tab_grid colputih\">\n\t\t\t\t\t            <div class=\"jobs-item with-thumb\">\n\t\t\t\t\t\t\t\t    <div class=\"jobs_right\">\n\t\t\t\t                    \t<img style=\"float:right;\" v-bind:src=\"lowongan.company.logo\" alt=\"\">\n\t\t\t\t\t\t\t\t        <div class=\"date_desc\">\n\t\t\t\t\t\t\t\t        \t<h6 class=\"title\">{{lowongan.name}}</h6>\n\t\t\t\t\t\t\t\t            <span class=\"meta\">{{lowongan.company.name}}</span>\n\t\t\t\t\t\t\t\t        </div>\n\t\t  \t\t\t\t\t\t      \t<div class=\"clearfix\" style=\"border-top:1px solid rgba(100,100,100,0.3);\"></div>\n\t\t\t\t\t                    <ul class=\"descriptionjob\" type=\"square\">\n\t\t\t\t\t\t                    {{{ lowongan.highlight }}}\n\t\t\t\t\t                    </ul>\n\t\t\t\t\t                    <div class=\"salary\" style=\"float:right;\"> Estimated Salary : {{lowongan.gaji}}</div>\n\t\t\t\t                    </div>\n\t\t\t\t\t\t\t        <div class=\"clearfix\"> </div>\n\t\t\t\t\t\t        </div>\n\t\t\t\t\t        </div>\n\t\t\t            </a>\n\t\t\t        </div>\n\t            </div>\n\t\t    </div>\n\t    </div>\n    \t<div class=\"clearfix\"> </div>\n  \t</div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<modal></modal>\n<div class=\"container bungkus\">\n  \t<div class=\"single\">\n\t    <div class=\"col-md-3 colputih\" style=\"padding: 0 1em 0 1em;\">\n\t\t   \t<div class=\"widget_search\">\n\t\t\t\t<h5 class=\"widget-title\">Search</h5>\n\t\t\t\t<div class=\"widget-content\">\n\t\t\t        <form action=\"#\" method=\"get\" role=\"form\">\n\t\t\t            <select name=\"idcomp\" id=\"input\" class=\"selectpicker\" v-model=\"idcomp\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Company\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t                <option v-for=\"company in companies\" value=\"{{company.id}}\">{{company.name}}</option>\n\t\t\t\t        </select><br>\n\t\t\t\t        <select name=\"idcat\" id=\"input\" class=\"selectpicker\" v-model=\"idcat\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Category\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t\t             <option v-for=\"lowongancat in lowongancats\" value=\"{{lowongancat.id}}\">{{lowongancat.name}}</option>\n\t\t\t            </select>\n\t\t\t            <hr>\n\t\t\t            <input class=\"btn btn-default\" @click=\"filterCategory\" value=\"Cari\">\n\t\t\t        </form>\n\t\t\t    </div>\n\t\t    </div>\n\t    </div>\n\t    <div class=\"col-md-9 single_left\">\n\t        <div class=\"but_list\">\n\t\t        <div id=\"myTabContent\" class=\"tab-content\">\n\t\t\t        <div role=\"tabpanel\" class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n\t\t\t            <a v-for=\"lowongan in lowongans\" track-by=\"id\" class=\"tab_grid_link\" href=\"{{ '/jobdetails/'+lowongan.id }}\" target=\"blank_\">\n\t\t\t\t\t        <div class=\"tab_grid colputih\">\n\t\t\t\t\t            <div class=\"jobs-item with-thumb\">\n\t\t\t\t\t\t\t\t    <div class=\"jobs_right\">\n\t\t\t\t                    \t<img style=\"float:right;\" v-bind:src=\"lowongan.company.logo\" alt=\"\">\n\t\t\t\t\t\t\t\t        <div class=\"date_desc\">\n\t\t\t\t\t\t\t\t        \t<h6 class=\"title\">{{lowongan.name}}</h6>\n\t\t\t\t\t\t\t\t            <span class=\"meta\">{{lowongan.company.name}}</span>\n\t\t\t\t\t\t\t\t        </div>\n\t\t  \t\t\t\t\t\t      \t<div class=\"clearfix\" style=\"border-top:1px solid rgba(100,100,100,0.3);\"></div>\n\t\t\t\t\t                    <ul class=\"descriptionjob\" type=\"square\">\n\t\t\t\t\t\t                    {{{ lowongan.highlight }}}\n\t\t\t\t\t                    </ul>\n\t\t\t\t\t                    <div class=\"salary\" style=\"float:right;\"> Estimated Salary : {{lowongan.gaji}}</div>\n\t\t\t\t                    </div>\n\t\t\t\t\t\t\t        <div class=\"clearfix\"> </div>\n\t\t\t\t\t\t        </div>\n\t\t\t\t\t        </div>\n\t\t\t            </a>\n\t\t\t        </div>\n\t            </div>\n\t\t    </div>\n\t    </div>\n    \t<div class=\"clearfix\"> </div>\n  \t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/home/nipeharefa/public_html/pencariDenis/resources/assets/js/Front/components/Jobs.vue"
+  var id = "/home/javent/projekweb/pencariJavent/resources/assets/js/Front/components/Jobs.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./_modal.vue":7,"./_navbar.vue":8,"vue":4,"vue-hot-reload-api":3}],7:[function(require,module,exports){
+},{"./_modal.vue":7,"./_navbar.vue":8,"/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js":3,"vue":4}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20342,17 +20342,17 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<!-- template for the modal component -->\n\t<div class=\"modal fade\" id=\"modal-id\">\n\t<div class=\"modal-dialog modal-sm\">\n\t\t<div class=\"modal-content custModal\">\n\t\t\t<div class=\"modal-header\">\n\t\t\t\t<h4 class=\"modal-title\">Sign In</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\">\n\t\t\t\t<a href=\"/oauth/linkedin\">\n\t\t\t\t\t<img id=\"linkedinBtn\" src=\"/img/linkedinlogo/Retina/Sign-In-Large---Default.png\">\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/home/nipeharefa/public_html/pencariDenis/resources/assets/js/Front/components/_modal.vue"
+  var id = "/home/javent/projekweb/pencariJavent/resources/assets/js/Front/components/_modal.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":4,"vue-hot-reload-api":3}],8:[function(require,module,exports){
+},{"/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js":3,"vue":4}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -20385,16 +20385,16 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<nav class=\"navbar navbar-default navbar-fixed-top topnav landing\" role=\"navigation\">\n    <div class=\"container topnav landing\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header landing\">\n            <button type=\"button landing\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n            <span class=\"sr-only landing\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand topnav landing\" id=\"logonav\" href=\"/\"><img src=\"img/logo.png\" class=\"img-responsive\" id=\"logo\" alt=\"Image\"></a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse landing\" id=\"bs-example-navbar-collapse-1\">\n            <ul v-if=\"user.logged == true\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <img v-bind:src=\"pictureUrl\" class=\"img img-responsive user_pic\" style=\"width: 40px; height: 40px; border-radius: 100%; border: 1px solid #dadada; position: relative; top: 5px; left: 5px;\">\n                </li>\n                <li>\n                    </li><li class=\"dropdown\">\n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Hello, {{ formattedName }}<b class=\"caret\"></b></a>\n                        <ul class=\"dropdown-menu\">\n                            <li><a href=\"/profile\">Edit Profile</a></li>\n                            <li><a href=\"logout\">Log Out</a></li>\n                        </ul>\n                    </li>\n                \n            </ul>\n            <ul v-if=\"user.logged == false\" class=\"nav navbar-nav navbar-right landing\">\n                <li>\n                    <a id=\"show-modal\" href=\"#modal-id\" data-toggle=\"modal\" class=\"landing btn-regis\">Masuk</a>\n                </li>\n            </ul>\n        </div>\n        <!-- /.navbar-collapse -->\n    </div>\n    <!-- /.container -->\n</nav>\n"
 if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/home/nipeharefa/public_html/pencariDenis/resources/assets/js/Front/components/_navbar.vue"
+  var id = "/home/javent/projekweb/pencariJavent/resources/assets/js/Front/components/_navbar.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":4,"vue-hot-reload-api":3}]},{},[5]);
+},{"/home/javent/projekweb/pencariJavent/node_modules/vue-hot-reload-api/index.js":3,"vue":4}]},{},[5]);
 
 //# sourceMappingURL=jobs.js.map
