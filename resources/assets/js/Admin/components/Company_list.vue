@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Company</h1>
-				<a href="#" v-link="{path:'company/add'}">Add New Company</a>
+				<a href="#" v-link="{path:'/company/add'}">Add New Company</a>
 			</div>
 		</div>
 		<div class="row">
@@ -35,6 +35,7 @@
 
 
 <script>
+	var Navbar = require('./_navbar.vue');
 	export default {
 		ready: function(){
 			$('title').text('Company');
@@ -47,6 +48,9 @@
 			ajax: function(e){
 				console.log(e)
 			}
+		},
+		components:{
+			navbar: Navbar
 		}
 	}
 </script>

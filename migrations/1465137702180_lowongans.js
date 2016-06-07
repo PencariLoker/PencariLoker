@@ -18,7 +18,7 @@ class NewSchema extends Schema {
       table.string('gaji', 30);
       table.string('syaratpengalaman', 60);
       table.string('kotaprovinsi', 30);
-      table.dateTime('tanggalberakhir').defaultTo('0000-00-00 00:00:00');
+      table.dateTime('tanggalberakhir');//.defaultTo('0000-00-00 00:00:00');
       table.boolean('active').defaultTo(0);
       table.timestamps();
     })

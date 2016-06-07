@@ -1,30 +1,14 @@
-/*
-var Users = require('./components/Users.vue');
-new Vue({
-	ready: function () {
-		console.log("Admin Users Ready")
-	},
-	el: "body",
-	components:{
-		users: Users,
-	}
-})*/
+
 window.Vue = require('vue');
 var VueRouter = require('vue-router')
 window.$ = window.jQuery = require('jquery');
 Vue.config.debug = true;
+var Home = require('./components/Home.vue');
 var Users = require('./components/Users.vue');
 var Users_Add = require('./components/Users_add.vue');
-
 var Company_List = require('./components/Company_list.vue');
-// Define some components
-var Foo = Vue.extend({
-    template: '<p>This is foo!</p>'
-})
+var Company_Add = require('./components/Company_add.vue');
 
-var Bar = Vue.extend({
-    template: '<p>This is bar!</p>'
-})
 
 // The router needs a root component to render.
 // For demo purposes, we will just use an empty one
@@ -42,11 +26,17 @@ var router = new VueRouter()
 // Vue.extend(), or just a component options object.
 // We'll talk about nested routes later.
 router.map({
-    '/': {
+    '/' : {
+        component : Home,
+    },
+    '/user': {
         component: Users
     },
     '/company': {
         component: Company_List,
+    },
+    '/company/add' : {
+        component: Company_Add, 
     }
 })
 

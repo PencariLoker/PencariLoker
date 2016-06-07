@@ -20,20 +20,24 @@
 <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                    <!--Lamaran -->
-                        <!-- <li>
-                            <a href="#"><strong><i class="fa fa-file-text-o fa-fw"></i> Lamaran<span class="fa arrow"></span></strong></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="tables">Tambah Lamaran</a>
-                                </li>
-                                <li>
-                                    <a href="tables">List Lamaran</a>
-                                </li>
-                            </ul>
-                        </li> -->
-                        <!-- Kategori Lowongan -->
-                         <li>
+                        <li>
+                            <a href="#!/">
+                                <strong>
+                                    <i class="fa fa-home fa-fw"></i> Home
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!/company/"><strong><i class="fa fa-users fa-fw"></i> Company</strong></a>
+                        </li>
+                        <li>
+                            <a href="#!/user">
+                                <strong>
+                                    <i class="fa fa-users fa-fw"></i> Users
+                                </strong>
+                            </a>
+                        </li>
+                         <!-- <li>
                             <a href="#"><strong><i class="fa fa-newspaper-o fa-fw"></i> Job Vacancy Categories<span class="fa arrow"></span></strong></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
@@ -43,9 +47,9 @@
                                     <a href="http://medanjob-hashed.rhcloud.com/lowongancat">List</a>
                                 </li>
                             </ul>
-                        </li>
-                        <!-- Job Vacancy -->
-                        <li>
+                                                 </li>
+                                                 Job Vacancy
+                                                 <li>
                             <a href="#"><strong><i class="fa fa-briefcase fa-fw"></i> Job Vacancies<span class="fa arrow"></span></strong></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
@@ -55,21 +59,13 @@
                                     <a href="http://medanjob-hashed.rhcloud.com/lowongan">List</a>
                                 </li>
                             </ul>
-                        </li>
-                        <!-- Penyedia Lowongan -->
-                        <li>
-                            <a href="#"><strong><i class="fa fa-building-o fa-fw"></i> Companies<span class="fa arrow"></span></strong></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li>
-                                    <a href="http://medanjob-hashed.rhcloud.com/company/create">Add</a>
-                                </li>
-                                <li>
-                                    <a href="http://medanjob-hashed.rhcloud.com/company">List</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- User -->
-                        <li>
+                                                 </li>
+                                                 Penyedia Lowongan
+                                                 <li>
+                            <a href="#!/company"><strong><i class="fa fa-building-o fa-fw"></i> Companies<span class="fa arrow"></span></strong></a>
+                                                 </li>
+                                                 User
+                                                 <li>
                             <a href="#"><strong><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></strong></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
@@ -79,7 +75,7 @@
                                     <a href="http://medanjob-hashed.rhcloud.com/user">List</a>
                                 </li>
                             </ul>
-                        </li>
+                                                 </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

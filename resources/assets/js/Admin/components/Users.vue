@@ -58,11 +58,16 @@
 					_this.arr = res;
 				}.bind(_this)
 			});
+
+			$('title').text('Users')
 		},
 		data () {
 		  return {
 		    arr : [],
 		  };
+		},
+		components:{
+			navbar:require('./_navbar.vue')
 		}
 	}
 </script>

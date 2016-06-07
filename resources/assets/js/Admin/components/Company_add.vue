@@ -1,67 +1,58 @@
-<style>
-	body{
-		overflow-x: hidden;
-	}
-</style>
 <template>
-	<div class="row">
-		<div class="panel panel-default">
-			<div class="panel-body">
+	<navbar></navbar>
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12 col-sm-12 col-md-12">
+				<h1 class="page-header">Add Company</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="">Name</label>
-						<input type="text" name="name" id="inputName" class="form-control" value="" required="required" placeholder="Company Name">
+						<input type="text" name="name" id="inputName" class="form-control" placeholder="Name">
 					</div>
 					<div class="form-group">
-						<label for="">Industry</label>
-						<input type="text" name="industry" id="inputIndustry" class="form-control" value="" required="required" placeholder="Industry">
+						<label for="">Indsutry</label>
+						<input type="text" name="" id="input" class="form-control" placeholder="Indsutry">
 					</div>
 					<div class="form-group">
 						<label for="">Website</label>
-						<input type="text" name="website" id="inputWebsite" class="form-control" value="" required="required" placeholder="http://yourcompany.com">
+						<input type="url" name="url" id="inputUrl" class="form-control" placeholder="http://yourcompany.com">
 					</div>
-					<div class="form-group">
-						<label for="">Email</label>
-						<input type="email" name="email" id="inputEmail" class="form-control" value="" required="required" placeholder="you@company.com">
-					</div>
-					<div class="form-group">
-						<button type="button" class="btn btn-primary">Save</button>
-						<button type="button" class="btn btn-danger" @click="cancel">Back</button>
-					</div>
+					<div class="form-group"></div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="">Address</label>
-						<textarea name="address" id="inputAddress" class="form-control" rows="3" required="required" placeholder="Google Street"></textarea>
+						<label for="">Size</label>
+						<input type="text" name="size" id="inputSize" class="form-control" placeholder="Size">
 					</div>
 					<div class="form-group">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="">
-								Active
-							</label>
-						</div>
+						<label for="">Address</label>
+						<textarea name="address" class="form-control" placeholder="Address"></textarea>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<a href="#" v-link="{path:'/company'}" class="btn btn-danger" style="margin-left:15px;">Cancel</a>
+				<button type="button" class="btn btn-primary" style="">Save</button>
+			</div>
+		</div>
+	</div>	
 </template>
 
+
 <script type="text/javascript">
+	var Navbar = require('./_navbar.vue');
 	export default {
 		ready: function(){
-
+			$('title').text('Add Company');
 		},
-		data: function(){
-			return {
-
-			}
-		},
-		methods:{
-			cancel: function(a,b){
-				this.$dispatch('change_mode', 'list', 'Company')
-			}
+		components:{
+			navbar: Navbar
 		}
 	}
 </script>
