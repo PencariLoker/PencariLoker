@@ -30,10 +30,10 @@ Route.get('/share','AuthController.share');
 Route.get('/share2','AuthController.share2');
 
 Route.get('/ninja/user', 'AdminUsersController.index')
-//Route.post('/ninja/addUser', 'AdminUsersController.addUser').as('addUser')
+Route.post('/ninja/addUser', 'AdminUsersController.addUser').as('addUser')
 
 Route.get('/admin/users', 'AdminUsersController.index')
-Route.post('/admin/users/add', 'AdminUsersController.create')
+Route.post('/admin/users/add', 'AdminUsersController.addUser')
 Route.get('/admin/users/list', 'AdminUsersController.list')
 Route.get('/admin/company', 'AdminCompanyController.index')
 

@@ -22,10 +22,9 @@ class JobsController {
     * filterData(request,response){
         var semua = yield request.all();
         delete semua._csrf;
-        console.log("Hello b" + semua.idcomp + "a" +semua.idcat);
         var data = {};
         if(semua.idcomp == "" && semua.idcat == ""){
-            data.lowongans = yield Lowongan.with('company','lowongancat').fetch();
+            data.lowongans = yield Lowongan.with('company','lowongancat').fetch();  
         }else if(semua.idcomp == ""){
             data.lowongans = yield Lowongan.where('lowongancat_id',semua.idcat).with('company','lowongancat').fetch();
         }else if(semua.idcat == ""){
@@ -36,10 +35,8 @@ class JobsController {
               this.where('company_id',semua.idcomp)
             }).with('company','lowongancat').fetch();
         }
-        // data.lowongans = yield Lowongan.where('company_id',semua.idcomp).with('company','lowongancat');
         data.lowongans = data.lowongans.toJSON();
         response.json(data);
-        // response.json(semua);
     }
     
 }

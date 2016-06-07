@@ -4,6 +4,13 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
+/*@media only screen and (min-width:)*/
+#linkedinBtn{
+  width:100%;
+}
+#linkedinBtn:hover{
+  background:url('/img/linkedinlogo/Retina/Sign-In-Large---Hover.png');
+}
 
 .content{
     margin-top:80px;

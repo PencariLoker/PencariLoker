@@ -4,10 +4,6 @@ var logged_Linkedin = false;
 var userData;
 const User = use('App/Model/Users');
 
-
-// var $ = require('jquery')(require('jsdom').jsdom().defaultView);
-// var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
 class AuthController {
 	static isAuthenticated(){
 		return logged_Linkedin;

@@ -109,7 +109,7 @@
 	                gender: this.gender
 				}
 				$.ajax({
-					url : window.location.origin + "/ninja/addUser",
+					url : window.location.origin + "/admin/users/add",
 					method : 'POST',
 					async : false,
 					data : data,

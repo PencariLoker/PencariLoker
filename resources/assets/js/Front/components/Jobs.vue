@@ -17,7 +17,7 @@
 					             <option v-for="lowongancat in lowongancats" value="{{lowongancat.id}}">{{lowongancat.name}}</option>
 				            </select>
 				            <hr>
-				            <input class="btn btn-default" @click="filterCategory" value="Cari">
+				            <button type="button" class="btn btn-default btn-info" @click="filterCategory">Cari</button>
 				        </form>
 				    </div>
 			    </div>
