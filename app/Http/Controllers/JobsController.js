@@ -11,11 +11,35 @@ class JobsController {
     }
     * firstInitData(request,response){
         var data = {};
-        data.companies = yield Company;
-        data.lowongancat = yield Lowongancat;
-        data.lowongans = yield Lowongan;
-        console.log(yield Lowongan.innerJoin('companies','lowongans.id','companies.id'));
+        data.companies = yield Company.all();
+        data.companies = data.companies.toJSON();
+        data.lowongancat = yield Lowongancat.all();
+        data.lowongancat = data.lowongancat.toJSON();
+        data.lowongans = yield Lowongan.with('company','lowongancat').fetch();
+        data.lowongans = data.lowongans.toJSON();
         response.json(data);
+    }
+    * filterData(request,response){
+        var semua = yield request.all();
+        delete semua._csrf;
+        console.log("Hello b" + semua.idcomp + "a" +semua.idcat);
+        var data = {};
+        if(semua.idcomp == "" && semua.idcat == ""){
+            data.lowongans = yield Lowongan.with('company','lowongancat').fetch();
+        }else if(semua.idcomp == ""){
+            data.lowongans = yield Lowongan.where('lowongancat_id',semua.idcat).with('company','lowongancat').fetch();
+        }else if(semua.idcat == ""){
+            data.lowongans = yield Lowongan.where('company_id',semua.idcomp).with('company','lowongancat').fetch();
+        }else{
+            data.lowongans = yield Lowongan.where(function () {
+              this.where('lowongancat_id',semua.idcat);
+              this.where('company_id',semua.idcomp)
+            }).with('company','lowongancat').fetch();
+        }
+        // data.lowongans = yield Lowongan.where('company_id',semua.idcomp).with('company','lowongancat');
+        data.lowongans = data.lowongans.toJSON();
+        response.json(data);
+        // response.json(semua);
     }
     
 }

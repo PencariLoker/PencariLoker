@@ -4,6 +4,10 @@ const User = use('App/Model/Users')
 var bcrypt = require('bcryptjs');
 var auth = use('App/Http/Controllers/AuthController');
 
+const Company = use('App/Model/Company')
+const Lowongan = use('App/Model/Lowongan')
+const Lowongancat = use('App/Model/Lowongancat')
+
 class HomeController {
   * index (request, response) {
 	  var salt = bcrypt.genSaltSync(10);
@@ -45,8 +49,9 @@ class HomeController {
   }
 
   * test (request, response) {
-    const users = yield User.select('linkedin_id').where('linkedin_id','1111');
-    response.send(users)
+    const lowongan = yield Company.all();
+    var tmp = lowongan.toJSON();
+    response.send(tmp)
   }
 
 }

@@ -8,6 +8,11 @@ class Lowongan extends Lucid {
 		return 'lowongans'
 	}
 
+    // to disable softDeletes
+    static get softDeletes () {
+        return false;
+    }
+
 	company()
     {
         return this.belongsTo('App/Model/Company');

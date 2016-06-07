@@ -20264,42 +20264,59 @@ new Vue({
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+	value: true
 });
 
 
 Vue.component('navbar', require('./_navbar.vue'));
 Vue.component('modal', require('./_modal.vue'));
 exports.default = {
-    ready: function ready() {
-        console.log("Jobs Ready");
-        var _this = this;
-        $.ajax({
-            method: 'GET',
-            async: false,
-            cache: false,
-            'url': window.location.origin + "/jobsInit",
-            success: function (res) {
-                _this.companies = res.companies;
-                _this.lowongancats = res.lowongancats;
-                _this.lowongans = res.lowongans;
-            }.bind(_this)
-        });
-    },
-    data: function data() {
-        return {
-            companies: [],
-            lowongancats: [],
-            lowongans: [],
-            idcomp: ''
-        };
-    },
-    methods: {
-        method: function method() {}
-    }
+	ready: function ready() {
+		console.log("Jobs Ready");
+		var _this = this;
+		$.ajax({
+			method: 'GET',
+			async: false,
+			cache: false,
+			'url': window.location.origin + "/jobsInit",
+			success: function (res) {
+				_this.companies = res.companies;
+				_this.lowongancats = res.lowongancat;
+				_this.lowongans = res.lowongans;
+			}.bind(_this)
+		});
+	},
+	data: function data() {
+		return {
+			companies: [],
+			lowongancats: [],
+			lowongans: [],
+			idcomp: '',
+			idcat: ''
+		};
+	},
+	methods: {
+		filterCategory: function filterCategory() {
+			var data = {
+				_csrf: $('meta[name=csrf]').attr('content'),
+				idcomp: this.idcomp,
+				idcat: this.idcat
+			};
+			var _this = this;
+			$.ajax({
+				url: window.location.origin + "/filterData",
+				method: 'POST',
+				async: false,
+				data: data,
+				success: function success(res) {
+					_this.lowongans = res.lowongans;
+				}
+			});
+		}
+	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<modal></modal>\n<div class=\"container bungkus\">\n  \t<div class=\"single\">  \n  \t\t<!--Sidebar-->\n\t    <div class=\"col-md-3 colputih\" style=\"padding: 0 1em 0 1em;\">\n\t\t   \t<div class=\"widget_search\">\n\t\t\t\t<h5 class=\"widget-title\">Search</h5>\n\t\t\t\t<div class=\"widget-content\">\n\t\t\t        <form action=\"#\" method=\"get\" role=\"form\">\n\t\t\t            <select name=\"idcomp\" id=\"input\" class=\"selectpicker\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Company\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t                <option v-for=\"company in companies\" value=\"{{ company.id }}\">{{company.name}}</option>\n\t\t\t\t        </select><br>\n\t\t\t\t        <select name=\"idcat\" id=\"input\" class=\"selectpicker\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Category\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t\t             <option v-for=\"lowongancat in lowongancats\" value=\"{{lowongancat.id}}\">{{lowongancat.name}}</option>\n\t\t\t            </select>  \n\t\t\t            <hr>\n\t\t\t            <input type=\"submit\" class=\"btn btn-default\" value=\"Cari\">\n\t\t\t        </form>\n\t\t\t    </div>\n\t\t    </div>\n\t    </div>\n\t    <div class=\"col-md-9 single_left\">\n\t        <div class=\"but_list\">\n\t\t        <div id=\"myTabContent\" class=\"tab-content\">\n\t\t\t        <div role=\"tabpanel\" class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n\t\t\t            <a v-for=\"lowongan in lowongans\" class=\"tab_grid_link\" href=\"{{ '/jobdetails/'+lowongan.id }}\" target=\"blank_\">\n\t\t\t\t\t        <div class=\"tab_grid colputih\">\n\t\t\t\t\t            <div class=\"jobs-item with-thumb\">\n\t\t\t\t\t\t\t\t    <div class=\"jobs_right\">\n\t\t\t\t                    \t<img style=\"float:right;\" v-bind:src=\"lowongan.company.logo\" alt=\"\">\n\t\t\t\t\t\t\t\t        <div class=\"date_desc\"><h6 class=\"title\">{{lowongan.name}}</h6>\n\t\t\t\t\t\t\t\t            <span class=\"meta\">{{lowongan.company.name}}</span>\n\t\t\t\t\t\t\t\t        </div>\n\t\t  \t\t\t\t\t\t      \t<div class=\"clearfix\" style=\"border-top:1px solid rgba(100,100,100,0.3);\"></div>\n\t\t\t\t\t                    <ul class=\"descriptionjob\" type=\"square\">\n\t\t\t\t\t                        {{lowongan.highlight}}\n\t\t\t\t\t                    </ul>\n\t\t\t\t\t                    <div class=\"salary\" style=\"float:right;\"> Estimated Salary : {{lowongan.gaji}}</div>\n\t\t\t\t                    </div>\n\t\t\t\t\t\t\t        <div class=\"clearfix\"> </div>\n\t\t\t\t\t\t        </div>\n\t\t\t\t\t        </div>\n\t\t\t            </a>\n\t\t\t        </div>\n\t            </div>\n\t\t    </div>\n\t    </div>\n    \t<div class=\"clearfix\"> </div>\n  \t</div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<navbar></navbar>\n<modal></modal>\n<div class=\"container bungkus\">\n  \t<div class=\"single\">  \n\t    <div class=\"col-md-3 colputih\" style=\"padding: 0 1em 0 1em;\">\n\t\t   \t<div class=\"widget_search\">\n\t\t\t\t<h5 class=\"widget-title\">Search</h5>\n\t\t\t\t<div class=\"widget-content\">\n\t\t\t        <form action=\"#\" method=\"get\" role=\"form\">\n\t\t\t            <select name=\"idcomp\" id=\"input\" class=\"selectpicker\" v-model=\"idcomp\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Company\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t                <option v-for=\"company in companies\" value=\"{{company.id}}\">{{company.name}}</option>\n\t\t\t\t        </select><br>\n\t\t\t\t        <select name=\"idcat\" id=\"input\" class=\"selectpicker\" v-model=\"idcat\" data-style=\"form-control\" data-live-search=\"true\" title=\"Choose Category\">\n\t\t\t\t            <option value=\"\">Show all</option>\n\t\t\t\t             <option v-for=\"lowongancat in lowongancats\" value=\"{{lowongancat.id}}\">{{lowongancat.name}}</option>\n\t\t\t            </select>  \n\t\t\t            <hr>\n\t\t\t            <input class=\"btn btn-default\" @click=\"filterCategory\" value=\"Cari\">\n\t\t\t        </form>\n\t\t\t    </div>\n\t\t    </div>\n\t    </div>\n\t    <div class=\"col-md-9 single_left\">\n\t        <div class=\"but_list\">\n\t\t        <div id=\"myTabContent\" class=\"tab-content\">\n\t\t\t        <div role=\"tabpanel\" class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n\t\t\t            <a v-for=\"lowongan in lowongans\" track-by=\"id\" class=\"tab_grid_link\" href=\"{{ '/jobdetails/'+lowongan.id }}\" target=\"blank_\">\n\t\t\t\t\t        <div class=\"tab_grid colputih\">\n\t\t\t\t\t            <div class=\"jobs-item with-thumb\">\n\t\t\t\t\t\t\t\t    <div class=\"jobs_right\">\n\t\t\t\t                    \t<img style=\"float:right;\" v-bind:src=\"lowongan.company.logo\" alt=\"\">\n\t\t\t\t\t\t\t\t        <div class=\"date_desc\">\n\t\t\t\t\t\t\t\t        \t<h6 class=\"title\">{{lowongan.name}}</h6>\n\t\t\t\t\t\t\t\t            <span class=\"meta\">{{lowongan.company.name}}</span>\n\t\t\t\t\t\t\t\t        </div>\n\t\t  \t\t\t\t\t\t      \t<div class=\"clearfix\" style=\"border-top:1px solid rgba(100,100,100,0.3);\"></div>\n\t\t\t\t\t                    <ul class=\"descriptionjob\" type=\"square\">\n\t\t\t\t\t\t                    {{{ lowongan.highlight }}}\n\t\t\t\t\t                    </ul>\n\t\t\t\t\t                    <div class=\"salary\" style=\"float:right;\"> Estimated Salary : {{lowongan.gaji}}</div>\n\t\t\t\t                    </div>\n\t\t\t\t\t\t\t        <div class=\"clearfix\"> </div>\n\t\t\t\t\t\t        </div>\n\t\t\t\t\t        </div>\n\t\t\t            </a>\n\t\t\t        </div>\n\t            </div>\n\t\t    </div>\n\t    </div>\n    \t<div class=\"clearfix\"> </div>\n  \t</div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

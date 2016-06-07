@@ -8,6 +8,11 @@ class Lowongancat extends Lucid {
 		return 'lowongancats'
 	}
 
+      // to disable softDeletes
+      static get softDeletes () {
+        return false
+      }
+
 	lowongans()
     {
         return this.hasMany('App/Model/Lowongan');

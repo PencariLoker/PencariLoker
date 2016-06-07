@@ -8,6 +8,11 @@ class Company extends Lucid {
 		return 'companies'
 	}
 
+      // to disable softDeletes
+      static get softDeletes () {
+        return false
+      }
+
 	lowongans()
     {
         return this.hasMany('App/Model/Lowongan');
