@@ -17,6 +17,7 @@ Route.get('/jobdetails/:id', 'HomeController.jobdetails').as('jobdetails')
 Route.get('/jobs', 'HomeController.jobs').as('jobs')
 Route.get('/jobsInit', 'JobsController.firstInitData')
 Route.post('/filterData', 'JobsController.filterData')
+Route.post('/getPage', 'JobsController.getPage')
 Route.get('/tester', 'HomeController.home');
 Route.get('/test', 'HomeController.test');
 Route.get('/profile','HomeController.profile');
