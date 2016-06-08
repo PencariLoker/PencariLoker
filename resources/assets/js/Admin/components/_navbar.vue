@@ -28,7 +28,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#!/company/"><strong><i class="fa fa-users fa-fw"></i> Company</strong></a>
+                            <a href="#!/company/"><strong><i class="fa fa-building-o fa-fw"></i> Company</strong></a>
                         </li>
                         <li>
                             <a href="#!/user">
