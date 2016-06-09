@@ -66,19 +66,27 @@ class JobsController {
         var data = {};
 
         if(semua.idcomp == "" && semua.idcat == ""){
-            data.lowongans = yield Lowongan.with('company','lowongancat').limit(2).offset((semua.page -1) * 2).fetch();
+            data.lowongans = yield Lowongan.with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
         }else if(semua.idcomp == ""){
-            data.lowongans = yield Lowongan.where('lowongancat_id',semua.idcat).with('company','lowongancat').limit(2).offset((semua.page -1) * 2).fetch();
+            data.lowongans = yield Lowongan.where('lowongancat_id',semua.idcat).with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
         }else if(semua.idcat == ""){
-            data.lowongans = yield Lowongan.where('company_id',semua.idcomp).with('company','lowongancat').limit(2).offset((semua.page -1) * 2).fetch();
+            data.lowongans = yield Lowongan.where('company_id',semua.idcomp).with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
         }else{
             data.lowongans = yield Lowongan.where(function () {
               this.where('lowongancat_id',semua.idcat);
               this.where('company_id',semua.idcomp)
-            }).with('company','lowongancat').limit(2).offset((semua.page -1) * 2).fetch();
+            }).with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
         }
         data.lowongans = data.lowongans.toJSON();
 
+        response.json(data);
+    }
+    *getJobDetails(request,response){
+        var semua = yield request.all();
+        var data = {};
+        data.lowongan = yield Lowongan.where('id',semua.index).with('company','lowongancat').fetch();
+        data.lowongan = data.lowongan.toJSON();
+        // console.log(data.lowongan)
         response.json(data);
     }
     
