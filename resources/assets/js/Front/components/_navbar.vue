@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav landing" id="logonav" href="/"><img src="img/logo.png" class="img-responsive" id="logo" alt="Image"/></a>
+                <a class="navbar-brand topnav landing" id="logonav" href="/"><img src="/img/logo.png" class="img-responsive" id="logo" alt="Image"/></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse landing" id="bs-example-navbar-collapse-1">

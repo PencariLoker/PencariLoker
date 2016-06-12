@@ -48,6 +48,9 @@
 				        </div>
 		            </div>
 			    </div>
+		    	<ul class="pagination">
+			    	<li v-for="page in pageCol"><a href="#" @click="gotoPage(page.value)">{{{ page.text }}}</a></li>
+			    </ul>
 		    </div>
 	    	<div class="clearfix"> </div>
 	  	</div>
@@ -70,6 +73,9 @@
                     _this.companies = res.companies;
                     _this.lowongancats = res.lowongancat;
                     _this.lowongans = res.lowongans;
+                    _this.page = 1;
+                    _this.maxPage = res.totalPage;
+                    _this.renderPagination();
                 }.bind(_this)
             });
 		},
@@ -79,15 +85,77 @@
                 lowongancats:[],
                 lowongans:[],
                 idcomp:'',
-                idcat:''
+                idcat:'',
+                page:1,
+                maxPage:0,
+                pageCol:[]
             }
         },
         methods: {
+        	renderPagination:function() {
+        		this.pageCol = [];
+        		if(this.maxPage == 1) return;
+        		if(this.page <= 3){
+        			if(this.maxPage < 6){
+	        			for (var i = 0; i < this.maxPage; i++) {
+	        				this.pageCol.push({value:i+1,text:i+1});
+	        			}
+        			}else{
+	        			for (var i = 0; i < 5; i++) {
+	        				this.pageCol.push({value:i+1,text:i+1});
+	        			}
+	        			this.pageCol.push({value:"next",text:"&raquo;"});	
+        			}
+        		}else if(this.page + 3 > this.maxPage){
+        			if(this.maxPage < 6){
+	        			for (var i = 0; i < this.maxPage; i++) {
+	        				this.pageCol.push({value:i+1,text:i+1});
+	        			}
+        			}else{
+        				this.pageCol.push({value:"prev",text:"&laquo;"});
+	        			for (var i = this.maxPage-5; i < this.maxPage; i++) {
+	        				this.pageCol.push({value:i+1,text:i+1});
+	        			}
+	        		}
+        		}else{
+        			this.pageCol.push({value:"prev",text:"&laquo;"});
+        			for (var i = this.page-3; i < this.page + 2; i++) {
+        				this.pageCol.push({value:i+1,text:i+1});
+        			}
+        			this.pageCol.push({value:"next",text:"&raquo;"});
+        		}
+        	},
+        	gotoPage:function(value){
+        		if(value == "prev"){
+        			this.page -= 5;
+        		}else if(value == "next"){
+        			this.page += 5;
+        		}else{
+        			this.page = value;
+        		}
+        		var data = {
+					_csrf : $('meta[name=csrf]').attr('content'),
+					idcomp:this.idcomp,
+					idcat:this.idcat,
+					page:this.page
+				}
+				var _this = this;
+				$.ajax({
+					url : window.location.origin + "/getPage",
+					method : 'POST',
+					async : false,
+					data : data,
+					success : function(res){
+						_this.lowongans = res.lowongans;
+	                    _this.renderPagination();
+					}
+				})
+        	},
 			filterCategory: function(){
 				var data = {
 					_csrf : $('meta[name=csrf]').attr('content'),
 					idcomp:this.idcomp,
-					idcat:this.idcat
+					idcat:this.idcat,
 				}
 				var _this = this;
 				$.ajax({
@@ -97,6 +165,9 @@
 					data : data,
 					success : function(res){
 						_this.lowongans = res.lowongans;
+						_this.page = 1;
+	                    _this.maxPage = res.totalPage;
+	                    _this.renderPagination();
 					}
 				})
 			}
