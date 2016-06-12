@@ -1,4 +1,4 @@
-{# resources/views/index.html #}
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -9,12 +9,16 @@
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link href="/css/landing-page.css " rel="stylesheet">
-		<title>{% block title %} {% endblock %}</title>
+		<script src="/js/jquery.js"></script>
+		<script src="/js/vue.js"></script>
+		<title>Profile</title>
+		<meta name="csrf" content="{{ csrfToken }}">
+	 	  {{ csrfField | safe }}
 	</head>
-	<body class="landing">
-		{% include "_partials/_navbar.html" %}
-		{% block content %}
-		{% endblock %}
+	<body class="landing" id="app">
+		<profile></profile>
 		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/modal.js"></script>
+		<script src="/js/front/profile.js"></script>
 	</body>
 </html>

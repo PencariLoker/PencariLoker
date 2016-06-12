@@ -24,3 +24,9 @@ lib-cov
 
 # Mac Only
 .DS_Store
+
+# Bower Components
+bower_components
+
+*.orig
+*/bambambole

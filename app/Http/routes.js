@@ -13,5 +13,43 @@
 const Route = use('Route')
 
 Route.get('/', 'HomeController.index');
+Route.get('/jobdetails/:id', 'HomeController.jobdetails').as('jobdetails')
+Route.get('/jobs', 'HomeController.jobs').as('jobs')
+Route.get('/jobsInit', 'JobsController.firstInitData')
+Route.get('/getJobDetails', 'JobsController.getJobDetails')
+Route.post('/filterData', 'JobsController.filterData')
+Route.post('/getPage', 'JobsController.getPage')
 Route.get('/tester', 'HomeController.home');
-Route.get('/test', 'HomeController.tester');
+Route.get('/test', 'HomeController.test');
+Route.get('/profile','HomeController.profile');
+
+Route.get('/oauth/linkedin', 'AuthController.authentication');
+Route.get('/authentication', 'AuthController.accessToken');
+Route.get('/logout', 'AuthController.logout').as('logout');
+Route.get('/data', 'AuthController.data');
+Route.get('/checkDatabase', 'AuthController.checkDatabase');
+Route.get('/share','AuthController.share');
+Route.get('/share2','AuthController.share2');
+
+Route.get('/ninja/user', 'AdminUsersController.index')
+Route.post('/ninja/addUser', 'AdminUsersController.addUser').as('addUser')
+
+Route.get('/admin/users', 'AdminUsersController.index')
+Route.post('/admin/users/add', 'AdminUsersController.addUser')
+Route.get('/admin/users/list', 'AdminUsersController.list')
+
+// Category
+Route.get('/admin/category/list', 'AdminCategoryJobsController.show');
+Route.post('/admin/category/add', 'AdminCategoryJobsController.store');
+
+// Admin Company
+Route.get('/admin/company/list', 'AdminCompanyController.show')
+
+//Lowongan
+Route.post('/admin/lowongan/add', 'AdminLowonganController.store')
+Route.get('/admin/lowongan/', 'AdminLowonganController.show')
+
+
+// ServerAPI
+Route.get('/api/server', 'AdminUsersController.server');
+Route.get('/api/company', 'AdminUsersController.company')
