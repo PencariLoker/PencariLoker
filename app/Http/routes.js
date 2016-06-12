@@ -35,5 +35,19 @@ Route.post('/ninja/addUser', 'AdminUsersController.addUser').as('addUser')
 Route.get('/admin/users', 'AdminUsersController.index')
 Route.post('/admin/users/add', 'AdminUsersController.addUser')
 Route.get('/admin/users/list', 'AdminUsersController.list')
-Route.get('/admin/company', 'AdminCompanyController.index')
 
+// Category
+Route.get('/admin/category/list', 'AdminCategoryJobsController.show');
+Route.post('/admin/category/add', 'AdminCategoryJobsController.store');
+
+// Admin Company
+Route.get('/admin/company/list', 'AdminCompanyController.show')
+
+//Lowongan
+Route.post('/admin/lowongan/add', 'AdminLowonganController.store')
+Route.get('/admin/lowongan/', 'AdminLowonganController.show')
+
+
+// ServerAPI
+Route.get('/api/server', 'AdminUsersController.server');
+Route.get('/api/company', 'AdminUsersController.company')

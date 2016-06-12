@@ -8,20 +8,30 @@ var Users = require('./components/Users.vue');
 var Users_Add = require('./components/Users_add.vue');
 var Company_List = require('./components/Company_list.vue');
 var Company_Add = require('./components/Company_add.vue');
+
+// Lowoongan
+var Lowongan_Add = require('./components/Lowongan_add.vue');
+
 var App = Vue.extend({})
 var router = new VueRouter()
 router.map({
     '/' : {
         component : Home,
     },
-    '/user': {
-        component: Users
-    },
     '/company': {
         component: Company_List,
     },
     '/company/add' : {
-        component: Company_Add, 
-    }
+        component: Company_Add,
+    },
+    'lowongan': {
+      component : require('./components/Lowongan.vue'),
+    },
+    '/lowongan/add' : {
+      component : Lowongan_Add,
+    },
+    '/user': {
+        component: Users
+    },
 })
 router.start(App, '#app')

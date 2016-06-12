@@ -1,8 +1,11 @@
 'use strict'
-const User = use('App/Model/Users')
-
+const User = use('App/Model/Users');
+const CompanyCC = use('App/Model/Company');
+const LowonganCat = use('App/Model/Lowongan');
+const Database = use('Database')
+var os = require('os');
 class AdminUsersController {
-  
+
     * index (request, response) {
     	const view = yield response.view('backend/Users.html')
     	response.send(view)
@@ -23,7 +26,7 @@ class AdminUsersController {
             console.log("masuk ada");
         }else{
             console.log("masuk gk ada");
-            yield User.create(semua);    
+            yield User.create(semua);
         }
         User.inDatabase = true;
         response.json({redirect:'/profile'});
@@ -37,6 +40,22 @@ class AdminUsersController {
     * edit (request, response) {}
     * update (request, response) {}
     * destroy (request, response) {}
+    * server (request, response) {
+        var arr = {
+          hostname : os.hostname(),
+          arch     : os.arch(),
+          platform : os.platform(),
+          release  : os.release(),
+          type     : os.type(),
+          homedir  : os.homedir(),
+          EOL      : os.EOL,
+        }
+        return response.json(arr);
+    }
+    * company (request, response) {
+        var a = yield CompanyCC.select('id', 'website', 'email').with('lowongans').fetch();
+        return response.send(a);
+    }
 }
 
 module.exports = AdminUsersController

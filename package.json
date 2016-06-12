@@ -25,6 +25,7 @@
     "jquery": "^2.2.4",
     "jsdom": "^9.2.1",
     "laravel-elixir": "^6.0.0-2",
+    "moment": "^2.13.0",
     "mysql": "^2.10.2",
     "node-linkedin": "^0.5.3",
     "ouch": "^0.2.0-beta",

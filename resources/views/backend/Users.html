@@ -6,9 +6,9 @@
 	<link rel="stylesheet" href="/css/sb-admin-2.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<meta name="csrf" content="{{ csrfToken }}">
-	 {{ csrfField | safe }}
 </head>
 <body>
+  {{ csrfField | safe }}
 	<div id="app">
   		<router-view></router-view>
 	</div>
