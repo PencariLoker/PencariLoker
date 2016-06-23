@@ -29,6 +29,9 @@
                 <td>{{item.phone}}</td>
                 <td>{{item.email}}</td>
 								<td>{{item.address}}</td>
+                <td>
+                  <i class="fa fa-trash" @click="remove(item)" style="cursor: pointer"></i>
+                </td>
 							</tr>
 						</tbody>
 					</table>
@@ -41,6 +44,8 @@
 
 <script>
 	var Navbar = require('./_navbar.vue');
+  var Utils = require('../Utils').Utils;
+  var swal = require('sweetalert');
 	export default {
 		ready: function(){
 			$('title').text('Company');
@@ -61,10 +66,34 @@
     },
 		methods: {
 			addnewcompany: function(){
-				this.$dispatch('change_mode', 'add', 'Add New Company');
 			},
 			ajax: function(e){
-			}
+			},
+      remove: function(e){
+        var self = this;
+        console.log(e);
+        var hapus = function(){
+          self.arr.$remove(e);
+        }
+        swal({
+          title: "Yakin Mas?",
+          //text: "Submit to run ajax request",
+          type: "warning",
+          showCancelButton: true,
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true,
+        },function(){
+          var utils = new Utils;
+          var data = {'id' : e.id}
+          var _self = self;
+          utils.deleteServices(data, function(e){
+            if (e.status == 'ok'){
+              hapus();
+              swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            }
+          });
+        });
+      }
 		},
 		components:{
 			navbar: Navbar

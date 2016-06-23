@@ -37,7 +37,7 @@
               <td>{{item.company.name}}</td>
               <td>{{item.lowongancat.name}}</td>
               <td></td>
-              <td>{{item.created_at}}</td>
+              <td>{{date(item.created_at)}}</td>
               <td>Due Date</td>
               <td>Action</td>
             </tr>
@@ -76,6 +76,9 @@
             console.log(res);
           }.bind(this)
         })
+      },
+      date: function(a){
+        return moment(a).format('DD/MM/YYYY')
       }
     }
   }

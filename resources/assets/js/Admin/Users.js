@@ -30,6 +30,9 @@ router.map({
     '/lowongan/add' : {
       component : Lowongan_Add,
     },
+    '/salary':{
+      component: require('./components/Salary.vue'),
+    },
     '/user': {
         component: Users
     },

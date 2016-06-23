@@ -6,55 +6,68 @@
 				<h1 class="page-header">Add Company</h1>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="">Name</label>
-						<input type="text" name="name" id="inputName" class="form-control" placeholder="Name" v-model="company.name">
-					</div>
-					<div class="form-group">
-						<label for="">Indsutry</label>
-						<input type="text" name="" id="input" class="form-control" placeholder="Indsutry" v-model="company.industry">
-					</div>
-					<div class="form-group">
-						<label for="">Website</label>
-						<input type="url" name="url" id="inputUrl" class="form-control" placeholder="http://yourcompany.com" v-model="company.website">
-					</div>
-          <div class="form-group">
-            <label for="">Email</label>
-            <input type="email" name="email" id="email" v-model="company.email" placeholder="Email" class="form-control">
-          </div>
-					<div class="form-group"></div>
-				</div>
-				<div class="col-md-6">
-          <div class="form-group">
-            <label for="">Phone</label>
-            <input type="text" name="" id="input" class="form-control" value="" v-model="company.phone">
-          </div>
-					<div class="form-group">
-						<label for="">Size</label>
-						<input type="text" name="size" id="inputSize" class="form-control" placeholder="Size" v-model='company.size'>
-					</div>
-					<div class="form-group">
-						<label for="">Address</label>
-						<textarea name="address" class="form-control" placeholder="Address" v-model="company.address"></textarea>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6 col-sm-12">
-				<a href="#" v-link="{path:'/company'}" class="btn btn-danger" style="margin-left:15px;">Cancel</a>
-				<button type="button" class="btn btn-primary" style="" @click="savecompany">Save</button>
-			</div>
-		</div>
+    <validator name="validation">
+      <div class="row">
+  			<div class="col-md-12">
+  				<div class="col-md-6">
+
+            <div class="form-group has-feedback">
+  						<label for="">Name</label>
+  						<input type="text" name="name" id="inputName" class="form-control" placeholder="Name" v-model="company.name" v-validate:companyname="['required']" detect-change="off" detect-blur="off">
+              <span v-if="$validation.companyname.touched && $validation.companyname.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+  					</div>
+
+  					<div class="form-group has-feedback">
+  						<label for="">Indsutry</label>
+  						<input type="text" id="input" class="form-control" placeholder="Indsutry" v-model="company.industry" v-validate:companyindustry="['required']">
+              <span v-if="$validation.companyindustry.touched && $validation.companyindustry.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+  					</div>
+  					<div class="form-group has-feedback">
+  						<label for="">Website</label>
+  						<input type="url" name="url" id="inputUrl" class="form-control" placeholder="http://yourcompany.com" v-model="company.website" v-validate:companyurl="['required']">
+              <span v-if="$validation.companyurl.touched && $validation.companyurl.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+  					</div>
+            <div class="form-group has-feedback">
+              <label for="">Email</label>
+              <input type="email" name="email" id="email" v-model="company.email" placeholder="Email" class="form-control" v-validate:companyemail="['required']">
+              <span v-if="$validation.companyemail.touched && $validation.companyemail.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+            </div>
+  					<div class="form-group"></div>
+  				</div>
+  				<div class="col-md-6">
+            <div class="form-group has-feedback">
+              <label for="">Phone</label>
+              <input type="text" name="" id="input" class="form-control" value="" v-model="company.phone" placeholder="Phone" v-validate:companyphone="['required']">
+              <span v-if="$validation.companyphone.touched && $validation.companyphone.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+            </div>
+  					<div class="form-group has-feedback">
+  						<label for="">Size</label>
+  						<input type="text" name="size" id="inputSize" class="form-control" placeholder="Size" v-model='company.size' v-validate:companysize="['required']">
+              <span v-if="$validation.companysize.touched && $validation.companysize.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+  					</div>
+  					<div class="form-group has-feedback">
+  						<label for="">Address</label>
+  						<textarea name="address" class="form-control" placeholder="Address" v-model="company.address"></textarea v-validate:companysize="['required']">
+              <span v-if="$validation.companysize.touched && $validation.companysize.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="row">
+  			<div class="col-md-6 col-sm-12">
+  				<a href="#" v-link="{path:'/company'}" class="btn btn-danger" style="margin-left:15px;">Cancel</a>
+  				<button type="button" class="btn btn-primary" style="" @click="savecompany">Save</button>
+  			</div>
+  		</div>
+    </validator>
 	</div>
 </template>
 
 
 <script type="text/javascript">
 	var Navbar = require('./_navbar.vue');
+  var VueValidator = require('vue-validator')
+  Vue.use(VueValidator);
 	export default {
 		ready: function(){
 			$('title').text('Add Company');
@@ -74,17 +87,38 @@
     },
     methods:{
       savecompany: function(e){
-        this.company['_csrf'] = $('meta[name=csrf]').attr('content');
-        var arr = this.company;
-        console.log(window.location.origin + '/admin/company/add');
-        $.ajax({
+        var self = this
+        this.$validate(true, function () {
+          if (self.$validation.invalid) {
+            e.preventDefault()
+            return;
+          }
+          else{
+            self.company['_csrf'] = $('meta[name=csrf]').attr('content');
+            var arr = self.company;
+            function handle(e){
+              self.$router.go('/company');
+            }
+            $.ajax({
+              async: true,
+              url : window.location.origin + '/admin/company/add',
+              method : 'POST',
+              data: arr,
+              success: function(res){
+                handle(res);
+              }
+            })
+          }
+        })
+
+        /*$.ajax({
           url : window.location.origin + '/admin/company/add',
           method : 'POST',
           data: arr,
           success: function(res){
             console.log(res);
           }
-        })
+        })*/
       }
     },
 		components:{

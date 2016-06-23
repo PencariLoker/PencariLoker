@@ -16,9 +16,6 @@ class Company extends Lucid {
   lowongans () {
     return this.hasMany('App/Model/Lowongan')
   }
-  author () {
-    return this.belongsTo('App/Model/User')
-  }
 }
 
 module.exports = Company

@@ -18,7 +18,12 @@ class AdminCompanyController {
     }
     * edit (request, response) {}
     * update (request, response) {}
-    * destroy (request, response) {}
+    * destroy (request, response) {
+      var all = request.all();
+      const user = yield Company.find(all.id);
+      yield user.delete();
+      return response.json({status : 'ok'},200);
+    }
 }
 
 module.exports = AdminCompanyController
