@@ -1,3 +1,8 @@
+<style>
+  .flatpickr-wrapper{
+    display: none;
+  }
+</style>
 <template>
   <navbar></navbar>
   <div id="page-wrapper">
@@ -39,7 +44,10 @@
               <td></td>
               <td>{{date(item.created_at)}}</td>
               <td>Due Date</td>
-              <td>Action</td>
+              <td>
+                <i class="fa fa-pencil" @click="edit(item)"></i> |
+                <i class="fa fa-trash" @click="remove(item)"></i>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -52,6 +60,8 @@
 
 <script type="text/javascript">
   var moment = require('moment');
+  var swal = require('sweetalert');
+  var Lowongan = require('../lib/Lowongan');
   export default {
     ready: function(){
       this.getLowongan();
@@ -65,6 +75,29 @@
       navbar: require('./_navbar.vue')
     },
     methods:{
+      edit: function(e){
+        console.log(e.id);
+        this.$router.go({ path: '/lowongan/edit/' + e.id});
+      },
+      remove: function(item){
+        var self = this;
+        var deleteLowongan = function(e){
+          self.lowongan.$remove(item);
+          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        }
+        swal({
+          title: "Yakin Mas?",
+          type: "warning",
+          showCancelButton: true,
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true,
+        },function(){
+          var lowongan = new Lowongan;
+          lowongan.deleteLowongan(item, function(e){
+            deleteLowongan(e);
+          })
+        })
+      },
       getLowongan: function(){
         $.ajax({
           method: 'GET',
