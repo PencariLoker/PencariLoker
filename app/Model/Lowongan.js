@@ -13,7 +13,7 @@ class Lowongan extends Lucid {
         return false;
     }
 
-	company()
+	   company()
     {
         return this.belongsTo('App/Model/Company');
     }
