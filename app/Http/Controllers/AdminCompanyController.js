@@ -14,10 +14,27 @@ class AdminCompanyController {
       return response.json({'status' : 'ok'},200);
     }
     * show (request, response) {
-      return response.json(yield Company,200);
+      return response.json(yield Company.fetch(),200);
     }
-    * edit (request, response) {}
-    * update (request, response) {}
+    * edit (request, response) {
+      var all = request.all();
+      const companyId = request.param('companyId')
+      const company = yield Company.where('id', companyId).first();
+      return response.json({'status' : 'ok', data: company},200);
+    }
+    * update (request, response) {
+      var all = request.all();
+      const company = yield Company.find(all.id)
+      company.name = all.name;
+      company.industry = all.industry;
+      company.email = all.email;
+      company.address = all.address;
+      company.phone = all.phone;
+      company.website = all.website;
+      company.size = all.size;
+      yield company.update();
+      return response.json({status : 'ok'},200);
+    }
     * destroy (request, response) {
       var all = request.all();
       const user = yield Company.find(all.id);

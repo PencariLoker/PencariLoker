@@ -30,6 +30,7 @@
                 <td>{{item.email}}</td>
 								<td>{{item.address}}</td>
                 <td>
+                  <i class="fa fa-pencil" @click="edit(item)" style="cursor: pointer"></i> |
                   <i class="fa fa-trash" @click="remove(item)" style="cursor: pointer"></i>
                 </td>
 							</tr>
@@ -69,6 +70,10 @@
 			},
 			ajax: function(e){
 			},
+      edit: function(e){
+        console.log(e.id);
+        this.$router.go({ path: '/company/edit/' + e.id});
+      },
       remove: function(e){
         var self = this;
         console.log(e);
@@ -77,7 +82,6 @@
         }
         swal({
           title: "Yakin Mas?",
-          //text: "Submit to run ajax request",
           type: "warning",
           showCancelButton: true,
           closeOnConfirm: false,
