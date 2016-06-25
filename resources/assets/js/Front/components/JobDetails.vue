@@ -6,8 +6,8 @@
 			<hr style="margin-top:3px;">
 			<div class="row smalldetail colputih">
 				<div class="colputih col-md-6 col-xs-12">
-					<div v-if="company.logo" class="col-md-4 col-xs-12 divdetaillogo">
-						<img v-bind:src="company.logo" class="jobdetaillogo img-responsive" alt="">
+					<div v-if="lowongan.company.logo" class="col-md-4 col-xs-12 divdetaillogo">
+						<img v-bind:src="lowongan.company.logo" class="jobdetaillogo img-responsive" alt="">
 						<hr class="visible-sm visible-xs">
 					</div>
 					<div class="colputih col-md-8 col-xs-12">
@@ -17,7 +17,7 @@
 				</div>
 				<div class="colputih col-md-4 col-xs-12 pull-right">
 					<ul class ="detailsmalllist" type="none">
-						<li class="salary"><span><i class="fa fa-money"></i></span> {{ lowongan.gaji }}</li>
+						<li class="salary"><span><i class="fa fa-money"></i></span> {{ lowongan.gaji | currency 'Rp' 0 }}</li>
 						<li><span><i class="fa fa-briefcase"></i></span> {{ lowongan.syaratpengalaman }}</li>
 						<li><span style="padding:3px"><i class="fa fa-map-marker"></i></span> {{ lowongan.kotaprovinsi }}</li>
 					</ul>
@@ -54,32 +54,32 @@
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<p class="desc_subject">Company Name</p>
 					<p>
-						<span v-text="company.name" id="company_registration_number"></span>
+						<span v-text="lowongan.company.name" id="company_registration_number"></span>
 					</p>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<p class="desc_subject">Industry</p>
-					<p id="company_industry">{{ company.industry }}</p>
+					<p id="company_industry">{{ lowongan.company.industry }}</p>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<p class="desc_subject">Company Size</p>
-					<p id="company_size">{{ company.size }} orang</p>
+					<p id="company_size">{{ lowongan.company.size }} orang</p>
 				</div>
-				<div v-if="company.website" class="col-lg-6 col-md-6 col-sm-12">
+				<div  class="col-lg-6 col-md-6 col-sm-12">
 					<p class="desc_subject">Website</p>
-					<p><a id="company_website" target="_blank" href="{{ company.website }}">{{ company.website}}</a></p>
+					<p><a id="company_website" target="_blank" href="{{ company.website }}">{{ lowongan.company.website}}</a></p>
 				</div>
-				<div v-if="company.phone" class="col-lg-6 col-md-6 col-sm-12">
+				<div class="col-lg-6 col-md-6 col-sm-12">
 					<p class="desc_subject">Phone</p>
-					<p id="company_contact">{{ company.phone }}</p>
+					<p id="company_contact">{{ lowongan.company.phone }}</p>
 				</div>
-				<div v-if="company.email" class="col-lg-6 col-md-6 col-sm-12">
+				<div class="col-lg-6 col-md-6 col-sm-12">
 					<p class="desc_subject">Email</p>
-					<p id="work_environment_working_hours">{{ company.email }}</p>
+					<p id="work_environment_working_hours">{{ lowongan.company.email }}</p>
 				</div>
 				<div v-if="company.address" class="col-lg-6 col-md-6 col-sm-12">
 					<p class="desc_subject">Address</p>
-					<p id="work_environment_working_hours">{{ company.address }}</p>
+					<p id="work_environment_working_hours">{{ lowongan.company.address }}</p>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -200,10 +200,11 @@
                 _this.logged = _this.$children[0]._data.user.logged;
                 _this.img = _this.lowongan.photos.split('||');
                 _this.img.forEach( function(element, index,array) {
-                	array[index] = "/" + element.replace('assets/images','img');
+                  array[index] = "/" + element.replace('assets/images','img');
                 });
                 _this.company = _this.lowongan.company;
-                _this.company.logo = "/" + _this.company.logo.replace('assets/images','img');
+                _this.company.logo = "/" + _this.company.logo;
+                _this.lowongan.company.logo = 's';
             }.bind(_this)
         });
 	},

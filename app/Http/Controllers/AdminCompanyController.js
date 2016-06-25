@@ -11,8 +11,8 @@ class AdminCompanyController {
       var all = request.all();
       var image = all.logo;
       var data = image.replace(/^data:image\/\w+;base64,/, '');
-      var filename = 'public/logobaru'+ Math.random().toString() + '.png';
-      fs.writeFile(filename, data, {encoding: 'base64'}, function(err){
+      var filename = 'logobaru'+ Math.random().toString() + '.jpg';
+      fs.writeFile('public/' + filename, data, {encoding: 'base64'}, function(err){
         console.log(err);
       });
       Company.create({'name' : all.name, 'industry' : all.industry,
@@ -36,8 +36,8 @@ class AdminCompanyController {
       if (all.logo_changed == 'true'){
         var image = all.logo;
         var data = image.replace(/^data:image\/\w+;base64,/, '');
-        var filename = 'public/logobaru'+ Math.random().toString() + '.png';
-        fs.writeFile(filename, data, {encoding: 'base64'}, function(err){
+        var filename = 'logobaru'+ Math.random().toString() + '.jpg';
+        fs.writeFile('public/' + filename, data, {encoding: 'base64'}, function(err){
           console.log(err);
         });
         all.logo = filename;
