@@ -69,6 +69,8 @@
   var VueValidator = require('vue-validator')
   Vue.use(VueValidator);
 	export default {
+    created: function(){
+    },
 		ready: function(){
 			$('title').text('Add Company');
 		},

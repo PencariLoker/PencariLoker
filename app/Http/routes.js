@@ -45,13 +45,18 @@ Route.post('/admin/category/add', 'AdminCategoryJobsController.store');
 // Admin Company
 Route.post('/admin/company/add', 'AdminCompanyController.store');
 Route.get('/admin/company/list', 'AdminCompanyController.show')
+Route.get('/admin/company/edit/:companyId', 'AdminCompanyController.edit');
+Route.put('/admin/company/edit/', 'AdminCompanyController.update');
 Route.delete('/admin/company/delete', 'AdminCompanyController.destroy')
 
 //Lowongan
 Route.post('/admin/lowongan/add', 'AdminLowonganController.store')
 Route.get('/admin/lowongan/', 'AdminLowonganController.show')
+Route.get('/admin/lowongan/edit/:lowongan_id', 'AdminLowonganController.edit')
+Route.delete('/admin/lowongan/', 'AdminLowonganController.destroy')
+Route.put('/admin/lowongan/', 'AdminLowonganController.update')
 
-//Salary7777777777777777777777
+
 Route.post('/admin/salary/add', 'AdminSalaryController.store');
 Route.get('/admin/salary/', 'AdminSalaryController.show');
 Route.delete('/admin/salary/delete', 'AdminSalaryController.destroy')
@@ -60,3 +65,7 @@ Route.delete('/admin/salary/delete', 'AdminSalaryController.destroy')
 // ServerAPI
 Route.get('/api/server', 'AdminUsersController.server');
 Route.get('/api/company', 'AdminUsersController.company')
+Route.get('/api/image', 'ImageController.index').middlewares(['auth']);
+Route.post('/api/image', 'ImageController.index').middlewares(['auth']);
+
+//Image Uploader

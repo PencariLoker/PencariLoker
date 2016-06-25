@@ -1,13 +1,22 @@
-var Utils = function(){
+var Company = function(){
   this.version = "1.0";
+  this.getAllCompanyURL = window.location.origin + '/admin/company/list';
   this.deleteServicesURL = window.location.origin + '/admin/company/delete';
   this.getCompanyURL = window.location.origin + '/admin/company/edit/';
   this.updateCompanyURL = window.location.origin + '/admin/company/edit/';
   this.csrf = $('meta[name=csrf]').attr('content');
 }
-
-
-Utils.prototype.deleteServices = function(data, callback) {
+Company.prototype.getAllCompany = function(callback) {
+  $.ajax({
+    async: true,
+    url : this.getAllCompanyURL,
+    method: 'GET',
+    success: function(e){
+      callback(e)
+    }
+  })
+};
+Company.prototype.deleteServices = function(data, callback) {
   data['_csrf'] = this.csrf;
   $.ajax({
     async: true,
@@ -21,7 +30,7 @@ Utils.prototype.deleteServices = function(data, callback) {
 };
 
 
-Utils.prototype.getCompany = function(data, callback) {
+Company.prototype.getCompany = function(data, callback) {
   $.ajax({
     async: true,
     data: data,
@@ -34,7 +43,7 @@ Utils.prototype.getCompany = function(data, callback) {
 };
 
 
-Utils.prototype.updateCompany = function(data, callback) {
+Company.prototype.updateCompany = function(data, callback) {
   data['_csrf'] = this.csrf;
   $.ajax({
     async: true,
@@ -51,4 +60,4 @@ Utils.prototype.updateCompany = function(data, callback) {
 };
 
 
-exports.Utils = Utils;
+exports.Utils = Company;

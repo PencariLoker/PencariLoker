@@ -39,7 +39,7 @@
 						                    <ul class="descriptionjob" type=square>
 							                    {{{ lowongan.highlight }}}
 						                    </ul>
-						                    <div class="salary" style="float:right;"> Estimated Salary : {{lowongan.gaji}}</div>
+						                    <div class="salary" style="float:right;"> Estimated Salary : {{lowongan.gaji | currency 'Rp' 0}}</div>
 					                    </div>
 								        <div class="clearfix"> </div>
 							        </div>
@@ -104,7 +104,7 @@
 	        			for (var i = 0; i < 5; i++) {
 	        				this.pageCol.push({value:i+1,text:i+1});
 	        			}
-	        			this.pageCol.push({value:"next",text:"&raquo;"});	
+	        			this.pageCol.push({value:"next",text:"&raquo;"});
         			}
         		}else if(this.page + 3 > this.maxPage){
         			if(this.maxPage < 6){

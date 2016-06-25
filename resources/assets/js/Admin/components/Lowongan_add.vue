@@ -47,7 +47,12 @@
       </div>
       <div class="form-group">
         <label for="">Due Date</label>
-        <input type="text" name="duedate" id="inputDuedateBaruLagi" class="calendar form-control" @change="duedate" v-model="lowongan.duedate">
+        <input type="text" name="duedate" id="inputDuedateBaruLagi" class="calendar form-control" v-model="lowongan.duedate">
+      </div>
+
+      <div class="form-group">
+        <label for="">Salary</label>
+        <input type="number" name="" id="input" class="form-control" placeholder="Salary" v-model="lowongan.salary">
       </div>
       <div class="form-group">
         <label for="banner">Banner</label>
@@ -70,6 +75,7 @@
   var cat = require('../lib/Category').Category;
   var flatpickr = require('flatpickr');
   var moment = require('moment');
+  var summernote = require('summernote');
   export default {
     ready: function(){
       var self = this;
@@ -88,6 +94,8 @@
         .set('onChange', function(d){
             setDueDate(moment(d).format("YYYY-MM-DD HH:mm:ss"));
         }.bind(this));
+
+      $("#jobdescription").summernote();
     },
     data: function(){
       return {
@@ -107,6 +115,7 @@
     methods:{
       save: function(){
         var data;
+        var self = this;
         data = this.lowongan;
         data['_csrf'] = $('meta[name=csrf]').attr('content');
         $.ajax({
@@ -116,7 +125,7 @@
           data: data,
           method: 'POST',
           success: function(res){
-
+            self.$router.go({path : '/lowongan'});
           }
         });
         console.log(data);

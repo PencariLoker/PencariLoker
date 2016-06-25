@@ -50,15 +50,7 @@
 	export default {
 		ready: function(){
 			$('title').text('Company');
-			$.ajax({
-        async: true,
-        method : 'GET',
-        cache : false,
-        url : window.location.origin + '/admin/company/list',
-        success: function(res){
-          this.arr = res;
-        }.bind(this)
-      })
+      this.showCompany();
 		},
     data: function(){
       return {
@@ -70,6 +62,26 @@
 			},
 			ajax: function(e){
 			},
+      showCompany: function(){
+        var self = this;
+        var handle = function(e){
+          if(Array.isArray(e)){
+            self.arr = e;
+          }
+          else{
+            self.showCompany();
+          }
+        }
+        $.ajax({
+          async: true,
+          method : 'GET',
+          cache : false,
+          url : window.location.origin + '/admin/company/list',
+          success: function(res){
+            handle(res);
+          }
+        })
+      },
       edit: function(e){
         console.log(e.id);
         this.$router.go({ path: '/company/edit/' + e.id});

@@ -38,12 +38,17 @@
           </thead>
           <tbody>
             <tr v-for="item in lowongan">
-              <td>{{item.name}}</td>
+              <td>
+                {{item.name}}
+                <div>
+                  <span class="label label-success" style="cursor: pointer">View Appliant</span>
+                </div>
+              </td>
               <td>{{item.company.name}}</td>
               <td>{{item.lowongancat.name}}</td>
-              <td></td>
+              <td>{{item.gaji | currency 'Rp' 0}}</td>
               <td>{{date(item.created_at)}}</td>
-              <td>Due Date</td>
+              <td>{{date(item.tanggalberakhir)}}</td>
               <td>
                 <i class="fa fa-pencil" @click="edit(item)"></i> |
                 <i class="fa fa-trash" @click="remove(item)"></i>
@@ -64,6 +69,7 @@
   var Lowongan = require('../lib/Lowongan');
   export default {
     ready: function(){
+      var self = this;
       this.getLowongan();
     },
     data: function(){
@@ -99,16 +105,17 @@
         })
       },
       getLowongan: function(){
-        $.ajax({
-          method: 'GET',
-          async : true,
-          cache : false,
-          url : window.location.origin + '/admin/lowongan',
-          success: function(res){
-            this.lowongan = res;
-            console.log(res);
-          }.bind(this)
-        })
+        var lowongan = new Lowongan;
+        var self = this;
+        lowongan.getLowongan(function(e){
+          //console.log(Array.isArray(e.lowongan));
+          if (false == Array.isArray(e.lowongan)){
+            self.getLowongan();
+            return;
+          }else{
+            self.lowongan = e.lowongan;
+          }
+        });
       },
       date: function(a){
         return moment(a).format('DD/MM/YYYY')
