@@ -66,15 +66,13 @@ Lowongan.prototype.getById = function(id, callback) {
   });
 };
 
-Lowongan.prototype.uploadBanner = function(formData, callback) {
-  formData.append('_csrf', this.csrf);
+Lowongan.prototype.uploadBanner = function(data, callback) {
   $.ajax({
-    data : formData,
+    data : data,
     url : window.location.origin + '/api/image',
     cache: false,
     async: true,
     method :'POST',
-    processData: false,
     success: function(e){
       callback(e);
     }

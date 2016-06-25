@@ -1,10 +1,21 @@
 'use strict'
 
+var gm = require('gm');
+var fs = require('fs');
 class ImageController {
 
     * index (request, response) {
-      const profile = request.file('profile')
-      return response.json({'status' : 'ko', data: profile});
+      /*gm("logo.png").thumb(20, 20, 's.jpg', 70, function(err, stdout, stderr, command){
+        console.log(err, "asdfd");
+      });*/
+      var all = request.all();
+      var image = all.data;
+      var data = image.replace(/^data:image\/\w+;base64,/, '');
+      fs.writeFile('fileName.jpg', data, {encoding: 'base64'}, function(err){
+        //Finished
+        console.log(err);
+      });
+      return response.json({status: 'ok', data: request.all()});
     }
     * create (request, response) {}
     * store (request, response) {}

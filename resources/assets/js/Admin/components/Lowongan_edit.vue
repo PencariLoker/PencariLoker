@@ -139,17 +139,16 @@
       },
       addBanner: function(e){
         var target = e.target;
-        console.log(target.files[0]);
-
         var tmpFile = target.files[0];
-        var formData = new FormData();
-        formData.append('profile', tmpFile);
-        formData.append('_csrf', $('meta[name=csrf]').attr('content'));
-
+        var reader  = new FileReader();
         var lowongan = new Lowongan;
-        lowongan.uploadBanner(formData, function(e){
-          console.log(e);
-        });
+        reader.addEventListener("load", function () {
+          lowongan.uploadBanner({'data' : reader.result}, function(e){
+            console.log(e);
+          });
+        }, false);
+
+        reader.readAsDataURL(tmpFile);
       }
     },
     components:{

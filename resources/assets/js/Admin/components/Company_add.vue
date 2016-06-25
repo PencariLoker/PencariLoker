@@ -68,11 +68,13 @@
 	var Navbar = require('./_navbar.vue');
   var VueValidator = require('vue-validator')
   Vue.use(VueValidator);
+  var summernote = require('summernote');
 	export default {
     created: function(){
     },
 		ready: function(){
 			$('title').text('Add Company');
+      $('textarea[name=address]').summernote();
 		},
     data () {
       return {
@@ -97,6 +99,7 @@
           }
           else{
             self.company['_csrf'] = $('meta[name=csrf]').attr('content');
+            self.company['address'] = $('textarea[name=address]').val();
             var arr = self.company;
             function handle(e){
               self.$router.go('/company');
@@ -111,16 +114,7 @@
               }
             })
           }
-        })
-
-        /*$.ajax({
-          url : window.location.origin + '/admin/company/add',
-          method : 'POST',
-          data: arr,
-          success: function(res){
-            console.log(res);
-          }
-        })*/
+        });
       }
     },
 		components:{
