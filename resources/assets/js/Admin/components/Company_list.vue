@@ -28,7 +28,7 @@
                 <td>{{item.website}}</td>
                 <td>{{item.phone}}</td>
                 <td>{{item.email}}</td>
-								<td>{{item.address}}</td>
+								<td>{{{item.address}}}</td>
                 <td>
                   <i class="fa fa-pencil" @click="edit(item)" style="cursor: pointer"></i> |
                   <i class="fa fa-trash" @click="remove(item)" style="cursor: pointer"></i>

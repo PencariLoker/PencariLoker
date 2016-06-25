@@ -59,5 +59,16 @@ Company.prototype.updateCompany = function(data, callback) {
   })
 };
 
+Company.prototype.postCompany = function(data, callback) {
+  $.ajax({
+    async: true,
+    data: data,
+    url : window.location.origin + '/admin/company/add',
+    method: 'POST',
+    success: function(e){
+      callback(e)
+    }
+  })
+};
 
 exports.Utils = Company;

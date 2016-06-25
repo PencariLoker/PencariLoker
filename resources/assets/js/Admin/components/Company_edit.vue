@@ -31,6 +31,12 @@
               <input type="email" name="email" id="email" v-model="company.email" placeholder="Email" class="form-control" v-validate:companyemail="['required']">
               <span v-if="$validation.companyemail.touched && $validation.companyemail.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
             </div>
+
+            <div class="form-group">
+              <label for="">Logo</label>
+              <input type="file" name="logo" id="" class="form-control" @change="changeLogo">
+              <p v-if="mediaonUpload">on upload.....</p>
+            </div>
           </div>
 
           <!-- Second Form -->
@@ -68,6 +74,7 @@
 <script type="text/javascript">
   var Navbar = require('./_navbar.vue');
   var Utils = require('../Utils').Utils;
+  var summernote = require('summernote');
   export default {
     ready: function(){
       var utils = new Utils;
@@ -76,23 +83,40 @@
         'id' : this.$route.params.companyId,
       }
       utils.getCompany(data, function(e){
-        console.log(e);
         self.company = e.data;
-        console.log(self.arr);
+        $("textarea[name=address").summernote('code', e.data.address);
+        console.log(self.company.logo);
+        self.company.logo_changed = false;
       });
     },
     data: function(){
       return {
         company: [],
+        mediaonUpload : false,
       }
     },
     methods: {
+      changeLogo: function(e){
+        var target = e.target;
+        var tmpFile = target.files[0];
+        var reader  = new FileReader();
+        var self = this;
+        this.mediaonUpload = true
+        reader.addEventListener('load', function(){
+          self.company.logo = reader.result;
+          self.company.logo_changed = true;
+          self.mediaonUpload = false;
+        })
+        reader.readAsDataURL(tmpFile);
+      },
       updatecompany: function(){
         var utils = new Utils;
-        var data = this.company;
+        this.company.address = $("textarea[name=address").val();
         var self = this;
+        var data = this.company;
         utils.updateCompany(data, function(e){
           if (e.status == 'ok'){
+            console.log(e);
             self.$router.go('/company');
           }
         });

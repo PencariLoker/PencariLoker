@@ -1,15 +1,23 @@
 'use strict'
 
 const Company = use('App/Model/Company');
+const gm = require('gm');
+const fs = require('fs');
 class AdminCompanyController {
 
     * index (request, response) {}
     * create (request, response) {}
     * store (request, response) {
       var all = request.all();
+      var image = all.logo;
+      var data = image.replace(/^data:image\/\w+;base64,/, '');
+      var filename = 'public/logobaru'+ Math.random().toString() + '.png';
+      fs.writeFile(filename, data, {encoding: 'base64'}, function(err){
+        console.log(err);
+      });
       Company.create({'name' : all.name, 'industry' : all.industry,
                       'email' : all.email, address : all.address,
-                      phone : all.phone,
+                      phone : all.phone, logo : filename,
                       'website' : all.website, 'size' : all.size});
       return response.json({'status' : 'ok'},200);
     }
@@ -24,6 +32,16 @@ class AdminCompanyController {
     }
     * update (request, response) {
       var all = request.all();
+
+      if (all.logo_changed == 'true'){
+        var image = all.logo;
+        var data = image.replace(/^data:image\/\w+;base64,/, '');
+        var filename = 'public/logobaru'+ Math.random().toString() + '.png';
+        fs.writeFile(filename, data, {encoding: 'base64'}, function(err){
+          console.log(err);
+        });
+        all.logo = filename;
+      }
       const company = yield Company.find(all.id)
       company.name = all.name;
       company.industry = all.industry;
@@ -32,8 +50,9 @@ class AdminCompanyController {
       company.phone = all.phone;
       company.website = all.website;
       company.size = all.size;
+      company.logo = all.logo;
       yield company.update();
-      return response.json({status : 'ok'},200);
+      return response.json({status : 'ok', data: all},200);
     }
     * destroy (request, response) {
       var all = request.all();

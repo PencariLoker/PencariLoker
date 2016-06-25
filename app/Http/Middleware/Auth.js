@@ -61,11 +61,11 @@ class Auth {
       files: {}
     }
     if (request.is(this.contentTypes.json)) {
-      formBody.fields = yield coBody.json(request.request)
+      formBody.fields = yield coBody.json(request.request, {limit : '2mb'})
     } else if (request.is(this.contentTypes.form)) {
       formBody.fields = yield coBody.form(request.request, {limit : '2mb'})
     } else if (request.is(this.contentTypes.multipart)) {
-      formBody = yield this._multipart(request)
+      formBody = yield this._multipart(request, {limit : '2mb'})
     }
     return formBody
   }

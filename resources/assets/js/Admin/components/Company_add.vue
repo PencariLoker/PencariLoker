@@ -32,7 +32,13 @@
               <input type="email" name="email" id="email" v-model="company.email" placeholder="Email" class="form-control" v-validate:companyemail="['required']">
               <span v-if="$validation.companyemail.touched && $validation.companyemail.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
             </div>
-  					<div class="form-group"></div>
+  					<div class="form-group">
+              <label for="">Logo</label>
+              <input type="file" class="form-control" placeholder="Logo" id="logo" @change="addLogo">
+            </div>
+            <div class="form-group">
+              <img src="#" class="img-responsive" alt="Image">
+            </div>
   				</div>
   				<div class="col-md-6">
             <div class="form-group has-feedback">
@@ -67,6 +73,7 @@
 <script type="text/javascript">
 	var Navbar = require('./_navbar.vue');
   var VueValidator = require('vue-validator')
+  var Utils = require('../Utils').Utils;
   Vue.use(VueValidator);
   var summernote = require('summernote');
 	export default {
@@ -86,10 +93,22 @@
           email : '',
           address: '',
           phone : '',
+          logo : '',
         }
       }
     },
     methods:{
+      addLogo: function(e){
+        var target = e.target;
+        var tmpFile = target.files[0];
+        var reader  = new FileReader();
+        var self = this;
+        reader.addEventListener('load', function(){
+          console.log(reader.result);
+          self.company.logo = reader.result;
+        })
+        reader.readAsDataURL(tmpFile);
+      },
       savecompany: function(e){
         var self = this
         this.$validate(true, function () {
@@ -101,17 +120,10 @@
             self.company['_csrf'] = $('meta[name=csrf]').attr('content');
             self.company['address'] = $('textarea[name=address]').val();
             var arr = self.company;
-            function handle(e){
-              self.$router.go('/company');
-            }
-            $.ajax({
-              async: true,
-              url : window.location.origin + '/admin/company/add',
-              method : 'POST',
-              data: arr,
-              success: function(res){
-                handle(res);
-              }
+            var utils = new Utils;
+
+            utils.postCompany(arr, function(e){
+              console.log(e);
             })
           }
         });
