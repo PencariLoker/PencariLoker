@@ -99,15 +99,24 @@
       changeLogo: function(e){
         var target = e.target;
         var tmpFile = target.files[0];
-        var reader  = new FileReader();
+        var fd = new FormData;
         var self = this;
-        this.mediaonUpload = true
-        reader.addEventListener('load', function(){
-          self.company.logo = reader.result;
-          self.company.logo_changed = true;
-          self.mediaonUpload = false;
-        })
-        reader.readAsDataURL(tmpFile);
+        var handle = function(e){
+          self.company.logo = e.data;
+          console.log(e);
+        }
+        fd.append("CustomField", "This is some extra data");
+        fd.append("filegambar", tmpFile);
+        $.ajax({
+          url: window.location.origin + '/api/image',
+          type: "POST",
+          data: fd,
+          processData: false,  // tell jQuery not to process the data
+          contentType: false,   // tell jQuery not to set contentType
+          success: function(e){
+            handle(e);
+          }
+        });
       },
       updatecompany: function(){
         var utils = new Utils;

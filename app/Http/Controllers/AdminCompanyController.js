@@ -9,15 +9,9 @@ class AdminCompanyController {
     * create (request, response) {}
     * store (request, response) {
       var all = request.all();
-      var image = all.logo;
-      var data = image.replace(/^data:image\/\w+;base64,/, '');
-      var filename = 'logobaru'+ Math.random().toString() + '.jpg';
-      fs.writeFile('public/' + filename, data, {encoding: 'base64'}, function(err){
-        console.log(err);
-      });
       Company.create({'name' : all.name, 'industry' : all.industry,
                       'email' : all.email, address : all.address,
-                      phone : all.phone, logo : filename,
+                      phone : all.phone, logo : all.logo,
                       'website' : all.website, 'size' : all.size});
       return response.json({'status' : 'ok'},200);
     }
@@ -32,16 +26,6 @@ class AdminCompanyController {
     }
     * update (request, response) {
       var all = request.all();
-
-      if (all.logo_changed == 'true'){
-        var image = all.logo;
-        var data = image.replace(/^data:image\/\w+;base64,/, '');
-        var filename = 'logobaru'+ Math.random().toString() + '.jpg';
-        fs.writeFile('public/' + filename, data, {encoding: 'base64'}, function(err){
-          console.log(err);
-        });
-        all.logo = filename;
-      }
       const company = yield Company.find(all.id)
       company.name = all.name;
       company.industry = all.industry;

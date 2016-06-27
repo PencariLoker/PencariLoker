@@ -37,6 +37,9 @@
               <input type="file" class="form-control" placeholder="Logo" id="logo" @change="addLogo">
             </div>
             <div class="form-group">
+              <p>
+                <b>Uploading....</b>
+              </p>
               <img src="#" class="img-responsive" alt="Image">
             </div>
   				</div>
@@ -101,16 +104,11 @@
       addLogo: function(e){
         var target = e.target;
         var tmpFile = target.files[0];
-        /*var target = e.target;
-        var tmpFile = target.files[0];
-        var reader  = new FileReader();
-        var self = this;
-        reader.addEventListener('load', function(){
-          console.log(reader.result);
-          self.company.logo = reader.result;
-        })
-        reader.readAsDataURL(tmpFile);*/
         var fd = new FormData;
+        var self = this;
+        var handle = function(e){
+          self.company.logo = e.data;
+        }
         fd.append("CustomField", "This is some extra data");
         fd.append("filegambar", tmpFile);
         $.ajax({
@@ -120,7 +118,7 @@
           processData: false,  // tell jQuery not to process the data
           contentType: false,   // tell jQuery not to set contentType
           success: function(e){
-            console.log(e);
+            handle(e);
           }
         });
       },
@@ -139,6 +137,7 @@
 
             utils.postCompany(arr, function(e){
               console.log(e);
+              self.$router.go('/company');
             })
           }
         });
