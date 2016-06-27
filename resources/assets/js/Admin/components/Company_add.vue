@@ -101,13 +101,28 @@
       addLogo: function(e){
         var target = e.target;
         var tmpFile = target.files[0];
+        /*var target = e.target;
+        var tmpFile = target.files[0];
         var reader  = new FileReader();
         var self = this;
         reader.addEventListener('load', function(){
           console.log(reader.result);
           self.company.logo = reader.result;
         })
-        reader.readAsDataURL(tmpFile);
+        reader.readAsDataURL(tmpFile);*/
+        var fd = new FormData;
+        fd.append("CustomField", "This is some extra data");
+        fd.append("filegambar", tmpFile);
+        $.ajax({
+          url: window.location.origin + '/api/image',
+          type: "POST",
+          data: fd,
+          processData: false,  // tell jQuery not to process the data
+          contentType: false,   // tell jQuery not to set contentType
+          success: function(e){
+            console.log(e);
+          }
+        });
       },
       savecompany: function(e){
         var self = this

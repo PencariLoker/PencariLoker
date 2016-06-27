@@ -66,6 +66,6 @@ Route.delete('/admin/salary/delete', 'AdminSalaryController.destroy')
 Route.get('/api/server', 'AdminUsersController.server');
 Route.get('/api/company', 'AdminUsersController.company')
 Route.get('/api/image', 'ImageController.index').middlewares(['auth']);
-Route.post('/api/image', 'ImageController.index').middlewares(['auth']);
+Route.post('/api/image', 'ImageController.index');
 
 //Image Uploader

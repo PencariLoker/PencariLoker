@@ -2,20 +2,20 @@
 
 var gm = require('gm');
 var fs = require('fs');
+const Helpers = use('Helpers')
 class ImageController {
 
     * index (request, response) {
-      /*gm("logo.png").thumb(20, 20, 's.jpg', 70, function(err, stdout, stderr, command){
-        console.log(err, "asdfd");
-      });*/
-      var all = request.all();
-      var image = all.data;
-      var data = image.replace(/^data:image\/\w+;base64,/, '');
-      fs.writeFile('fileName.jpg', data, {encoding: 'base64'}, function(err){
-        //Finished
-        console.log(err);
-      });
-      return response.json({status: 'ok', data: request.all()});
+      const avatar = request.file('filegambar', {
+        maxSize: '2mb',
+        allowedExtensions: ['jpg', 'png', 'jpeg']
+      })
+      const userId = 209
+      var ext = avatar.extension();
+      var filename = Math.random().toString();
+      const fileName = `${userId}.${avatar.extension()}`
+      yield avatar.move(Helpers.storagePath(), fileName)
+      return response.json({status: 'ok', data: Helpers.storagePath()});
     }
     * create (request, response) {}
     * store (request, response) {}
