@@ -6,7 +6,7 @@ const Lowongancat = use('App/Model/Lowongancat')
 const ItemPerPage = 10;
 
 class JobsController {
-  
+
     * index (request, response) {
 
     }
@@ -43,7 +43,7 @@ class JobsController {
         }
         data.totalPage = data.totalPage.size();
         data.totalPage = Math.ceil(data.totalPage /ItemPerPage);
-        
+
         if(semua.idcomp == "" && semua.idcat == ""){
             data.lowongans = yield Lowongan.with('company','lowongancat').limit(ItemPerPage).fetch();
         }else if(semua.idcomp == ""){
@@ -83,12 +83,14 @@ class JobsController {
     }
     *getJobDetails(request,response){
         var semua = yield request.all();
-        var data = {};
-        data.lowongan = yield Lowongan.where('id',semua.index).with('company','lowongancat').fetch();
-        data.lowongan = data.lowongan.toJSON();
+        var index = semua.index;
+        var lowongan = yield Lowongan.where('id', index).first().with('company', 'lowongancat').fetch();
+        //var data = {};
+        //data.lowongan = yield Lowongan.where('id',semua.index).with('company','lowongancat').fetch();
+        //data.lowongan = data.lowongan.toJSON();
         // console.log(data.lowongan)
-        response.json(data);
+        return response.json(lowongan);
     }
-    
+
 }
 module.exports = JobsController

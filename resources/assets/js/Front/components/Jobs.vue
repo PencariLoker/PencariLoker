@@ -30,7 +30,7 @@
 						        <div class="tab_grid colputih">
 						            <div class="jobs-item with-thumb">
 									    <div class="jobs_right">
-					                    	<img style="float:right;" v-bind:src="lowongan.company.logo" alt="">
+					                    	<img style="float:right;" v-bind:src="returnCorrectUrl(lowongan.company.logo)" alt="">
 									        <div class="date_desc">
 									        	<h6 class="title">{{lowongan.name}}</h6>
 									            <span class="meta">{{lowongan.company.name}}</span>
@@ -60,9 +60,9 @@
 <script type="text/javascript">
 	Vue.component('navbar', require('./_navbar.vue'));
 	Vue.component('modal', require('./_modal.vue'));
+  var path = require('path');
 	export default {
 		ready: function () {
-			console.log("Jobs Ready");
 			var _this = this;
             $.ajax({
                 method : 'GET',
@@ -92,6 +92,9 @@
             }
         },
         methods: {
+          returnCorrectUrl: function(url){
+            return window.location.origin + "/" + path.join('img', url);
+          },
         	renderPagination:function() {
         		this.pageCol = [];
         		if(this.maxPage == 1) return;
