@@ -9,7 +9,7 @@ Tugas Pemrograman Web Lanjutan
 - VueJS ( Views framework )
 
 # Contributor:
-- Javentira Lienata ( Setup dan Penyedia Droplet Digital Ocean ) 
+- Javentira Lienata ( Setup dan Penyedia Droplet Digital Ocean, git problem resolver ) 
 - Michael ( API and FrontEnd )
 - Nipe Setiawan Harefa ( BackEnd ) 
 - Dennis Daslim ( BackEnd + FrontEnd )
