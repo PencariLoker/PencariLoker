@@ -1,5 +1,5 @@
 'use strict'
-var Linkedin = require('node-linkedin')('75nb5nsun5gsp3', 'OKFiE0UtZNFHfk2p', 'http://localhost:3000/authentication')
+var Linkedin = require('node-linkedin')('75nb5nsun5gsp3', 'OKFiE0UtZNFHfk2p', 'http://128.199.133.46/authentication')
 var logged_Linkedin = false;
 var userData;
 const User = use('App/Model/Users');
