@@ -148,12 +148,11 @@
         var handle = function(e){
           self.company.logo = e.data;
         }
-        fd.append("CustomField", "This is some extra data");
         fd.append("filegambar", tmpFile);
         $.ajax({
           url: window.location.origin + '/api/image',
           type: "POST",
-          data: fd,
+          data: fd, // Form Data
           processData: false,  // tell jQuery not to process the data
           contentType: false,   // tell jQuery not to set contentType
           success: function(e){
