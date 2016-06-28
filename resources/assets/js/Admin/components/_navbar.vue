@@ -27,6 +27,9 @@
                                 </strong>
                             </a>
                         </li>
+                         <li>
+                            <a href="#!/lowongan/"><strong><i class="fa fa-briefcase fa-fw"></i> Lowongan</strong></a>
+                        </li>
                         <li>
                             <a href="#!/company/"><strong><i class="fa fa-building-o fa-fw"></i> Company</strong></a>
                         </li>
