@@ -1,3 +1,9 @@
+<style type="text/css">
+  .text-error {
+    color:red;
+    font-size:11px;
+  }
+</style>
 <template>
   <navbar></navbar>
   <div id="page-wrapper">
@@ -23,19 +29,29 @@
             </div>
             <div class="form-group has-feedback">
               <label for="">Website</label>
-              <input type="url" name="url" id="inputUrl" class="form-control" placeholder="http://yourcompany.com" v-model="company.website" v-validate:companyurl="['required']">
+              <input type="url" name="url" id="inputUrl" class="form-control" placeholder="http://yourcompany.com" v-model="company.website" v-validate:companyurl="['required', 'http']">
               <span v-if="$validation.companyurl.touched && $validation.companyurl.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+              <p class="text-error" v-show="$validation.companyurl.http">Invalid URL.</p>
             </div>
             <div class="form-group has-feedback">
               <label for="">Email</label>
-              <input type="email" name="email" id="email" v-model="company.email" placeholder="Email" class="form-control" v-validate:companyemail="['required']">
+              <input type="email" name="email" id="email" v-model="company.email" placeholder="Email" class="form-control" v-validate:companyemail="['required', 'email']">
               <span v-if="$validation.companyemail.touched && $validation.companyemail.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+              <p class="text-error" v-show="$validation.companyemail.email">Invalid your mail address format.</p>
             </div>
 
             <div class="form-group">
-              <label for="">Logo</label>
-              <input type="file" name="logo" id="" class="form-control" @change="changeLogo">
+              <label for="upload3" style="width: 100%;">
+                  <span class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Change Logo
+                  </span>
+                  <input type="file" class="hidden" id="upload3" accept="image/*" @change="changeLogo">
+              </label>
               <p v-if="mediaonUpload">on upload.....</p>
+            </div>
+
+            <div class="form-group">
+              <img v-bind:src="getImage(company.logo)" class="img-responsive" v-if="company.logo">
             </div>
           </div>
 
@@ -75,6 +91,11 @@
   var Navbar = require('./_navbar.vue');
   var Utils = require('../Utils').Utils;
   var summernote = require('summernote');
+  var VueValidator = require('vue-validator')
+  Vue.use(VueValidator);
+  require('../Validator');
+  var path = require('path');
+
   export default {
     ready: function(){
       var utils = new Utils;
@@ -96,6 +117,9 @@
       }
     },
     methods: {
+      getImage: function(e){
+        return window.location.origin + '/' + path.join('img', e);
+      },
       changeLogo: function(e){
         var target = e.target;
         var tmpFile = target.files[0];
@@ -118,15 +142,23 @@
           }
         });
       },
-      updatecompany: function(){
-        var utils = new Utils;
-        this.company.address = $("textarea[name=address").val();
-        var self = this;
-        var data = this.company;
-        utils.updateCompany(data, function(e){
-          if (e.status == 'ok'){
-            console.log(e);
-            self.$router.go('/company');
+      updatecompany: function(e){
+        var self = this
+        this.$validate(true, function () {
+          if (self.$validation.invalid) {
+            e.preventDefault()
+            return;
+          }
+          else{
+            var utils = new Utils;
+            self.company.address = $("textarea[name=address").val();
+            var data = self.company;
+            utils.updateCompany(data, function(e){
+              if (e.status == 'ok'){
+                console.log(e);
+                self.$router.go('/company');
+              }
+            });
           }
         });
       }

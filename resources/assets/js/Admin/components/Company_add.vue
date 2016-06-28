@@ -30,23 +30,26 @@
   					</div>
   					<div class="form-group has-feedback">
   						<label for="">Website</label>
-  						<input type="url" name="url" id="inputUrl" class="form-control" placeholder="http://yourcompany.com" v-model="company.website" v-validate:companyurl="['required']">
+  						<input type="url" name="url" id="inputUrl" class="form-control" placeholder="http://yourcompany.com" v-model="company.website" v-validate:companyurl="['required', 'http']">
               <span v-if="$validation.companyurl.touched && $validation.companyurl.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+              <p class="text-error" v-show="!$validation.companyurl.required && $validation.companyurl.http">Invalid URL.</p>
   					</div>
             <div class="form-group has-feedback">
               <label for="">Email</label>
-              <input type="email" name="email" id="email" v-model="company.email" placeholder="you@company.tld" class="form-control" v-validate:companyemail="['required']">
+              <input type="email" name="email" id="email" v-model="company.email" placeholder="you@company.tld" class="form-control" v-validate:companyemail="['required', 'email']">
               <span v-if="$validation.companyemail.touched && $validation.companyemail.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
+              <p class="text-error" v-show="!$validation.companyemail.required &&$validation.companyemail.email">Invalid your mail address format.</p>
             </div>
   					<div class="form-group">
-              <label for="">Logo</label>
-              <input type="file" class="form-control" placeholder="Logo" id="logo" @change="addLogo">
+              <label for="upload3" style="width: 100%;">
+                  <span class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Add or Change Logo
+                  </span>
+                  <input type="file" class="hidden" id="upload3" accept="image/*" v-on:change="addLogo">
+              </label>
             </div>
             <div class="form-group">
-              <p>
-                <b>Uploading....</b>
-              </p>
-              <img src="#" class="img-responsive" alt="Image">
+              <img v-bind:src="getImage(company.logo)" class="img-responsive" v-if="company.logo">
             </div>
             <div class="form-group">
               <label for="">Maps</label>
@@ -90,7 +93,9 @@
   var VueValidator = require('vue-validator')
   var Utils = require('../Utils').Utils;
   Vue.use(VueValidator);
+  require('../Validator');
   var summernote = require('summernote');
+  var path = require('path');
 	export default {
     created: function(){
     },
@@ -147,6 +152,7 @@
         var self = this;
         var handle = function(e){
           self.company.logo = e.data;
+          console.log(e, self.company.logo);
         }
         fd.append("filegambar", tmpFile);
         $.ajax({
@@ -159,6 +165,9 @@
             handle(e);
           }
         });
+      },
+      getImage: function(e){
+        return window.location.origin + '/' + path.join('img', e);
       },
       savecompany: function(e){
         var self = this
