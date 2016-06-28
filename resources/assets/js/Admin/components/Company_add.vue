@@ -42,6 +42,9 @@
               </p>
               <img src="#" class="img-responsive" alt="Image">
             </div>
+            <div class="form-group">
+              <label for="">Maps</label>
+            </div>
   				</div>
   				<div class="col-md-6">
             <div class="form-group has-feedback">

@@ -3,12 +3,16 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Company</h1>
-				<a href="#" v-link="{path:'/company/add'}">Add New Company</a>
+				<h1 class="page-header">
+          Company
+          <small></small>
+        </h1>
+				<a href="#" v-link="{path:'/company/add'}" v-if="!loading">Add New Company</a>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
+
+		<div class="row" v-if="!loading">
+      <div class="col-md-12">
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
@@ -39,6 +43,14 @@
 				</div>
 			</div>
 		</div>
+
+    <div v-if="loading">
+      <h1 class="text-center">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+        <small>Loading Data</small>
+      </h1>
+    </div>
 	</div>
 </template>
 
@@ -55,6 +67,7 @@
     data: function(){
       return {
         arr : [],
+        loading : true,
       }
     },
 		methods: {
@@ -67,6 +80,7 @@
         var handle = function(e){
           if(Array.isArray(e)){
             self.arr = e;
+            self.loading = false;
           }
           else{
             self.showCompany();
