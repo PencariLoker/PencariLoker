@@ -1,3 +1,9 @@
+<style>
+  #maps{
+    width: 100%;
+    height: 200px;
+  }
+</style>
 <template>
 	<navbar></navbar>
 	<div id="page-wrapper">
@@ -44,6 +50,9 @@
             </div>
             <div class="form-group">
               <label for="">Maps</label>
+              <div id="maps">
+
+              </div>
             </div>
   				</div>
   				<div class="col-md-6">
@@ -88,6 +97,7 @@
 		ready: function(){
 			$('title').text('Add Company');
       $('textarea[name=address]').summernote();
+      this._initMaps();
 		},
     data () {
       return {
@@ -100,10 +110,36 @@
           address: '',
           phone : '',
           logo : '',
+          lat: '',
+          lng : '',
         }
       }
     },
     methods:{
+      _initMaps: function(e){
+        var self = this;
+        var map;
+        var myLatLng = {lat: 3.590595, lng: 98.6762443};
+        self.company.lat = myLatLng.lat;
+        self.company.lng = myLatLng.lng;
+        map = new google.maps.Map(document.getElementById('maps'), {
+          center: myLatLng,
+          zoom: 14,
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Click Me!!',
+          draggable : true,
+        });
+
+        marker.addListener('drag', function(e){
+           var location = e.latLng;
+           self.company.lat = location.lat();
+           self.company.lng = location.lng();
+        })
+      },
       addLogo: function(e){
         var target = e.target;
         var tmpFile = target.files[0];
