@@ -3,6 +3,10 @@
     color:red;
     font-size:11px;
   }
+  #maps{
+    width: 100%;
+    height: 200px;
+  }
 </style>
 <template>
   <navbar></navbar>
@@ -52,6 +56,12 @@
 
             <div class="form-group">
               <img v-bind:src="getImage(company.logo)" class="img-responsive" v-if="company.logo">
+            </div>
+            <div class="form-group">
+              <label for="">Maps</label>
+              <div id="maps">
+
+              </div>
             </div>
           </div>
 
@@ -106,8 +116,9 @@
       utils.getCompany(data, function(e){
         self.company = e.data;
         $("textarea[name=address").summernote('code', e.data.address);
-        console.log(self.company.logo);
+        console.log(e.data);
         self.company.logo_changed = false;
+        self._initMaps();
       });
     },
     data: function(){
@@ -117,6 +128,29 @@
       }
     },
     methods: {
+      _initMaps: function(){
+        var self = this;
+         var myLatLng = {lat: parseFloat(self.company.lat || 3.590595), lng: parseFloat(self.company.lng || 98.6762443)};
+         self.company.lat = myLatLng.lat;
+         self.company.lng = myLatLng.lng;
+         map = new google.maps.Map(document.getElementById('maps'), {
+            center: myLatLng,
+            zoom: 14,
+         });
+
+         var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Click Me!!',
+            draggable : true,
+         });
+
+         marker.addListener('drag', function(e){
+             var location = e.latLng;
+             self.company.lat = location.lat();
+             self.company.lng = location.lng();
+         })
+      },
       getImage: function(e){
         return window.location.origin + '/' + path.join('img', e);
       },

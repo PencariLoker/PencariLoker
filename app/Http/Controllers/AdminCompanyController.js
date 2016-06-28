@@ -12,6 +12,7 @@ class AdminCompanyController {
       Company.create({'name' : all.name, 'industry' : all.industry,
                       'email' : all.email, address : all.address,
                       phone : all.phone, logo : all.logo,
+                      lat: all.lat, lng: all.lng,
                       'website' : all.website, 'size' : all.size});
       return response.json({'status' : 'ok'},200);
     }
@@ -35,6 +36,8 @@ class AdminCompanyController {
       company.website = all.website;
       company.size = all.size;
       company.logo = all.logo;
+      company.lat = all.lat;
+      company.lng = all.lng;
       yield company.update();
       return response.json({status : 'ok', data: all},200);
     }
