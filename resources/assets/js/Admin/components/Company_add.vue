@@ -35,7 +35,7 @@
   					</div>
             <div class="form-group has-feedback">
               <label for="">Email</label>
-              <input type="email" name="email" id="email" v-model="company.email" placeholder="Email" class="form-control" v-validate:companyemail="['required']">
+              <input type="email" name="email" id="email" v-model="company.email" placeholder="you@company.tld" class="form-control" v-validate:companyemail="['required']">
               <span v-if="$validation.companyemail.touched && $validation.companyemail.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span >
             </div>
   					<div class="form-group">
