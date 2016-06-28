@@ -3,11 +3,14 @@
 [![Dev Dependencies](https://david-dm.org/PencariLoker/dev/pencariLoker.svg?style=flat-square)](https://david-dm.org/PencariLoker/pencariLoker#info=devDependencies)
 
 Tugas Pemrograman Web Lanjutan
-Menggunakan framework Node.js, Adonis.js + VueJS
+# Menggunakan: 
+- NodeJS ( RunTime )
+- AdonisJS 3 ( BackEnd Framework )
+- VueJS ( Views framework )
 
 # Contributor:
-- Javentira Lienata
-- Michael
-- Nipe Setiawan Harefa
-- Dennis Daslim
-- Adeline Rosabella
+- Javentira Lienata ( Setup dan Penyedia Droplet Digital Ocean ) 
+- Michael ( API and FrontEnd )
+- Nipe Setiawan Harefa ( BackEnd ) 
+- Dennis Daslim ( BackEnd + FrontEnd )
+- Adeline Rosabella ( BackEnd + FrontEnd )
