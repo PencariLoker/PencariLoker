@@ -125,6 +125,7 @@
         var self = this;
         data = this.lowongan;
         data['_csrf'] = $('meta[name=csrf]').attr('content');
+        data['description'] =  $("#jobdescription").val();
         $.ajax({
           url : window.location.origin + '/admin/lowongan/add',
           async: false,

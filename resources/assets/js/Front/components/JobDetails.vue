@@ -1,4 +1,7 @@
 <style type="text/css">
+  #maps{
+    height: 300px;
+  }
   .socialShare{
     cursor: pointer;
   }
@@ -10,13 +13,16 @@
     background: white;
     margin-bottom: 20px;
     padding: 25px;
+  }.
+  .baliho{
+
   }
 </style>
 <template>
 	<navbar></navbar>
 	<modal></modal>
 	<div class="container bungkus">
-		<div class="colputih">
+		<div class="row baliho">
 			<hr style="margin-top:3px;">
 			<div class="row smalldetail colputih">
 				<div class="colputih col-md-6 col-xs-12">
@@ -38,7 +44,6 @@
 				</div>
 			</div>
 		</div>
-		<hr>
 		<div class="clearfix"></div>
 
 
@@ -47,12 +52,21 @@
           <h4><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Job Description</h4>
           <small>Posted: {{ lowongan.updated_at | convertToDate }}</small>
           <div>
-            <i class="fa fa-twitter socialShare" aria-hidden="true" title="Share With Twitter"></i>
-            <i class="fa fa-facebook socialShare" aria-hidden="true" title="Share With Facebook"></i>
+            <a v-bind:href="tw()">
+              <i class="fa fa-twitter socialShare" aria-hidden="true" title="Share With Twitter"></i>
+            </a>
+            <a b-bind:href="fb()">
+              <i class="fa fa-facebook socialShare" aria-hidden="true" title="Share With Facebook"></i>
+            </a>
+            | <span>{{lowongan.shorturl}}</span>
           </div>
           <hr style="margin-top:0px">
           <div>
             {{{ lowongan.descript }}}
+          </div>
+
+          <div id="maps">
+
           </div>
       </div>
 
@@ -62,27 +76,27 @@
         <hr>
         <div class="col-lg-6 col-md-6 col-sm-12">
           <p class="desc_subject">Industry</p>
-          <p id="company_industry">{{ lowongan.company.industry }}</p>
+          <p id="company_industry">{{ company.industry }}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
             <p class="desc_subject">Company Size</p>
-            <p id="company_size">{{ lowongan.company.size }} orang</p>
+            <p id="company_size">{{ company.size }} orang</p>
           </div>
         <div  class="col-lg-6 col-md-6 col-sm-12">
           <p class="desc_subject">Website</p>
-          <p><a id="company_website" target="_blank" href="{{ company.website }}">{{ lowongan.company.website}}</a></p>
+          <p><a id="company_website" target="_blank" href="{{ company.website }}">{{ company.website}}</a></p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
           <p class="desc_subject">Phone</p>
-          <p id="company_contact">{{ lowongan.company.phone }}</p>
+          <p id="company_contact">{{ company.phone }}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
           <p class="desc_subject">Email</p>
-          <p id="work_environment_working_hours">{{ lowongan.company.email }}</p>
+          <p id="work_environment_working_hours">{{ company.email }}</p>
         </div>
         <div v-if="company.address" class="col-lg-6 col-md-6 col-sm-12">
           <p class="desc_subject">Address</p>
-          <p id="work_environment_working_hours">{{{ lowongan.company.address }}}</p>
+          <p id="work_environment_working_hours">{{{ company.address }}}</p>
         </div>
       </div>
     </div>
@@ -102,18 +116,6 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="clearfix"></div>
-		<div class="row smalldetail colputih" id="div_ee9f_7">
-			<div class="colputih col-md-10 col-xs-12">
-				<h4>Tanggal Pemasangan :{{ lowongan.updated_at | convertToDate }}</h4>
-				<h4>Tanggal Berakhir : {{ lowongan.tanggalberakhir | convertToDate }}</h4>
-			</div>
-			<div class="colputih col-md-2 col-xs-12 pull-right">
-				<center>
-					<a v-if="logged == true" class="btn btn-primary" id="button_ee9f_0" data-toggle="modal" href='#modal-id'>Apply Now!</a>
-					<a v-if="logged == false" class="btn btn-primary" id="button_ee9f_0" data-toggle="modal" href='#modal-id'>Login to apply</a>
-				</center>
-			</div>
-		</div>
 	</div>
 	<script type="text/javascript" src="/js/lightslider.js"></script>
 	<script type="text/javascript">
@@ -130,7 +132,6 @@
 	<foot></foot>
 </template>
 
-
 <script type="text/javascript">
 	const navbar = Vue.component('navbar', require('./_navbar.vue'));
 	Vue.component('modal', require('./_modal.vue'));
@@ -140,6 +141,7 @@
 		if(!value) return "";
 	  	return value.substring(0,value.indexOf("T"));
 	})
+  Vue.config.debug = false;
   export default {
 	ready: function () {
 		console.log("JobDetails Ready");
@@ -149,6 +151,32 @@
       self.lowongan = e;
       self.company = e.company;
       self.company.logo = window.location.origin + "/" + path.join('img', self.company.logo);
+
+
+      if (self.company.lat && self.company.lng){
+        var maps;
+        var myLatLng = {lat: parseFloat(self.company.lat), lng : parseFloat(self.company.lng)};
+        console.log(myLatLng);
+        map = new google.maps.Map(document.getElementById('maps'), {
+          center: myLatLng,
+          zoom: 16,
+        });
+
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          draggable : true,
+        });
+
+        marker.addListener('click', toggleBounce);
+      }
     }
     $.ajax({
       async  : true,
@@ -168,6 +196,14 @@
 			img:[],
 			logged:false
 		}
-	}
+	},
+  methods:{
+    tw: function(){
+      return 'http://twitter.com/share?text=' + this.lowongan.shorturl;
+    },
+    fb : function(){
+      return 'http://www.facebook.com/sharer.php?u=' + this.lowongan.shorturl;
+    },
+  }
 }
 </script>
