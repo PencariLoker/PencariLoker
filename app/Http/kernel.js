@@ -14,7 +14,6 @@ const Middleware = use('Middleware')
 const globalMiddleware = [
   'Adonis/Middleware/Cors',
   'Adonis/Middleware/BodyParser',
-  //'App/Http/Middleware/Auth',
   'Adonis/Middleware/Shield',
   'Adonis/Middleware/Flash'
 ]
@@ -29,7 +28,7 @@ const globalMiddleware = [
 |
 */
 const namedMiddleware = {
-  'auth' : 'App/Http/Middleware/Auth'
+  'admin' : 'App/Http/Middleware/Administrator'
 }
 
 /*
