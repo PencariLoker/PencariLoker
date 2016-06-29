@@ -26,7 +26,8 @@ const providers = [
   'adonis-lucid/providers/DatabaseProvider',
   'adonis-lucid/providers/LucidProvider',
   'adonis-ace/providers/AnsiProvider',
-  'adonis-middleware/providers/AppMiddlewareProvider'
+  'adonis-middleware/providers/AppMiddlewareProvider',
+  'adonis-framework/providers/HashProvider'
 ]
 
 /*
@@ -69,7 +70,8 @@ const aliases = {
   Lucid: 'Adonis/Src/Lucid',
   Runner: 'Adonis/Src/Runner',
   Schema: 'Adonis/Src/Schema',
-  Ansi: 'Adonis/Src/Ansi'
+  Ansi: 'Adonis/Src/Ansi',
+  Hash : 'Adonis/Src/Hash'
 }
 
 /*
