@@ -13,13 +13,25 @@
     </div>
   </div>
 
-  <!-- Starf Form -->
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="col-md-8">
       <div class="form-group">
         <label for="">Title</label>
         <input type="text" name="title" id="inputTitle" class="form-control" placeholder="Job Title" v-model="lowongan.name">
       </div>
+
+      <div class="form-group">
+        <label for="">Job Description</label>
+        <textarea name="" id="jobdescription" cols="30" rows="40" class="form-control" v-model="lowongan.description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="banner">Banner</label>
+        <input type="file" name="bannner" id="banner" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-md-4">
       <div class="form-group">
         <label for="">Job Category</label>
         <select name="category" id="inputCategory" class="form-control" v-model="lowongan.category">
@@ -27,6 +39,7 @@
           <option v-for="item in category" v-bind:value="item.id">{{item.name}}</option>
         </select>
       </div>
+
       <div class="form-group">
         <label for="">Company</label>
         <select name="company" id="inputCompany" class="form-control" required="required" v-model="lowongan.company">
@@ -34,32 +47,24 @@
           <option v-for="item in company" v-bind:value="item.id">{{item.name}}</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="">Job Description</label>
-        <textarea name="" id="jobdescription" cols="30" rows="10" class="form-control" v-model="lowongan.description"></textarea>
-      </div>
-    </div>
 
-    <div class="col-lg-6 col-md-6-col-sm-12">
       <div class="form-group">
         <label for="inputRegion">Region/Province</label>
-        <input type="text" name="region" id="inputRegion" class="form-control" v-model="lowongan.region">
+        <input type="text" name="region" id="inputRegion" class="form-control" v-model="lowongan.region" placeholder="Sumetara Utara">
       </div>
+
       <div class="form-group">
         <label for="">Due Date</label>
-        <input type="text" name="duedate" id="inputDuedateBaruLagi" class="calendar form-control" v-model="lowongan.duedate">
+        <input type="text" name="duedate" id="inputDuedateBaruLagi" class="calendar form-control" v-model="lowongan.duedate" placeholder="YYYY-MM-DD">
       </div>
 
       <div class="form-group">
         <label for="">Salary</label>
         <input type="number" name="" id="input" class="form-control" placeholder="Salary" v-model="lowongan.salary">
       </div>
-      <div class="form-group">
-        <label for="banner">Banner</label>
-        <input type="file" name="bannner" id="banner" class="form-control">
-      </div>
+
     </div>
-  </div> <!-- end of row -->
+  </div>
 
   <div class="row">
     <div class="col-lg-12 col-md-12">
@@ -95,7 +100,9 @@
             setDueDate(moment(d).format("YYYY-MM-DD HH:mm:ss"));
         }.bind(this));
 
-      $("#jobdescription").summernote();
+      $("#jobdescription").summernote({
+        minHeight: 200
+      });
     },
     data: function(){
       return {

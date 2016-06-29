@@ -6,8 +6,8 @@ class NewSchema extends Schema {
 
   up () {
     this.table('companies', function (table) {
-      table.string('lat')
-      table.string('lng')
+      table.string('lat').after('address');
+      table.string('lng').after('lat');
     })
   }
 

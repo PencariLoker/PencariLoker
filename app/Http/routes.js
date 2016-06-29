@@ -69,3 +69,7 @@ Route.get('/api/image', 'ImageController.index').middlewares(['auth']);
 Route.post('/api/image', 'ImageController.index');
 
 //Image Uploader
+
+
+// APi Google Shortner
+Route.get('/short', 'ApiShortController.index');

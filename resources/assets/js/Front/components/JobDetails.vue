@@ -1,3 +1,17 @@
+<style type="text/css">
+  .socialShare{
+    cursor: pointer;
+  }
+  .geserBawahMas{
+    background: white;
+    margin-bottom: 40px;
+  }
+  .contentContent{
+    background: white;
+    margin-bottom: 20px;
+    padding: 25px;
+  }
+</style>
 <template>
 	<navbar></navbar>
 	<modal></modal>
@@ -26,65 +40,55 @@
 		</div>
 		<hr>
 		<div class="clearfix"></div>
-		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 kotakjobdesc">
-				<div class="colputih jobdesc">
-					<h4><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Job Description</h4>
-					<hr style="margin-top:1px;">
-					<div class="unselectable wrap-text" id="job_description">
-						{{{ lowongan.descript }}}
-					</div>
-				</div>
-			</div>
-			<div v-if="lowongan.gmaps" class="col-xs-12 col-lg-12 col-md-12 col-sm-12 kotakjobdesc">
-				<div class="colputih jobdesc">
-					<h4><i class="fa fa-map-marker icon_header"></i> WORK LOCATION</h4>
-					<hr style="margin-top:1px;">
-					<center>
-						<iframe v-bind:src="lowongan.gmaps"  frameborder="0" id="iframe_ee9f_0" allowfullscreen></iframe>
-					</center>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-6 col-md-6 col-sm-6 kotakjobdesc">
-			<div class="colputih jobdesc">
-				<h4><i class="fa fa-list-alt icon_header"></i> Company Info</h4>
-				<hr style="margin-top:1px;">
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<p class="desc_subject">Company Name</p>
-					<p>
-						<span v-text="lowongan.company.name" id="company_registration_number"></span>
-					</p>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<p class="desc_subject">Industry</p>
-					<p id="company_industry">{{ lowongan.company.industry }}</p>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<p class="desc_subject">Company Size</p>
-					<p id="company_size">{{ lowongan.company.size }} orang</p>
-				</div>
-				<div  class="col-lg-6 col-md-6 col-sm-12">
-					<p class="desc_subject">Website</p>
-					<p><a id="company_website" target="_blank" href="{{ company.website }}">{{ lowongan.company.website}}</a></p>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<p class="desc_subject">Phone</p>
-					<p id="company_contact">{{ lowongan.company.phone }}</p>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<p class="desc_subject">Email</p>
-					<p id="work_environment_working_hours">{{ lowongan.company.email }}</p>
-				</div>
-				<div v-if="company.address" class="col-lg-6 col-md-6 col-sm-12">
-					<p class="desc_subject">Address</p>
-					<p id="work_environment_working_hours">{{{ lowongan.company.address }}}</p>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+
+
+    <div class="row geserBawahMas">
+      <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 contentContent">
+          <h4><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Job Description</h4>
+          <small>Posted: {{ lowongan.updated_at | convertToDate }}</small>
+          <div>
+            <i class="fa fa-twitter socialShare" aria-hidden="true" title="Share With Twitter"></i>
+            <i class="fa fa-facebook socialShare" aria-hidden="true" title="Share With Facebook"></i>
+          </div>
+          <hr style="margin-top:0px">
+          <div>
+            {{{ lowongan.descript }}}
+          </div>
+      </div>
+
+      <!-- Company FIeld -->
+      <div class="col-xs-12 col-lg-4 col-md-4 col-sm-4 contentContent">
+        <h4 style="margin-bottom:50px;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Company Info</h4>
+        <hr>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <p class="desc_subject">Industry</p>
+          <p id="company_industry">{{ lowongan.company.industry }}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <p class="desc_subject">Company Size</p>
+            <p id="company_size">{{ lowongan.company.size }} orang</p>
+          </div>
+        <div  class="col-lg-6 col-md-6 col-sm-12">
+          <p class="desc_subject">Website</p>
+          <p><a id="company_website" target="_blank" href="{{ company.website }}">{{ lowongan.company.website}}</a></p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <p class="desc_subject">Phone</p>
+          <p id="company_contact">{{ lowongan.company.phone }}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <p class="desc_subject">Email</p>
+          <p id="work_environment_working_hours">{{ lowongan.company.email }}</p>
+        </div>
+        <div v-if="company.address" class="col-lg-6 col-md-6 col-sm-12">
+          <p class="desc_subject">Address</p>
+          <p id="work_environment_working_hours">{{{ lowongan.company.address }}}</p>
+        </div>
+      </div>
+    </div>
+
+
+
 		<div v-if="img.length != 0" class="col-xs-12 col-lg-6 col-md-6 col-sm-6 kotakjobdesc">
 			<div class="colputih jobdesc">
 				<h4><i class="fa fa-list-alt icon_header"></i> COMPANY PHOTOS</h4>
@@ -108,23 +112,6 @@
 					<a v-if="logged == true" class="btn btn-primary" id="button_ee9f_0" data-toggle="modal" href='#modal-id'>Apply Now!</a>
 					<a v-if="logged == false" class="btn btn-primary" id="button_ee9f_0" data-toggle="modal" href='#modal-id'>Login to apply</a>
 				</center>
-				<!-- <div class="modal fade" id="modal-id">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title">Quistionnaire</h4>
-							</div>
-							<div class="modal-body">
-								<ul>
-									@foreach($ujians as $ujian)
-										<li><a href="{{URL::route('ujian', $ujian->id)}}">{{$ujian->nama}}</a></li>
-									@endforeach
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div> -->
 			</div>
 		</div>
 	</div>
