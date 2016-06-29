@@ -5,6 +5,11 @@ const Admin = use('App/Model/Admin');
 class AdminLoginController {
 
     * index (request, response) {
+      const admin = yield request.session.get('admin');
+
+      if (null !=admin){
+        return response.redirect('/ninja/user');
+      }
       const view = yield response.view('backend/Login.html');
       return response.send(view)
     }
