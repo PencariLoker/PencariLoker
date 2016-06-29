@@ -52,6 +52,11 @@ new Vue({
               onT.INVALID_LOGIN = true;
               return;
             }
+
+            if (e.status == 'ok'){
+              window.location.replace('/ninja/user');
+              return;
+            }
           }
           $.ajax({
             async: true,

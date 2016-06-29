@@ -36,7 +36,7 @@
       </div>
 
       <div class="form-group">
-        <input type="email" name="email" id="input" class="form-control" placeholder="Email" v-validate:email="['required', 'email']" @keyup.enter="login">
+        <input type="email" name="email" id="input" class="form-control" placeholder="Email" v-validate:email="['required', 'email']" @keyup.enter="login" v-model="email">
 
         <!-- <p class="text-error" v-if="">Email Required</p> -->
         <p class="text-error" v-show="$validation.email.touched && $validation.email.required">Email tidak boleh kosong.</p>
@@ -44,7 +44,7 @@
       </div>
 
       <div class="form-group">
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" v-validate:password="['required']" @keyup.enter="login">
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" v-validate:password="['required']" @keyup.enter="login" v-model="password">
          <p class="text-error" v-show="$validation.password.touched && $validation.password.required">Sandi tidak boleh kosong</p>
       </div>
 

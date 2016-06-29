@@ -73,3 +73,9 @@ Route.post('/api/image', 'ImageController.index');
 
 // APi Google Shortner
 Route.get('/short', 'ApiShortController.index');
+
+// Login
+//
+Route.get('/admin/login', 'AdminLoginController.index');
+Route.post('/admin/login', 'AdminLoginController.login');
+Route.get('/admin/logout', 'AdminLoginController.logout');
