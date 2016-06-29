@@ -11,6 +11,6 @@ Tugas Pemrograman Web Lanjutan
 # Contributor:
 - Javentira Lienata ( Setup dan Penyedia Droplet Digital Ocean, git problem resolver ) 
 - Michael ( API and FrontEnd )
-- Nipe Setiawan Harefa ( BackEnd ) 
+- Nipe Setiawan Harefa ( BackEnd ) :cancer:
 - Dennis Daslim ( BackEnd + FrontEnd )
 - Adeline Rosabella ( BackEnd + FrontEnd )
