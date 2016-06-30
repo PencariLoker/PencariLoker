@@ -22,7 +22,7 @@
 	<navbar></navbar>
 	<modal></modal>
 	<div class="container bungkus">
-		<div class="row baliho">
+		<div class="row colputih">
 			<hr style="margin-top:3px;">
 			<div class="row smalldetail colputih">
 				<div class="colputih col-md-6 col-xs-12">
@@ -44,11 +44,10 @@
 				</div>
 			</div>
 		</div>
+    <hr>
 		<div class="clearfix"></div>
-
-
-    <div class="row geserBawahMas">
-      <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 contentContent">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contentContent">
           <h4><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Job Description</h4>
           <small>Posted: {{ lowongan.updated_at | convertToDate }}</small>
           <div>
@@ -64,14 +63,12 @@
           <div>
             {{{ lowongan.descript }}}
           </div>
-
           <div id="maps">
-
           </div>
       </div>
-
+    </div>
       <!-- Company FIeld -->
-      <div class="col-xs-12 col-lg-4 col-md-4 col-sm-4 contentContent">
+      <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6 contentContent">
         <h4 style="margin-bottom:50px;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Company Info</h4>
         <hr>
         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -99,10 +96,6 @@
           <p id="work_environment_working_hours">{{{ company.address }}}</p>
         </div>
       </div>
-    </div>
-
-
-
 		<div v-if="img.length != 0" class="col-xs-12 col-lg-6 col-md-6 col-sm-6 kotakjobdesc">
 			<div class="colputih jobdesc">
 				<h4><i class="fa fa-list-alt icon_header"></i> COMPANY PHOTOS</h4>
