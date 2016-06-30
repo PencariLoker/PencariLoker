@@ -3,6 +3,10 @@
 [![Dev Dependencies](https://david-dm.org/PencariLoker/dev/pencariLoker.svg?style=flat-square)](https://david-dm.org/PencariLoker/pencariLoker#info=devDependencies)
 
 PencariLoker adalah sebuah website direktori lowongan kerja
+IP : 128.199.133.46
+admin panel = 128.199.133.46/admin/login
+admin username = admin@example.com
+admin password = admin
 
 Tugas Pemrograman Web Lanjutan
 # Menggunakan: 
