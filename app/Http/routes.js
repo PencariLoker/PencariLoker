@@ -47,6 +47,8 @@ Route.delete('/admin/company/delete', 'AdminCompanyController.destroy')
 
 // Category
 Route.get('/admin/category/list', 'AdminCategoryJobsController.show');
+Route.post('admin/category', 'AdminCategoryJobsController.add');
+Route.delete('/admin/category', 'AdminCategoryJobsController.delete');
 
 Route.post('/api/image', 'ImageController.index');
 

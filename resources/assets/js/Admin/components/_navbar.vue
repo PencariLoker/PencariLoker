@@ -27,6 +27,9 @@
                                 </strong>
                             </a>
                         </li>
+                        <li>
+                            <a href="#!/category/"><strong><i class="fa fa-briefcase fa-fw"></i> Category Lowongan</strong></a>
+                        </li>
                          <li>
                             <a href="#!/lowongan/"><strong><i class="fa fa-briefcase fa-fw"></i> Lowongan</strong></a>
                         </li>

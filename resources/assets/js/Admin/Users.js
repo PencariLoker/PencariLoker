@@ -12,6 +12,8 @@ var Company_List = require('./components/Company_list.vue');
 var Company_Add = require('./components/Company_add.vue');
 var Company_Edit = require('./components/Company_edit.vue');
 
+var Category = require('./components/Category.vue');
+
 // Lowoongan
 var Lowongan_Add = require('./components/Lowongan_add.vue');
 var Lowongan_Edit = require('./components/Lowongan_edit.vue');
@@ -21,6 +23,9 @@ var router = new VueRouter({})
 router.map({
     '/' : {
         component : Home,
+    },
+    '/category' : {
+      component : Category,
     },
     '/company': {
         component: Company_List,
