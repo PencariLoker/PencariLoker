@@ -5,9 +5,9 @@
       <div class="col-md-3 grid_3">
         <h4>Navigasi</h4>
         <ul class="f_list f_list1">
-          <li><a href="http://pencariloker.tk">Home</a></li>
-          <li><a href="http://pencariloker.tk/login">Masuk</a></li>
-          <li><a href="http://pencariloker.tk/register">Daftar</a></li>
+          <li><a href="">Home</a></li>
+          <li><a href="/login">Masuk</a></li>
+          <li><a href="/register">Daftar</a></li>
         <div class="clearfix"> </div>
       </div>
       <div class="col-md-3 grid_3">

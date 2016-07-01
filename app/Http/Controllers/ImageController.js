@@ -1,12 +1,9 @@
 'use strict'
-
-var gm = require('gm');
-var fs = require('fs');
 const Helpers = use('Helpers')
 var path  = require('path');
-class ImageController {
 
-    * index (request, response) {
+class ImageController {
+  * index (request, response) {
       const avatar = request.file('filegambar', {
         maxSize: '2mb',
         allowedExtensions: ['jpg', 'png', 'jpeg']
@@ -23,13 +20,7 @@ class ImageController {
 
 
       return response.json({status: 'ok', data: fileName});
-    }
-    * create (request, response) {}
-    * store (request, response) {}
-    * show (request, response) {}
-    * edit (request, response) {}
-    * update (request, response) {}
-    * destroy (request, response) {}
+  }
 }
 
 module.exports = ImageController

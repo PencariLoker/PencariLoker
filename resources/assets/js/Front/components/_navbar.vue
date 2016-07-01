@@ -13,7 +13,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse landing" id="bs-example-navbar-collapse-1">
-                <ul v-if="user.logged == true" class="nav navbar-nav navbar-right landing" >
+                <ul v-if="logged" class="nav navbar-nav navbar-right landing" >
                     <li>
                         <img v-bind:src="pictureUrl" class="img img-responsive user_pic" style="width: 40px; height: 40px; border-radius: 100%; border: 1px solid #dadada; position: relative; top: 5px; left: 5px;">
                     </li>
@@ -27,7 +27,7 @@
                         </li>
                     </li>
                 </ul>
-                <ul v-if="user.logged == false" class="nav navbar-nav navbar-right landing" >
+                <ul class="nav navbar-nav navbar-right landing" v-if="!logged">
                     <li>
                         <a id="show-modal" href="#modal-id" data-toggle="modal" class="landing btn-regis">Masuk</a>
                     </li>
@@ -44,23 +44,32 @@
 		ready: function(){
 			console.log("Navbar Ready")
             var _this = this;
+            var handle = function(e){
+              _this.logged = e.guest;
+              if (e.guest){
+                _this.formattedName = e.user.name || null;
+                _this.pictureUrl = e.user.photo_url || null;
+              }
+            }
             $.ajax({
                 method : 'GET',
-                async : false,
+                async : true,
                 cache : false,
                 'url' : window.location.origin + "/data",
                 success : function(res){
-                    _this.user = res;
+                    handle(res);
+                    /*_this.user = res;
                     _this.formattedName = res.formattedName || res.name;
-                    _this.pictureUrl = res.pictureUrl || res.photo_url
-                }.bind(_this)
+                    _this.pictureUrl = res.pictureUrl || res.photo_url*/
+                }
             });
 		},
         data: function(){
             return {
                 user : {},
                 formattedName:'',
-                pictureUrl:''
+                pictureUrl:'',
+                logged: false,
             }
         }
 	}

@@ -30,7 +30,7 @@ module.exports = {
   */
   session: {
     serializer: 'Lucid',
-    model: 'App/Model/User',
+    model: 'App/Model/Users',
     scheme: 'session',
     uid: 'email',
     password: 'password'

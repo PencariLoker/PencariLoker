@@ -29,7 +29,7 @@
 						</thead>
 						<tbody>
 							<tr v-for="item in arr">
-								<td>foo</td>
+								<td>{{item.linkedin_id}}</td>
 								<td>{{item.name}}</td>
 								<td>{{item.email}}</td>
 								<td>

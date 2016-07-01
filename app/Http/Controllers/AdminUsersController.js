@@ -21,15 +21,15 @@ class AdminUsersController {
     	response.send(view)
     }
     * create (request, response) {
-        const semua = yield request.all();
+        /*const semua = yield request.all();
         User.create({
             'name'     : "Nipe Setiwan Harefa",
             'email'    : 'email@gmail.com'
         })
-        response.send(semua);
+        response.send(semua);*/
     }
     * addUser(request,response){
-        var semua = yield request.all();
+        /*var semua = yield request.all();
         delete semua._csrf;
         if(User.inDatabase){
             yield User.where('linkedin_id',semua.linkedin_id).update(semua);
@@ -39,13 +39,13 @@ class AdminUsersController {
             yield User.create(semua);
         }
         User.inDatabase = true;
-        response.json({redirect:'/profile'});
+        response.json({redirect:'/profile'});*/
     }
     * store (request, response) {}
     * show (request, response) {}
     * list (request, response){
         console.log(this._admin(request));
-        const user = yield User;
+        const user = yield User.query();
         response.json(user);
     }
     * edit (request, response) {}
