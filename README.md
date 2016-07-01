@@ -32,6 +32,7 @@ Penuhi requirement untuk AdonisJS
 Lakukan "npm install", "bower install", dan "gulp"
 
 Setting .env untuk menggunakan database Mysql
+
 Lakukan migration dengan "node ace migration:run"
 
 insert akun admin ke mysql dengan command berikut
