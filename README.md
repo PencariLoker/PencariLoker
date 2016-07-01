@@ -35,7 +35,7 @@ Setting .env untuk menggunakan database Mysql
 Lakukan migration dengan "node ace migration:run"
 
 insert akun admin ke mysql dengan command berikut
-'''
+```SQL
 INSERT INTO `admin` (`id`, `username`, `email`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'admin', 'admin@example.com', '$2a$10$O90nQICfQn8.r5FT/Ko.fuouh0bwZ6JhLbFqH2QUMidwWx3GmfOE6', NULL, NULL, CURRENT_TIMESTAMP);
-'''
+```
 jalankan server dengan "npm run dev"
