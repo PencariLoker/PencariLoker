@@ -16,6 +16,7 @@ class NewSchema extends Schema {
       table.string('photo_url')
       table.string('address')
       table.string('city')
+      table.string('password', 60).nullable()
       table.boolean('admin').defaultTo(false);
       table.timestamps()
       table.timestamp('deleted_at')

@@ -48,6 +48,7 @@ class AuthController {
       user.email = data.emailAddress
       user.photo_url = data.pictureUrl
       yield user.save() // SQL Insert
+      yield request.auth.login(user);
       return response.redirect("/");
     }
   }
