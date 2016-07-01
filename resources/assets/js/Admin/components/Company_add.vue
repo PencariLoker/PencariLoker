@@ -43,14 +43,17 @@
   					<div class="form-group">
               <label for="upload3" style="width: 100%;">
                   <span class="btn btn-primary">
-                    <i class="fa fa-plus"></i> Add or Change Logo
+                    <i class="fa fa-plus"></i> Change Logo
                   </span>
-                  <input type="file" class="hidden" id="upload3" accept="image/*" v-on:change="addLogo">
+                  <input type="file" class="hidden" id="upload3" accept="image/*" @change="addLogo">
               </label>
+              <p v-if="mediaonUpload">on upload.....</p>
             </div>
+
             <div class="form-group">
               <img v-bind:src="getImage(company.logo)" class="img-responsive" v-if="company.logo">
             </div>
+
             <div class="form-group">
               <label for="">Maps</label>
               <div id="maps">
