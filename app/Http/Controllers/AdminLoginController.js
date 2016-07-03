@@ -1,5 +1,7 @@
 'use strict'
 
+const Hash  = use('Hash');
+const Admin = use('App/Model/Admin');
 class AdminLoginController {
   * index (request, response){
     const view = yield response.view('backend/Login')
@@ -9,15 +11,19 @@ class AdminLoginController {
   * login (request, response){
     const email = request.input('email')
     const password = request.input('password')
-    try {
-      const login = yield request.auth.attempt(email, password)
-       if (login) {
+    const admin = yield Admin.where('email', email).first();
+    const isSame = yield Hash.verify(password, admin.password);
+
+     if (isSame) {
+        var adminStatus = {
+          'login_at' : new Date,
+          'email'    : admin.email
+        }
+
+        yield request.session.put('admin', adminStatus);
         return response.json({status: 'ok'});
-      }
     }
-    catch(UserNotFoundException) {
-      return response.json({status: 'INVALID_LOGIN'});
-    }
+    return response.json({status: 'INVALID_LOGIN'});
   }
 }
 
