@@ -7,8 +7,8 @@ require('./Validator');
 $(function () {
   $.ajaxSetup({
     headers: {
-            'X-XSRF-TOKEN': $('meta[name=csrf]').attr('content')
-            'CSRF-TOKEN': $('meta[name=csrf]').attr('content')
+            'X-XSRF-TOKEN': $('meta[name=csrf]').attr('content'),
+            'CSRF-TOKEN': $('meta[name=csrf]').attr('content'),
     }
   });
 });
