@@ -27,6 +27,7 @@ class AuthController {
     var result = function(){
       return new Promise(function(resolve,reject){
         linkedin.people.me(function(err, $in) {
+              console.log($in);
               resolve($in);
         });
       });
@@ -46,7 +47,7 @@ class AuthController {
       user.name = data.formattedName
       user.linkedin_id = data.id
       user.email = data.emailAddress
-      user.photo_url = data.pictureUrl
+      user.photo_url = data.pictureUrls.values[0]
       yield user.save() // SQL Insert
       yield request.auth.login(user);
       return response.redirect("/");

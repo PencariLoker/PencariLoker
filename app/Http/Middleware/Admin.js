@@ -3,8 +3,12 @@
 class Admin {
 
   * handle (request, response, next) {
-    console.log(`Received request on ${request.url()}`)
-    yield next
+    const user = yield request.auth.getUser()
+    //const isAdmin = user.admin;
+    if (user && user.admin)
+      yield next
+
+    yield response.redirect('/admin/login')
   }
 
 }

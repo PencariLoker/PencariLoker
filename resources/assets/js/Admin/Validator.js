@@ -6,5 +6,4 @@ Vue.validator('email', function (val) {
 Vue.validator('http', function(val){
   return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(val);
 })
-
 module.exports = Vue;

@@ -54,7 +54,7 @@ new Vue({
             }
 
             if (e.status == 'ok'){
-              window.location.replace('/ninja/user');
+              window.location.replace('/admin');
               return;
             }
           }

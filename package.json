@@ -33,6 +33,7 @@
     "moment": "^2.13.0",
     "mysql": "^2.11.1",
     "node-linkedin": "^0.5.3",
+    "pdfjs-dist": "^1.5.314",
     "progressbar.js": "^1.0.1",
     "selectize": "^0.12.1",
     "slick-carousel": "^1.6.0",

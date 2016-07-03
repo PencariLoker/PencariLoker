@@ -16,7 +16,6 @@
       <div class="row">
   			<div class="col-md-12">
   				<div class="col-md-6">
-
             <div class="form-group has-feedback">
   						<label for="">Name</label>
   						<input type="text" name="name" id="inputName" class="form-control" placeholder="Name" v-model="company.name" v-validate:companyname="['required']" detect-change="off" detect-blur="off">
