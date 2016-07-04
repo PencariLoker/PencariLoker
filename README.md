@@ -5,7 +5,7 @@
 PencariLoker adalah sebuah website direktori lowongan kerja
 IP : 128.199.133.46
 admin panel = 128.199.133.46/admin/login
-admin username = admin@example.com
+admin username = admin@admin.com
 admin password = admin
 
 Tugas Pemrograman Web Lanjutan
