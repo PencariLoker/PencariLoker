@@ -74,6 +74,28 @@ class HomeController {
     const view = yield response.view('frontend/jobs');
     response.send(view)
   }
+  
+  *getPage(request,response){
+    var semua = yield request.all();
+    delete semua._csrf;
+    var data = {};
+
+    if(semua.idcomp == "" && semua.idcat == ""){
+        data.lowongans = yield Lowongan.with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
+    }else if(semua.idcomp == ""){
+        data.lowongans = yield Lowongan.where('lowongancat_id',semua.idcat).with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
+    }else if(semua.idcat == ""){
+        data.lowongans = yield Lowongan.where('company_id',semua.idcomp).with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
+    }else{
+        data.lowongans = yield Lowongan.where(function () {
+          this.where('lowongancat_id',semua.idcat);
+          this.where('company_id',semua.idcomp)
+        }).with('company','lowongancat').limit(ItemPerPage).offset((semua.page -1) * ItemPerPage).fetch();
+    }
+    data.lowongans = data.lowongans.toJSON();
+
+    response.json(data);
+  }
 
   * userSession(request, response){
     yield request.auth.loginViaId(6)
