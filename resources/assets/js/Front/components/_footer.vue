@@ -6,8 +6,8 @@
         <h4>Navigasi</h4>
         <ul class="f_list f_list1">
           <li><a href="">Home</a></li>
-          <li><a href="/login">Masuk</a></li>
-          <li><a href="/register">Daftar</a></li>
+          <li v-if="logged"><a id="show-modal" href="#modal-id" data-toggle="modal" class="landing btn-regis">Masuk</a></li>
+          <li v-if="logged"><a id="show-modal" href="#modal-id" data-toggle="modal" class="landing btn-regis">Daftar</a></li>
         <div class="clearfix"> </div>
       </div>
       <div class="col-md-3 grid_3">
@@ -39,6 +39,24 @@
   export default {
     ready: function () {
       console.log("Footer Ready");
+      var _this = this;
+      var handle = function(e){
+        _this.logged = e.guest;
+      }
+      $.ajax({
+          method : 'GET',
+          async : true,
+          cache : false,
+          'url' : window.location.origin + "/data",
+          success : function(res){
+              handle(res);
+          }
+      });
+    },
+    data: function(){
+      return {
+          logged: false,
+      }
     }
   }
 </script>
