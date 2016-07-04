@@ -21,6 +21,7 @@ Route.on('/').render('frontend.home')
 Route.get('/jobs', 'HomeController.jobs').as('jobs')
 Route.get('/jobdetails/:id', 'HomeController.jobdetails').as('jobdetails')
 Route.get('/getJobDetails', 'HomeController.getJobDetails');
+Route.post('/getPage', 'HomeController.getJobDetails');
 Route.get('/profile', 'HomeController.profile');
 Route.get('/profile/data', 'HomeController.profiledata');
 Route.post('/profile/data', 'HomeController.saveprofile');
