@@ -15,7 +15,6 @@ class InsertDefaultAdminSeeder {
     user.admin = 1;
     user.photo_url = "http://soccerlogo.net/uploads/posts/2014-09/1410464738_fc-manchester-united.png";
     yield user.save();
-    return;
   }
 
 }

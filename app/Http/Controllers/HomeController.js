@@ -76,7 +76,7 @@ class HomeController {
   }
 
   * userSession(request, response){
-    yield request.auth.loginViaId(6)
+    //yield request.auth.loginViaId(6)
 
     const logged = yield request.auth.check();
 
